@@ -35,7 +35,7 @@
 ### 作成由来
 
 私自身プログラミング学習をする中で、[こちら](https://zenn.dev/)にアウトプットを行なってきました。<br>
-その投稿を、一緒に学習しているエンジニアの方々にチェックしてもらい補足事項などをアドバイスもらうことで<br>より学習が楽しなり、その学習を踏まえてスクールの仲間に共有すると、学習意欲はさらに上がりました。
+その投稿を、一緒に学習しているエンジニアの方々にチェックしてもらい補足事項などをアドバイスもらうことで<br>より学習が楽しなり、その学習を踏まえてスクールの仲間git に共有すると、学習意欲はさらに上がりました。
 
 一人でやるよりも、仲間と協力しながら学び、問題を解決していく方が学びは深まることを体験しました。
 
@@ -50,6 +50,10 @@
 
 ## 作成物
 
+- [`実装機能リスト`](https://docs.google.com/spreadsheets/d/1vkAdKpy6GbZzzjjsnF19vyWcAdmiroLLOuXYoJs-Rj8/edit#gid=885378170)
+- [ER図(draw.ioで作成)]()
+- [詳細設計書]()
+
 ## 開発環境
 
 - OS：Linux(CentOS)
@@ -58,15 +62,23 @@
 - JSライブラリ：jQuery botUI
 - IDE：Cloud9
 
+---
+
+**ここから先は最後に記述**
+
 ## 難しかったところ
+
+-
 
 ## 学んだところ
 
+-
+
 ## レファランス
 
-- [`Zennまとめページ`](https://zenn.dev/airiswim)
 - [`MDN Web Docs`](https://developer.mozilla.org/ja/docs/Web/JavaScript)
 - [`Rails ガイド`](https://railsguides.jp/active_record_validations.html)
+- [`Zennまとめページ`](https://zenn.dev/airiswim)
 
 ## ウェブサポート
 
