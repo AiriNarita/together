@@ -59,7 +59,8 @@
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
-- JSライブラリ：jQuery botUI
+- JSライブラリ：jQuery
+- API : [search](https://docs.github.com/en/rest/search?apiVersion=2022-11-28)
 - IDE：Cloud9
 
 ---
