@@ -216,7 +216,7 @@ GEM
     zeitwerk (2.6.7)
 
 PLATFORMS
-  arm64-darwin-21
+  arm64-darwin
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
@@ -241,4 +241,4 @@ RUBY VERSION
    ruby 3.1.2p20
 
 BUNDLED WITH
-   2.3.19
+   2.4.7
