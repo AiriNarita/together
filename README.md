@@ -1,4 +1,4 @@
-# PF：　Together
+# Together
 
 ## 🚩 Table of Contents
 
