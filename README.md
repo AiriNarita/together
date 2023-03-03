@@ -51,13 +51,13 @@
 ## 作成物
 
 - <a href="https://docs.google.com/spreadsheets/d/1vkAdKpy6GbZzzjjsnF19vyWcAdmiroLLOuXYoJs-Rj8/edit#gid=885378170" target="_blank">実装機能リスト<a>
-
+- [UI flow](https://drive.google.com/file/d/1LjfFfMSbh0sh-1oTt-0BE_L5U8Nn4Mtk/view?usp=sharing)
 - [ER図(draw.ioで作成)]()
 - [詳細設計書]()
 
 ## 開発環境
 
-- OS：
+- OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
