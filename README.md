@@ -38,6 +38,7 @@
 - <a href="https://docs.google.com/spreadsheets/d/1vkAdKpy6GbZzzjjsnF19vyWcAdmiroLLOuXYoJs-Rj8/edit#gid=885378170" target="_blank">実装機能リスト<a>
 - [UI flow](https://drive.google.com/file/d/1LjfFfMSbh0sh-1oTt-0BE_L5U8Nn4Mtk/view?usp=sharing)<br>
 ※詳細書等作成し次第掲載予定です。
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1N7G1s3Di0b0VrLpVU6wXEhB8krQ56zkRehrSucyjqvk/edit#gid=0)
 
 ## 開発環境
 
