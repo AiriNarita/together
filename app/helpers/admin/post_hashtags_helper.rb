@@ -1,2 +1,0 @@
-module Admin::PostHashtagsHelper
-end
