@@ -8,12 +8,12 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
-         
+
   #イベント関連のassociation
   has_many :attendees
   has_many :events, through: :attendees
   has_many :created_events, class_name: "Event", foreign_key: "creator_id"
-         
+
   #ActiveStrageの設定
-  has_one_attached : image         
+  has_one_attached :image
 end
