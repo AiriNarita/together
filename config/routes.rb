@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "searches/search", to: "searches#search"
+
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
