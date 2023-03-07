@@ -1,0 +1,2 @@
+module Public::PostsHelper
+end
