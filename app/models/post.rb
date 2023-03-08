@@ -6,4 +6,10 @@ class Post < ApplicationRecord
 
   #下書き、公開のenum設定
   enum post_status: { published: 0, draft: 1 }
+
+  #下書き機能
+  def save_draft
+    self.post_status = :draft
+    save(validate: false)
+  end
 end
