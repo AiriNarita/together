@@ -1,0 +1,30 @@
+<div class='container mt-5'>
+  <div class='row'>
+    <h3>Editing</h3>
+  </div>
+  <%= form_with model:@user, url: information_edit_users_path, local:true do |f| %>
+    <div class='row'>
+      <p>
+        <strong>Name</strong><br>
+        <%= f.text_field :last_name %>
+        <%= f.text_field :first_name %>
+      </p>
+    </div>
+    <div class='row'>
+      <p>
+        <strong>Name(カナ)</strong><br>
+        <%= f.text_field :last_name_kana %>
+        <%= f.text_field :first_name_kana %>
+      </p>
+    </div>
+    <div class='row'>
+      <p>
+        <strong>Introduction</strong><br>
+        <%= f.text_area :introduction, class: "form-control introduction" %>
+      </p>
+    </div>
+    <div class="form-group">
+      <%= f.submit class: 'btn btn-outline-info' %>
+    </div>
+  <% end %>
+</div>
