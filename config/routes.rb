@@ -20,8 +20,8 @@ Rails.application.routes.draw do
     end
     resource :users, only: [] do
       get "my_page" => "users#show"
-      get "information/edit" => "customers#edit"
-      patch "information" => "customers#update"
+      get "information/edit" => "users#edit"
+      patch "information" => "users#update"
     end
 
     resources :events do
