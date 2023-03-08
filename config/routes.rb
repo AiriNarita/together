@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     resources :posts do
       resources :comments, only: [:index, :show, :edit, :update, :destroy]
     end
+    resources :users, only: [:index, :show]
     resources :events, only: [:index, :show]
   end
 end
