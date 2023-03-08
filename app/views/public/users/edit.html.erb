@@ -4,6 +4,9 @@
   </div>
   <%= form_with model:@user, url: information_users_path do |f| %>
     <div class='row'>
+      <%= f.file_field :image, accept: "image/*" %>
+    </div>
+    <div class='row'>
       <p>
         <strong>Name</strong><br>
         <%= f.text_field :last_name %>
