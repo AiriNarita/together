@@ -12,4 +12,9 @@ class Post < ApplicationRecord
     self.post_status = :draft
     save(validate: false)
   end
+
+  #いいね機能
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
 end

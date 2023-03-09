@@ -12,6 +12,19 @@
     </div>
   </div>
   <div class="row">
+    <% if @post.favorited_by?(current_user) %>
+      <%= link_to post_favorite_path(@post), method: :DELETE do %>
+        <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+        <%= @post.favorites.count %>like
+      <% end %>
+    <% else %>
+      <%= link_to post_favorite_path(@post) , method: :POST do %>
+        <i class="fa fa-heart" aria-hidden="true" ></i>
+        <%= @post.favorites.count %>like
+      <% end %>
+    <% end %>
+  </div>
+  <div class="row">
     <div class="col-md-12">
       <% if @post.user_id == current_user.id %>
         <%= link_to "編集", edit_post_path(@post), class: 'btn btn-sm btn-success mr-3' %>
