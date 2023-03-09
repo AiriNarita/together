@@ -24,6 +24,19 @@
       <% end %>
     <% end %>
   </div>
+  <div class="comment-box">
+    <p>コメント件数：<%= @post.post_comments.count %></p>
+    <% @post.post_comments.each do |post_comment| %>
+      <%= post_comment.user.first_name %>
+      <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+    <% end %>
+  </div>
+  <div>
+    <%= form_with model: @post_comment, url: post_post_comments_path(@post, @post_comment), local: true do |f| %>
+      <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+      <%= f.submit "送信する" %>
+    <% end %>
+  </div>
   <div class="row">
     <div class="col-md-12">
       <% if @post.user_id == current_user.id %>
