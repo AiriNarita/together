@@ -5,14 +5,14 @@ class Public::PostsController < ApplicationController
 
   def create
     if params[:commit] == "下書き保存"
-      @post = current_user.posts.build(post_params)
+      @post = Post.create(post_params.merge(user_id: current_user.id))
       if @post.save_draft
         redirect_to drafts_posts_path
       else
         render :new
       end
     else
-      @post = current_user.posts.build(post_params)
+      @post = Post.create(post_params.merge(user_id: current_user.id))
       if @post.save
         redirect_to post_path(@post)
       else
@@ -22,7 +22,6 @@ class Public::PostsController < ApplicationController
   end
 
   def drafts
-    # 本文に"Ruby"という文字列が含まれ、かつ公開ステータスである投稿を取得
     @published_posts = Post.where(user_id: current_user.id).where(post_status: :published).order(created_at: :desc)
     @draft_posts = Post.where(user_id: current_user.id).where(post_status: :draft).order(created_at: :desc)
   end
@@ -32,10 +31,12 @@ class Public::PostsController < ApplicationController
   end
 
   def index
+    @posts = Post.published
   end
 
   def edit
     @post = Post.find(params[:id])
+    @isDraft = @post.draft?
   end
 
   def update
