@@ -1,6 +1,12 @@
 <h1>下書き一覧</h1>
-<ul>
+<div class="col-md-6">
   <% @draft_posts.each do |draft| %>
-    <li><%= link_to draft.title, edit_post_path(draft) %></li>
-  <% end %>
-</ul>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">
+          <%= link_to draft.title, edit_post_path(draft) %>
+        </h5>
+      <% end %>
+    </div>
+  </div>
+</div>
