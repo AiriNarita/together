@@ -12,7 +12,8 @@
             <div class="card-body">
               <h5 class="card-title"><%= link_to post.title, post_path(post.id) %></h5>
               <p class="card-text"><%= link_to post.user.first_name, my_page_users_path(post.user.id) %></p>
-              <%= post.favorites.count %>Like
+              <p>Like:<%= post.favorites.count %>件<br>
+                comments:<%= post.post_comments.count %>件</p>
             </div>
           </div>
         <% end %>
