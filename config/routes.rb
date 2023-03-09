@@ -14,7 +14,7 @@ Rails.application.routes.draw do
         get "drafts"
       end
       resource :favorite, only: [:create, :destroy]
-      resources :hashtags, only: [:create]
+      resources :hashtags, only: [:create, :show]
       resources :post_comments, only: [:create, :destroy]
       resources :post_hashtags, only: [:create, :destroy]
     end
