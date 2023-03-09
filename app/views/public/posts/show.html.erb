@@ -7,9 +7,9 @@
       <%= @post.body %></p>
   </div>
   <div class="form-group">
-    <% if @post = current_user.posts %>
+    <% if @post.user_id == current_user.id %>
       <%= link_to "Edit", edit_post_path(@post), class: 'btn btn-sm btn-success'%>
-      <%= link_to "Destroy", post_path(@post), class:'btn btn-sm btn-danger destroy_book_57911',data: { confirm: '本当に消しますか？' } %>
+      <%= link_to "Destroy", posts_path, class:'btn btn-sm btn-danger destroy_book_57911',data: { confirm: '本当に消しますか？' } %>
     <% end %>
   </div>
 </div>
