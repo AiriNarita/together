@@ -4,16 +4,20 @@ class Public::PostsController < ApplicationController
   end
 
   def create
+    tag_list = params[:post][:hashtag_name].split(nil)
+    #下書き保存ボタンを押されたら
     if params[:commit] == "下書き保存"
       @post = Post.create(post_params.merge(user_id: current_user.id))
       if @post.save_draft
+        @post.save_tag(tag_list)
         redirect_to drafts_posts_path
       else
         render :new
       end
-    else
+    else #投稿ボタンが押されたら
       @post = Post.create(post_params.merge(user_id: current_user.id))
       if @post.save
+        @post.save_tag(tag_list)
         redirect_to post_path(@post)
       else
         render :new
