@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2023_03_07_044542) do
     t.string "event_name", null: false
     t.text "event_introduction", null: false
     t.string "creater", null: false
-    t.integer "Sharing_status", default: 0, null: false
+    t.integer "Sharing_status", default: 0
     t.text "url", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

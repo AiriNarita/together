@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :events, through: :attendees
   has_many :created_events, class_name: "Event", foreign_key: "creator_id"
 
+  #event メソッド
+
   #ActiveStrageの設定
   has_one_attached :image
 end

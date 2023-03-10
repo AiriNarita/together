@@ -4,12 +4,11 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-    tag_list = params[:post][:hashtag_name].split(nil)
     #下書き保存ボタンを押されたら
     if params[:commit] == "下書き保存"
       @post = Post.create(post_params.merge(user_id: current_user.id))
       if @post.save_draft
-        @post.save_tag(tag_list)
+        save_hashtags
         redirect_to drafts_posts_path
       else
         render :new
@@ -17,7 +16,7 @@ class Public::PostsController < ApplicationController
     else #投稿ボタンが押されたら
       @post = Post.create(post_params.merge(user_id: current_user.id))
       if @post.save
-        @post.save_tag(tag_list)
+        save_hashtags
         redirect_to post_path(@post)
       else
         render :new
@@ -52,11 +51,11 @@ class Public::PostsController < ApplicationController
       tag_list = params[:post][:hashtag_name].split(nil)
       if params[:commit] == "下書き保存"
         @post.update(post_status: :draft)
-        @post.save_tag(tag_list)
+        update_hashtags
         redirect_to posts_path, notice: "下書きを保存しました。"
       else
         @post.update(post_status: :published)
-        @post.save_tag(tag_list)
+        update_hashtags
         redirect_to @post, notice: "投稿を更新しました。"
       end
     else
@@ -74,5 +73,49 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body, :post_status)
+  end
+
+  def save_hashtags
+  end
+
+  def update_hashtags
+    # 中間テーブルのPost Idで探して出たデータ全てを消す→Clean！
+    PostHashtag.where(post_id: @post.id).destroy_all
+    sent_tags = params[:post][:hashtag_name].scan(/#\w+/).map(&:strip).uniq.map(&:downcase)
+
+    # 既存のハッシュタグを取得する
+    existing_tags = Hashtag.where(hashtag_name: sent_tags)
+
+    existing_tags.each do |tag|
+      post_hashtag = PostHashtag.where(hashtag_id: tag.id, post_id: @post.id)
+      PostHashtag.create(hashtag_id: tag.id, post_id: @post.id)
+    end
+
+    # 既存のハッシュタグと重複していないタグを追加する
+    new_tags = sent_tags - existing_tags.pluck(:hashtag_name)
+    new_tags.each do |tag_name|
+      tag = Hashtag.create(hashtag_name: tag_name)
+      PostHashtag.create(hashtag_id: tag.id, post_id: @post.id)
+    end
+  end
+
+  def save_hashtags
+    # 重複を削除する
+    sent_tags = params[:post][:hashtag_name].scan(/#\w+/).map(&:strip).uniq.map(&:downcase)
+
+    # 既存のハッシュタグを取得する
+    existing_tags = Hashtag.where(hashtag_name: sent_tags)
+
+    existing_tags.each do |tag|
+      post_hashtag = PostHashtag.where(hashtag_id: tag.id, post_id: @post.id)
+      PostHashtag.create(hashtag_id: tag.id, post_id: @post.id)
+    end
+
+    # 既存のハッシュタグと重複していないタグを追加する
+    new_tags = sent_tags - existing_tags.pluck(:hashtag_name)
+    new_tags.each do |tag_name|
+      tag = Hashtag.create(hashtag_name: tag_name)
+      PostHashtag.create(hashtag_id: tag.id, post_id: @post.id)
+    end
   end
 end
