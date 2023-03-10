@@ -8,6 +8,9 @@
     <div class="col-md-12">
       <h4 class="mb-3"><%= @post.title %></h4>
       <p class="mb-3"><%= @post.body %></p>
+      <% @post.hashtags.each do |hashtag| %>
+        <%= link_to hashtag.hashtag_name,hashtag_path(params[:id]) %>
+      <% end %>
       <%= link_to @post.user.first_name, my_page_users_path(@post.user.id) %>
     </div>
   </div>
