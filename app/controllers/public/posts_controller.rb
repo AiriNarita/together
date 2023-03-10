@@ -33,6 +33,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
+    @post_hashtags = @post.hashtags
   end
 
   def index
@@ -48,11 +49,14 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if @post.update(post_params)
+      tag_list = params[:post][:hashtag_name].split(nil)
       if params[:commit] == "下書き保存"
         @post.update(post_status: :draft)
+        @post.save_tag(tag_list)
         redirect_to posts_path, notice: "下書きを保存しました。"
       else
         @post.update(post_status: :published)
+        @post.save_tag(tag_list)
         redirect_to @post, notice: "投稿を更新しました。"
       end
     else

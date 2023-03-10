@@ -31,7 +31,6 @@ class Post < ApplicationRecord
     end
 
     new_hashtags.each do |new|
-      debugger
       new_post_hashtag = Hashtag.find_or_create_by(hashtag_name: new)
       self.hashtags << new_post_hashtag
     end
