@@ -1,9 +1,5 @@
   ja:
     enums:
-      event:
-        sharing_status:
-          all_users: "全体公開"
-          liked_users: "いいねしてくれているuserへ"
       post:
         post_status:
           published: "公開"

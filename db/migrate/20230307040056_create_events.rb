@@ -5,7 +5,6 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.datetime :date, null: false
       t.string :event_name, null: false
       t.text :event_introduction, null: false
-      t.integer :Sharing_status, default: 0
       t.text :url, null: false
 
       t.timestamps
