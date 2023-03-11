@@ -6,7 +6,6 @@ class Public::EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.creator = current_user
-    debugger
     if @event.save
       redirect_to event_path(@event)
     else
@@ -16,6 +15,17 @@ class Public::EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @event.creator = current_user
+    @attendee = Attendee.find_by(user_id: current_user.id, event_id: @event.id)
+
+    if @attendee
+      flash[:notice] = "既に参加済みです"
+    else
+      Attendee.create(user_id: current_user.id, event_id: @event.id)
+      flash[:notice] = "参加が完了しました"
+    end
+
+    #redirect_to event_path(@event)
   end
 
   def index
