@@ -31,6 +31,20 @@ class Public::EventsController < ApplicationController
   def index
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    @event.creator = current_user
+    if @event.update(event_params)
+      redirect_to event_path(@event)
+    else
+      render "edit"
+    end
+  end
+
   private
 
   def event_params

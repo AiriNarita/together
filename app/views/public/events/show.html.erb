@@ -14,17 +14,13 @@
     <div class="col-md-12">
       <% if user_signed_in? %>
         <% if @attendee %>
-          <%= button_to '参加済み', event_attendee_path(@event), disabled: true %>
+          <%= button_to '参加済み', event_attendee_path(@event), disabled: true, class: 'btn btn-secondary mr-3' %>
         <% else %>
-          <%= button_to '参加する', event_attendee_path(@event) %>
+          <%= button_to '参加する', event_attendee_path(@event), class: 'btn btn-primary mr-3' %>
         <% end %>
       <% else %>
-        <%= link_to 'ログインして参加する', new_user_session_path %>
+        <%= link_to 'ログインして参加する', new_user_session_path, class: 'btn btn-primary mr-3' %>
       <% end %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
       <% if @event.creator_id == current_user.id %>
         <%= link_to "編集", edit_event_path(@event), class: 'btn btn-sm btn-success mr-3' %>
         <%= link_to "削除", event_path(@event), class:'btn btn-sm btn-danger', method: :delete, data: { confirm: '本当に削除しますか？' } %>
