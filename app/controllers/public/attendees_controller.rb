@@ -10,6 +10,13 @@ class Public::AttendeesController < ApplicationController
     end
   end
 
+  def destroy
+    @attendee = Attendee.find(params[:event_id])
+    if @attendee.destroy
+      redirect_to events_path
+    end
+  end
+
   def attendee_params
     # event_idとuser_idが必要。
     params.permit(:event_id).merge(user_id: current_user.id)

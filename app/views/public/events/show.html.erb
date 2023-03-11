@@ -16,6 +16,7 @@
         <% if @event.creator.id != current_user.id %>
           <% if @attendee %>
             <%= button_to '参加済み', event_attendee_path(@event, @attendee), disabled: true, class: 'btn btn-secondary mr-3' %>
+            <%= link_to "参加取り消し", event_attendee_path(@event,@attendee), class:'btn btn-sm btn-danger', method: :delete, data: { confirm: '本当に変更しますか？' } %>
           <% else %>
             <%= button_to '参加する', event_attendees_path(@event), class: 'btn btn-primary mr-3' %>
           <% end %>
