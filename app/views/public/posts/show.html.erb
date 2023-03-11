@@ -11,7 +11,7 @@
       <% @post.hashtags.each do |hashtag| %>
         <%= link_to hashtag.hashtag_name,hashtag_path(params[:id]) %>
       <% end %>
-      <%= link_to @post.user.first_name, my_page_users_path(@post.user.id) %>
+      <p>投稿者：<%= link_to @post.user.full_name, my_page_users_path(@post.user.id) %></p>
     </div>
   </div>
   <div class="row">

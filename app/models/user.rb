@@ -13,7 +13,10 @@ class User < ApplicationRecord
   has_many :attendees
   has_many :events, through: :attendees
 
-  #event メソッド
+  #full_nameメソッド
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
 
   #ActiveStrageの設定
   has_one_attached :image
