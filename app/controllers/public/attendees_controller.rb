@@ -1,7 +1,6 @@
 class Public::AttendeesController < ApplicationController
   def create
     params
-    debugger
     @attendee = Attendee.new(attendee_params)
     if @attendee.save
       @event = Event.find(params[:event_id])
@@ -11,7 +10,7 @@ class Public::AttendeesController < ApplicationController
   end
 
   def destroy
-    @attendee = Attendee.find(params[:event_id])
+    @attendee = Attendee.find(params[:id])
     if @attendee.destroy
       redirect_to events_path
     end
