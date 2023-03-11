@@ -54,18 +54,16 @@ ActiveRecord::Schema.define(version: 2023_03_07_044542) do
 
   create_table "attendees", force: :cascade do |t|
     t.integer "event_id", null: false
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer "user_id", null: false
     t.integer "creator_id", null: false
     t.datetime "date", null: false
     t.string "event_name", null: false
     t.text "event_introduction", null: false
-    t.string "creater", null: false
     t.integer "Sharing_status", default: 0
     t.text "url", null: false
     t.datetime "created_at", precision: 6, null: false

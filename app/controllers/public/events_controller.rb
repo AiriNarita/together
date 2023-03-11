@@ -5,6 +5,8 @@ class Public::EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.creator = current_user
+    debugger
     if @event.save
       redirect_to event_path(@event)
     else
