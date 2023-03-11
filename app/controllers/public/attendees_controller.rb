@@ -10,9 +10,14 @@ class Public::AttendeesController < ApplicationController
   end
 
   def destroy
-    @attendee = Attendee.find(params[:id])
-    if @attendee.destroy
-      redirect_to events_path
+    # id => user_id
+    # event_id => ???
+    @attendee = Attendee.where(id: params[:id], user_id: current_user.id, event_id: params[:event_id])
+    if @attendee.destroy_all
+      @event = Event.find(params[:event_id])
+      redirect_to event_path(@event)
+    else
+      flash[:notice] = "error"
     end
   end
 
