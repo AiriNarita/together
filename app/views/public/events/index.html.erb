@@ -10,7 +10,8 @@
           <div class="card mb-3">
             <div class="card-body">
               <h5 class="card-title"><%= link_to event.event_name, event_path(event.id) %></h5>
-              <p class="card-text"><%= event.event_introduction %></p>
+              <p class="card-text">開催日：<%= event.date %></p>
+              <p class="card-text">開催者：<%= link_to event.creator.full_name, my_page_users_path(event.creator) %></p>
             </div>
           </div>
         <% end %>

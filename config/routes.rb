@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     end
 
     resources :events do
-      resources :attendees, only: [:create, :show, :destroy]
+      resources :attendees, only: [:create, :show, :edit, :update, :destroy]
     end
   end
 

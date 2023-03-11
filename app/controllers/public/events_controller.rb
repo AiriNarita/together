@@ -15,7 +15,6 @@ class Public::EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @event.creator = current_user
     @attendee = Attendee.find_by(user_id: current_user.id, event_id: @event.id)
 
     if @attendee
