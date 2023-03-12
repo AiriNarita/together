@@ -3,9 +3,16 @@
   <div class="btn-group mx-2 mb-4">
     <%= link_to "自分が作成したイベント", myevent_events_path(event_type: "created_events"), class: "btn btn-primary" %>
     &nbsp;&nbsp;
+    <% if params[:event_type] == "created_events" %>
+      <div class="btn-group mx-2 mb-4">
+        <%= link_to "未完了", myevent_events_path(event_type: "upcoming_events"), class: "btn btn-primary active" %>
+        &nbsp;&nbsp;
+        <%= link_to "完了済み", myevent_events_path(event_type: "past_events"), class: "btn btn-primary" %>
+      </div>
+    <% end %>
     <%= link_to "参加予定イベント", myevent_events_path(event_type: "attended_events"), class: "btn btn-primary" %>
     &nbsp;&nbsp;
-    <%= link_to "参加完了イベント", myevent_events_path(event_type: "past_events"), class: "btn btn-primary" %>
+    <%= link_to "参加完了イベント", myevent_events_path(event_type: "past_attended_events"), class: "btn btn-primary" %>
   </div>
   <% if @myevents.any? %>
     <% @myevents.each do |event| %>
