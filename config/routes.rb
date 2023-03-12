@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :hashtags, only: [:create, :index, :show]
     resource :users, only: [] do
       get "my_page" => "users#show"
+      get "profile/:user_id" => "users#profile", as: "profile"
       get "information/edit" => "users#edit"
       patch "information" => "users#update"
     end
