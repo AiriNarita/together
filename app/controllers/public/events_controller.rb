@@ -54,6 +54,12 @@ class Public::EventsController < ApplicationController
 
   def myevent
     @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id })
+
+    if params[:event_type] == "created_events"
+      @myevents = Event.where(creator_id: current_user.id)
+    elsif params[:event_type] == "attended_events"
+      @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where.not(creator_id: current_user.id)
+    end
   end
 
   private

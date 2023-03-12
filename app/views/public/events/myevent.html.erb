@@ -1,4 +1,6 @@
 <h1>参加イベント一覧</h1>
+<%= link_to "自分が作成したイベント", myevent_events_path(event_type: "created_events") %>
+<%= link_to "参加するイベント", myevent_events_path(event_type: "attended_events") %>
 <% if @myevents.any? %>
   <% @myevents.each do |event| %>
     <div class="card mb-3">
