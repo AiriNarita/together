@@ -25,6 +25,9 @@ Rails.application.routes.draw do
     end
 
     resources :events do
+      collection do
+        get "myevent"
+      end
       resources :attendees, only: [:create, :show, :edit, :update, :destroy]
     end
   end

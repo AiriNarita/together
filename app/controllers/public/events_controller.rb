@@ -52,6 +52,10 @@ class Public::EventsController < ApplicationController
     end
   end
 
+  def myevent
+    @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id })
+  end
+
   private
 
   def event_params
