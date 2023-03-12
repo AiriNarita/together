@@ -28,7 +28,7 @@ class Public::EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all
+    @events = Event.page(params[:page]).per(8)
   end
 
   def edit
@@ -56,11 +56,13 @@ class Public::EventsController < ApplicationController
     @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id })
 
     if params[:event_type] == "created_events"
-      @myevents = Event.where(creator_id: current_user.id)
+      @myevents = Event.where(creator_id: current_user.id).page(params[:page]).per(8)
     elsif params[:event_type] == "attended_events"
-      @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where("date >= ?", Time.now).where.not(creator_id: current_user.id)
+      @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where("date >= ?", Time.now).where.not(creator_id: current_user.id).page(params[:page]).per(8)
     elsif params[:event_type] == "past_events"
-      @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where("date < ?", Time.now).where.not(creator_id: current_user.id)
+      @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where("date < ?", Time.now).where.not(creator_id: current_user.id).page(params[:page]).per(8)
+    else
+      @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).page(params[:page]).per(8)
     end
   end
 
