@@ -30,11 +30,11 @@
     <% end %>
     <%= paginate @myevents %>
   <% else %>
-    <% unless ["attended_events", "past_attended_events"] %>
+    <% unless ["attended_events", "past_attended_events"].include?(params[:event_type]) %>
       <p>作成したイベントはありません。</p>
-      <% link_to "イベントを作成してみる", new_event_path %>
+      <%= link_to "イベントを作成してみる", new_event_path %>
     <% else%>
-      <p>参加しているイベントはありません。</p>
+      <p>参加のイベントはありません</p>
     <% end %>
   <% end %>
 </div>
