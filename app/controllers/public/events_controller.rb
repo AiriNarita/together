@@ -58,7 +58,9 @@ class Public::EventsController < ApplicationController
     if params[:event_type] == "created_events"
       @myevents = Event.where(creator_id: current_user.id)
     elsif params[:event_type] == "attended_events"
-      @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where.not(creator_id: current_user.id)
+      @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where("date >= ?", Time.now).where.not(creator_id: current_user.id)
+    elsif params[:event_type] == "past_events"
+      @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where("date < ?", Time.now).where.not(creator_id: current_user.id)
     end
   end
 
