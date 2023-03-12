@@ -18,17 +18,14 @@ class Public::EventsController < ApplicationController
     @attendee = Attendee.find_by(user_id: current_user.id, event_id: @event.id)
 
     if @attendee
-      flash[:notice] = "既に参加済みです"
     else
       Attendee.create(user_id: current_user.id, event_id: @event.id)
-      flash[:notice] = "参加が完了しました"
     end
-
-    #redirect_to event_path(@event)
   end
 
   def index
-    @events = Event.page(params[:page]).per(8)
+    # @events = Event.page(params[:page]).per(8) これだと期日超えたものも表示される
+    @events = Event.where("date >= ?", Time.now).page(params[:page]).per(8)
   end
 
   def edit
