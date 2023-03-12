@@ -3,7 +3,7 @@
   <div class="btn-group mx-2 mb-4">
     <%= link_to "自分が作成したイベント", myevent_events_path(event_type: "created_events"), class: "btn btn-primary" %>
     &nbsp;&nbsp;
-    <% if params[:event_type] == "created_events" %>
+    <% unless ["attended_events", "past_attended_events"].include?(params[:event_type]) %>
       <div class="btn-group mx-2 mb-4">
         <%= link_to "未完了", myevent_events_path(event_type: "upcoming_events"), class: "btn btn-primary active" %>
         &nbsp;&nbsp;
