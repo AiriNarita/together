@@ -1,17 +1,22 @@
-<h1>参加イベント一覧</h1>
-<%= link_to "自分が作成したイベント", myevent_events_path(event_type: "created_events") %>
-<%= link_to "参加するイベント", myevent_events_path(event_type: "attended_events") %>
-<% if @myevents.any? %>
-  <% @myevents.each do |event| %>
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title"><%= link_to event.event_name, event_path(event) %></h5>
-        <p class="card-text">開催日：<%= event.date %></p>
-        <p class="card-text">参加URL:<%= event.url %></p>
-        <p class="card-text">開催者：<%= link_to event.creator.full_name, my_page_users_path(event.creator) %></p>
+<div class="container">
+  <h1 class="mb-4">参加イベント一覧</h1>
+  <div class="btn-group mx-2 mb-4">
+    <%= link_to "自分が作成したイベント", myevent_events_path(event_type: "created_events"), class: "btn btn-primary" %>
+    &nbsp;&nbsp;
+    <%= link_to "参加するイベント", myevent_events_path(event_type: "attended_events"), class: "btn btn-primary" %>
+  </div>
+  <% if @myevents.any? %>
+    <% @myevents.each do |event| %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to event.event_name, event_path(event) %></h5>
+          <p class="card-text"><strong>開催日：</strong><%= event.date %></p>
+          <p class="card-text"><strong>参加URL : </strong><%= event.url %></p>
+          <p class="card-text"><strong>開催者：</strong><%= link_to event.creator.full_name, my_page_users_path(event.creator) %></p>
+        </div>
       </div>
-    </div>
+    <% end %>
+  <% else %>
+    <p>参加しているイベントはありません。</p>
   <% end %>
-<% else %>
-  <p>参加しているイベントはありません。</p>
-<% end %>
+</div>
