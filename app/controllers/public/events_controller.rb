@@ -18,6 +18,7 @@ class Public::EventsController < ApplicationController
     @attendee = Attendee.find_by(user_id: current_user.id, event_id: @event.id)
 
     if @attendee
+      flash.now[:notice] = "参加を決定しました。イベントのURL: #{@event.url}"
     else
       Attendee.create(user_id: current_user.id, event_id: @event.id)
     end

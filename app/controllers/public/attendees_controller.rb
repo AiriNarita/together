@@ -15,7 +15,8 @@ class Public::AttendeesController < ApplicationController
     @attendee = Attendee.where(id: params[:id], user_id: current_user.id, event_id: params[:event_id])
     if @attendee.destroy_all
       @event = Event.find(params[:event_id])
-      redirect_to event_path(@event)
+      redirect_to myevent_events_path
+      flash.now[:notice] = "参加を取り消しました。またお待ちしています！"
     else
       flash[:notice] = "error"
     end

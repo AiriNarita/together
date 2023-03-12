@@ -1,4 +1,7 @@
 <div class="container">
+  <div>
+    <%= flash[:notice] %>
+  </div>
   <h1 class="mb-4">参加イベント一覧</h1>
   <div class="btn-group mx-2 mb-4">
     <%= link_to "自分が作成したイベント", myevent_events_path(event_type: "created_events"), class: "btn btn-primary" %>
@@ -20,7 +23,7 @@
         <div class="card-body">
           <h5 class="card-title"><%= link_to event.event_name, event_path(event) %></h5>
           <p class="card-text"><strong>開催日：</strong><%= event.date %></p>
-          <p class="card-text"><strong>参加URL : </strong><%= event.url %></p>
+          <p class="card-text"><strong>参加URL : </strong><%= link_to  event.url %></p>
           <p class="card-text"><strong>開催者：</strong><%= link_to event.creator.full_name, my_page_users_path(event.creator) %></p>
         </div>
       </div>
