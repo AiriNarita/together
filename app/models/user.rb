@@ -29,6 +29,6 @@ class User < ApplicationRecord
     end
   end
 
-  #ActiveStrageの設定
+  #ActiveStorageの設定
   has_one_attached :image
 end

@@ -1,13 +1,13 @@
 class Search < ApplicationRecord
   def self.search_all_models(content, model, method)
     if model.present?
-      if model == "User"
+      if model == "user"
         User.search_content(content, method)
-      elsif model == "Post"
+      elsif model == "post"
         Post.search_content(content, method)
-      elsif model == "Event"
+      elsif model == "event"
         Event.search_content(content, method)
-      elsif model == "Hashtag"
+      elsif model == "hashtag"
         Hashtag.search_content(content, method)
       end
     else

@@ -1,9 +1,30 @@
-<% if @model == 'user' %>
-  <h3>Users search for "<%= @content %>"</h3>
-<% elsif @model == 'post' %>
-  <h3>Posts search for "<%= @content %>"</h3>
-<% elsif @model == 'event' %>
-  <h3>Events search for "<%= @content %>"</h3>
-<% else @model == 'nil' %>
-  <h3>search for "<%= @content %>"</h3>
-<% end %>
+<div class="container">
+  <% if @model == 'user' %>
+    <h3>Users search for "<%= @content %>"</h3>
+    <% @results.each do |user| %>
+      <div class="card">
+        <%= render partial: 'public/users/shared/profile-card', locals: { user: user }  %>
+      </div>
+    <% end %>
+  <% elsif @model == 'post' %>
+    <h3>Posts search for "<%= @content %>"</h3>
+    <%= render partial: 'public/posts/index', locals: { posts: @results }  %>
+  <% elsif @model == 'event' %>
+    <h3>Events search for "<%= @content %>"</h3>
+    <%= render partial: 'public/events/index', locals: { events: @results }  %>
+  <% else @model == 'nil' %>
+    <h3>Search for "<%= @content %>"</h3>
+    <% @results.each do |result| %>
+      <% if result.is_a?(User) %>
+        <h4>User</h4>
+        <%= render partial: 'public/users/shared/profile-card', locals: { user: result } %>
+      <% elsif result.is_a?(Post) %>
+        <h4>Post</h4>
+        <%= render partial: 'public/posts/index', locals: { posts: [result] } %>
+      <% elsif result.is_a?(Event) %>
+        <h4>Event</h4>
+        <%= render partial: 'public/events/index', locals: { events: [result] } %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
