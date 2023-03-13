@@ -1,0 +1,42 @@
+<div class="container">
+  <div>
+    <%= flash[:notice] %>
+  </div>
+  <h1 class="mb-4">参加イベント一覧</h1>
+  <div class="btn-group mx-2 mb-4">
+    <%= link_to "自分が作成したイベント", myevent_events_path(event_type: "created_events"), class: "btn btn-primary" %>
+    &nbsp;&nbsp;
+    <%= link_to "参加予定イベント", myevent_events_path(event_type: "attended_events"), class: "btn btn-primary" %>
+    &nbsp;&nbsp;
+    <%= link_to "参加完了イベント", myevent_events_path(event_type: "past_attended_events"), class: "btn btn-primary" %>
+  </div>
+  <div class="mb-4">
+    <% unless ["attended_events", "past_attended_events"].include?(params[:event_type]) %>
+      <div class="btn-group mx-2 mb-4">
+        <%= link_to "未完了", myevent_events_path(event_type: "upcoming_events"), class: "btn btn-primary active" %>
+        &nbsp;&nbsp;
+        <%= link_to "完了済み", myevent_events_path(event_type: "past_events"), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+  <% if @myevents.any? %>
+    <% @myevents.each do |event| %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to event.event_name, event_path(event) %></h5>
+          <p class="card-text"><strong>開催日：</strong><%= event.date %></p>
+          <p class="card-text"><strong>参加URL : </strong><%= link_to  event.url %></p>
+          <p class="card-text"><strong>開催者：</strong><%= link_to event.creator.full_name, profile_users_path(event.creator) %></p>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate @myevents %>
+  <% else %>
+    <% unless ["attended_events", "past_attended_events"].include?(params[:event_type]) %>
+      <p>作成したイベントはありません。</p>
+      <%= link_to "イベントを作成してみる", new_event_path %>
+    <% else%>
+      <p>参加のイベントはありません</p>
+    <% end %>
+  <% end %>
+</div>

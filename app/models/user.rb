@@ -12,7 +12,11 @@ class User < ApplicationRecord
   #イベント関連のassociation
   has_many :attendees
   has_many :events, through: :attendees
-  has_many :created_events, class_name: "Event", foreign_key: "creator_id"
+
+  #full_nameメソッド
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
 
   #ActiveStrageの設定
   has_one_attached :image

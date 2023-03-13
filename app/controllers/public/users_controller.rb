@@ -3,6 +3,13 @@ class Public::UsersController < ApplicationController
     @user = current_user
   end
 
+  def profile
+    @user = User.find(params[:user_id])
+    if @user.blank?
+      flash[:notice] = "User is not found"
+    end
+  end
+
   def edit
     @user = current_user
   end
