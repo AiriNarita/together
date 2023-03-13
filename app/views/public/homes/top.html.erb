@@ -1,1 +1,65 @@
-
+<div class="jumbotron text-center">
+  <h1 class="display-5">Together</h1>
+  <p class="lead">If You Want To Go Far, Go Together.</p>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <%= image_tag 'image.png', size: "100%", class: "card-img-top" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">当サイトは技術ブログ＆オンラインコミュニティです。</h5>
+          <p class="card-text"><strong> "If You Want To Go Far, Go Together" </strong><br />
+            "遠くへ行きたいならみんなで行け"のテーマのもと運営しています。</p>
+          <p class="card-text">一人ではなし得ないことも、みんなで協力すれば成し遂げられる!<br />
+            ともに学ぶ仲間がここにはたくさんいます。初めてみよう！</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-md-12 d-flex align-items-center justify-content">
+      <h3 class="mb-4">おすすめ記事</h3>
+      <%= link_to '記事一覧へ', posts_path, class: 'btn btn-primary mb-4' %>
+    </div>
+    <% @posts.each do |post| %>
+      <div class="col-md-3">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to post.title, post_path(post.id) %></h5>
+            <p class="card-text">
+              投稿者：<%= link_to post.user.full_name, my_page_users_path(post.user.id) %>
+            </p>
+            <p>Like:<%= post.favorites.count %>件<br>
+              comments:<%= post.post_comments.count %>件</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="jumbotron text-center">
+    <h1 class="display-8">会員登録してイベントに参加しませんか？</h1>
+    <p><%= link_to '入会しよう！！あたらしい世界が始まります。',new_user_session_path %></p>
+  </div>
+  <div class="row mb-4">
+    <div class="col-md-12 d-flex align-items-center justify-content">
+      <h3 class="mb-4">おすすめイベント</h3>
+      <%= link_to 'イベント一覧へ', events_path, class: 'btn btn-primary mb-4' %>
+    </div>
+    <% @events.each do |event| %>
+      <div class="col-md-3">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to event.event_name, event_path(event.id) %></h5>
+            <p class="card-text">開催日：<%= event.date %></p>
+            <p class="card-text"><strong>開催者：</strong><%= link_to event.creator.full_name, profile_users_path(event.creator) %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
