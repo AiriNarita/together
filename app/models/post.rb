@@ -23,9 +23,9 @@ class Post < ApplicationRecord
   #検索用
   def self.search_content(content, method)
     if method == "perfect"
-      where(name: content)
+      where(title: content)
     elsif method == "partial"
-      where("name LIKE ?", "%#{content}%")
+      where("title LIKE ?", "%#{content}%")
     else
       all
     end

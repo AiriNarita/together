@@ -6,9 +6,9 @@ class Event < ApplicationRecord
   #検索用
   def self.search_content(content, method)
     if method == "perfect"
-      where(name: content)
+      where(event_name: content)
     elsif method == "partial"
-      where("name LIKE ?", "%#{content}%")
+      where("event_name LIKE ?", "%#{content}%")
     else
       all
     end

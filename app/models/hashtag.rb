@@ -6,7 +6,7 @@ class Hashtag < ApplicationRecord
   #検索用
   def self.search_content(content, method)
     if method == "perfect"
-      where(name: content)
+      where(hashtag_name: content)
     elsif method == "partial"
       where("hashtag_name LIKE ?", "%#{content}%")
     else
