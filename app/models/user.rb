@@ -18,6 +18,17 @@ class User < ApplicationRecord
     "#{self.first_name} #{self.last_name}"
   end
 
+  #検索用
+  def self.search_content(content, method)
+    if method == "perfect"
+      where("first_name = ? OR last_name = ?", content, content)
+    elsif method == "partial"
+      where("first_name LIKE ? OR last_name LIKE ?", "%#{content}%", "%#{content}%")
+    else
+      all
+    end
+  end
+
   #ActiveStrageの設定
   has_one_attached :image
 end

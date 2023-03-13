@@ -1,0 +1,9 @@
+<% if @model == 'user' %>
+  <h3>Users search for "<%= @content %>"</h3>
+<% elsif @model == 'post' %>
+  <h3>Posts search for "<%= @content %>"</h3>
+<% elsif @model == 'event' %>
+  <h3>Events search for "<%= @content %>"</h3>
+<% else @model == 'nil' %>
+  <h3>search for "<%= @content %>"</h3>
+<% end %>

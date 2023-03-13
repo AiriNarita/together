@@ -20,19 +20,14 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
-  # hashtag
-  def save_tag(sent_tags)
-    # current_hashtags = self.hashtags.pluck(:hashtag_name) unless self.hashtags.nil?
-    # old_hashtags = current_hashtags - sent_tags
-    # new_hashtags = sent_tags - current_hashtags
-
-    # old_hashtags.each do |old|
-    #   self.hashtags.delete Hashtag.find_by(hashtag_name: old)
-    # end
-
-    # new_hashtags.each do |new|
-    #   new_post_hashtag = Hashtag.find_or_create_by(hashtag_name: new)
-    #   self.hashtags << new_post_hashtag
-    # end
+  #検索用
+  def self.search_content(content, method)
+    if method == "perfect"
+      where(name: content)
+    elsif method == "partial"
+      where("name LIKE ?", "%#{content}%")
+    else
+      all
+    end
   end
 end
