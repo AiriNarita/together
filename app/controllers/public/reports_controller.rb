@@ -1,25 +1,26 @@
 class Public::ReportsController < ApplicationController
   def new
-    @reported = Reported.new
+    @report = Report.new
+    @user = User.find(params[:user_id])
   end
 
   def create
-    @reported = Reported.new(reported_params)
+    @user = User.find(params[:user_id])
+    @report = Report.new(report_params)
 
-    if @reported.save
-      flash[:notice] = "通報が送信されました。"
+    @report.reporter_id = current_user.id
+    @report.reported_id = @user.id
+
+    if @report.save
       redirect_to my_page_users_path
     else
-      render :new
+      render "new"
     end
-  end
-
-  def show
   end
 
   private
 
-  def reported_params
-    params.require(:reported).permit(:reporter_id, :content)
+  def report_params
+    params.require(:report).permit(:reason)
   end
 end

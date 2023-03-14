@@ -3,7 +3,7 @@
     <div class="card-body">
       <h5 class="card-title"><%= link_to post.title, post_path(post.id) %></h5>
       <p class="card-text">
-        投稿者：<%= link_to post.user.full_name, my_page_users_path(post.user.id) %>
+        投稿者：<%= link_to post.user.full_name, profile_users_path(post.user.id) %>
       </p>
       <p>Like:<%= post.favorites.count %>件<br>
         comments:<%= post.post_comments.count %>件</p>
