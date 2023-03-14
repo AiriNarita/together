@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
 
+  #通報
+  has_many :reporter, class_name: "Report", foreign_key: "reporter_id", dependent: :destroy
+  has_many :reported, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
+
   #イベント関連のassociation
   has_many :attendees
   has_many :events, through: :attendees
@@ -31,9 +35,6 @@ class User < ApplicationRecord
 
   #user_status
   enum user_status: { available: 0, suspended: 1 }
-
-  #通報者
-  has_one :reported
 
   #ActiveStorageの設定
   has_one_attached :image

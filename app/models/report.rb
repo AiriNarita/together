@@ -1,3 +1,4 @@
 class Report < ApplicationRecord
-  has_many :user
+  belongs_to :reporter, class_name: "User"
+  belongs_to :reported, class_name: "User"
 end
