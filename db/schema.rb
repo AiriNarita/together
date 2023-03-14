@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 2023_03_14_041615) do
   create_table "reports", force: :cascade do |t|
     t.integer "reporter_id"
     t.integer "reported_id"
-    t.text "content", null: false
+    t.text "reason", null: false
     t.boolean "checked", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

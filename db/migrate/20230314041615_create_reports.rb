@@ -3,7 +3,7 @@ class CreateReports < ActiveRecord::Migration[6.1]
     create_table :reports do |t|
       t.integer :reporter_id
       t.integer :reported_id
-      t.text :content, null: false
+      t.text :reason, null: false
       t.boolean :checked, default: false
 
       t.timestamps
