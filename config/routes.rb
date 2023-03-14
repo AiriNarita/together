@@ -8,7 +8,6 @@ Rails.application.routes.draw do
                      }
   scope module: :public do
     root to: "homes#top"
-    resources :reported, only: [:new, :create, :index, :show]
     get "/about" => "homes#about"
     resources :posts do
       collection do
@@ -24,6 +23,7 @@ Rails.application.routes.draw do
       get "profile/:user_id" => "users#profile", as: "profile"
       get "information/edit" => "users#edit"
       patch "information" => "users#update"
+      resources :reports, only: [:new, :create]
     end
 
     resources :events do
@@ -49,5 +49,6 @@ Rails.application.routes.draw do
     end
     resources :users, only: [:index, :show, :edit, :update]
     resources :events, only: [:index, :show]
+    resources :reports, only: [:index, :show, :update]
   end
 end
