@@ -21,9 +21,11 @@ Rails.application.routes.draw do
     resource :users, only: [] do
       get "my_page" => "users#show"
       get "profile/:user_id" => "users#profile", as: "profile"
+      # added
+      post "profile/:user_id/report" => "reports#create", as: "profile_report"
+      get "profile/:user_id/report/new" => "reports#new", as: "profile_reports_new"
       get "information/edit" => "users#edit"
       patch "information" => "users#update"
-      resources :reports, only: [:new, :create]
     end
 
     resources :events do

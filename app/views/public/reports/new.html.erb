@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <h3 class="text-center">通報</h3>
       <p class="text-center">通報理由を以下にご記入ください。</p>
-      <%= form_with model:[@user, @report],url: users_reports_path(@user), class: "my-4" do |f| %>
+      <%= form_with method: :post, model: @report, url: profile_report_users_path(@user), class: "my-4" do |f| %>
         <div class="form-group d-flex justify-content-center">
           <%= f.text_area :reason, rows:'3', class:"form-control" %>
         </div>
