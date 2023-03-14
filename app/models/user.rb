@@ -32,6 +32,9 @@ class User < ApplicationRecord
   #user_status
   enum user_status: { available: 0, suspended: 1 }
 
+  #通報者
+  has_one :reported
+
   #ActiveStorageの設定
   has_one_attached :image
 end

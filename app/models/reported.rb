@@ -1,2 +1,0 @@
-class Reported < ApplicationRecord
-end

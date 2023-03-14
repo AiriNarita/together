@@ -1,0 +1,6 @@
+<%= form_with model: @reported, url: new_reported_path do |f| %>
+  <%= f.hidden_field :reporter_id, value: current_user.id %>
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+  <%= f.submit "通報する" %>
+<% end %>
