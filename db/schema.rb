@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_13_025027) do
+ActiveRecord::Schema.define(version: 2023_03_14_041615) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -106,6 +106,16 @@ ActiveRecord::Schema.define(version: 2023_03_13_025027) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "reporteds", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "reporter_id"
+    t.text "content"
+    t.boolean "checked", default: false
+    t.integer "count", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "searches", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -122,6 +132,7 @@ ActiveRecord::Schema.define(version: 2023_03_13_025027) do
     t.string "first_name_kana", default: "", null: false
     t.string "last_name_kana", default: "", null: false
     t.string "introduction"
+    t.integer "user_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
