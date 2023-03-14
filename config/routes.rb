@@ -31,6 +31,8 @@ Rails.application.routes.draw do
       end
       resources :attendees, only: [:create, :show, :edit, :update, :destroy]
     end
+
+    resources :reported, only: [:create, :index, :show]
   end
 
   get "/search", to: "searches#search"
@@ -46,7 +48,7 @@ Rails.application.routes.draw do
     resources :posts do
       resources :comments, only: [:index, :show, :edit, :update, :destroy]
     end
-    resources :users, only: [:index, :show, :update]
+    resources :users, only: [:index, :show, :edit, :update]
     resources :events, only: [:index, :show]
   end
 end
