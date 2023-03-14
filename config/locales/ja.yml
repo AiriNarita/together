@@ -1,4 +1,18 @@
   ja:
+    activerecord:
+      errors:
+        models:
+          admin:
+            attributes:
+              email:
+                taken: 'そのメールアドレスは既に使用されています'
+          user:
+            attributes:
+              email:
+                taken: 'そのメールアドレスは既に使用されています'
+              password:
+                blank: 'は内容が入力されていません'
+
     enums:
       post:
         post_status:

@@ -1,7 +1,7 @@
 #admin情報
 Admin.create!(
   email: "admin@gmail.com",
-  password: "admin",
+  password: "admin123",
 )
 #user情報
 User.create!(
