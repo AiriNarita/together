@@ -29,6 +29,9 @@ class User < ApplicationRecord
     end
   end
 
+  #user_status
+  enum status: { available: 0, suspended: 1 }
+
   #ActiveStorageの設定
   has_one_attached :image
 end
