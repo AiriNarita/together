@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-6"><strong>会員名</strong></div>
-      <div class="col-6"><%= @report.reported.full_name %></div>
+      <div class="col-6"><%= link_to @report.reported.full_name, admin_user_path(@report.reported_id) %></div>
     </div>
     <div class="row">
       <div class="col-6"><strong>理由</strong></div>
@@ -28,5 +28,8 @@
         <% end %>
       </div>
     </div>
+  </div>
+  <div class="text-center">
+    <%= link_to "通報一覧へ",admin_reports_path %>
   </div>
 </div>
