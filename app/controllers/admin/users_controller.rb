@@ -6,13 +6,13 @@ class Admin::UsersController < ApplicationController
   # user_status管理
 
   def edit
-    @user = User.find(params[:id]) #編集したいuserのIDを取得
+    @user = User.find(params[:id])
   end
 
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to admin_user_path(@user)
+      redirect_to admin_reports_path
     else
       render "show"
     end
