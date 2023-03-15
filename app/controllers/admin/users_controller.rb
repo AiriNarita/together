@@ -1,6 +1,5 @@
 class Admin::UsersController < ApplicationController
   def show
-    debugger
     @user = User.find(params[:id])
   end
 
@@ -12,13 +11,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if params[:user] && params[:user][:user_status] == true
-      @user.user_status = true
-    else
-      @user.user_status = false
-    end
-
-    if @user.save
+    if @user.update(user_params)
       redirect_to admin_user_path(@user)
     else
       render "show"
@@ -28,6 +21,6 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:user_status).transform_values { |value| value == "true" }
+    params.require(:user).permit(:user_status)
   end
 end
