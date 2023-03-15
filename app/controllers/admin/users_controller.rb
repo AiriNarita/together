@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   def show
+    debugger
     @user = User.find(params[:id])
   end
 
