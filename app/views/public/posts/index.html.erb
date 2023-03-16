@@ -7,6 +7,8 @@
     <div class="col-md-9">
       <h1>投稿一覧</h1>
       <div class="col-md-12">
+        <%= link_to "いいね順", posts_path(sort: :favorites), class: "btn btn-primary" %>
+        <%= link_to "最新順", posts_path(sort: :latest), class: "btn btn-primary" %>
         <%= render partial: 'public/posts/index', locals: { posts: @posts }  %>
       </div>
     </div>

@@ -1,0 +1,33 @@
+<div class="container">
+  <h3 class="my-3">投稿一覧</h3>
+  <%= link_to "いいね順", admin_posts_path(sort: :favorites), class: "btn btn-primary" %>
+  <%= link_to "最新順", admin_posts_path(sort: :latest), class: "btn btn-primary" %>
+  <div class="row">
+    <div class="col">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">タイトル</th>
+              <th scope="col">投稿者</th>
+              <th scope="col">投稿日</th>
+              <th scope="col">いいね</th>
+              <th scope="col">コメント数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @posts.each do |post| %>
+              <tr>
+                <td><%= link_to post.title, admin_post_path(post.id) %></td>
+                <td><%= link_to post.user.full_name, admin_user_path(post.user.id) %></td>
+                <td><%= post.created_at.in_time_zone('Tokyo').strftime('%Y-%m-%d %H:%M:%S') %></td>
+                <td><%= post.favorites.count %>件</td>
+                <td><%= post.post_comments.count %>件</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
