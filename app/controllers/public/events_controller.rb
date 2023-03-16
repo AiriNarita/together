@@ -1,4 +1,6 @@
 class Public::EventsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def new
     @event = Event.new
   end
@@ -15,12 +17,15 @@ class Public::EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @attendee = Attendee.find_by(user_id: current_user.id, event_id: @event.id)
 
-    if @attendee
-      flash.now[:notice] = "参加を決定しました。イベントのURL: #{@event.url}"
-    else
-      Attendee.create(user_id: current_user.id, event_id: @event.id)
+    if user_signed_in?
+      @attendee = Attendee.find_by(user_id: current_user.id, event_id: @event.id)
+
+      if @attendee
+        flash.now[:notice] = "参加を決定しました。イベントのURL: #{@event.url}"
+      else
+        Attendee.create(user_id: current_user.id, event_id: @event.id)
+      end
     end
   end
 
