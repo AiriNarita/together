@@ -7,25 +7,25 @@
           <label for="post_title">
             <h4>Event name</h4>
           </label>
-          <%= f.text_field :event_name, class:'form-control event_title' %>
+          <%= f.text_field :event_name,required: true, class:'form-control event_title' %>
         </div>
         <div class="form-group">
           <label for="event_introduction">
             <h4>introduction</h4>
           </label>
-          <%= f.text_area :event_introduction, rows: 10, cols: 10, class: "form-control" %>
+          <%= f.text_area :event_introduction,required: true, rows: 10, cols: 10, class: "form-control" %>
         </div>
         <div class="form-group">
           <label for="url">
             <h4>URL</h4>
           </label>
-          <%= f.text_field :url, class: "form-control" %>
+          <%= f.text_field :url,required: true, class: "form-control" %>
         </div>
         <div class="form-group">
           <label for="introduction">
             <h4>開催日時</h4>
           </label>
-          <%= f.datetime_field :date, class: "form-control" %>
+          <%= f.datetime_field :date,required: true, class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.submit '投稿する' ,class: "btn btn-success"%>

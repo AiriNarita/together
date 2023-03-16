@@ -7,10 +7,10 @@
           <label for="post_title">
             <h3>Title</h3>
           </label>
-          <%= f.text_field :title, class:'form-control post_title' %>
+          <%= f.text_field :title,required: true, class:'form-control post_title' %>
         </div>
         <div class="form-group">
-          <%= f.text_area :body, rows: 25, cols: 10, class: "form-control" %>
+          <%= f.text_area :body,required: true, rows: 25, cols: 10, class: "form-control" %>
         </div>
         <div class="form-group">
           <h5><%= f.label :hashtag_name %></h5>
