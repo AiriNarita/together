@@ -25,8 +25,7 @@ class Public::EventsController < ApplicationController
   end
 
   def index
-    # @events = Event.page(params[:page]).per(8) これだと期日超えたものも表示される
-    @events = Event.where("date >= ?", Time.now).page(params[:page]).per(8)
+    @events = Event.visible.page(params[:page]).per(8)
   end
 
   def edit

@@ -13,4 +13,8 @@ class Event < ApplicationRecord
       all
     end
   end
+  #利用停止のUserの投稿は閲覧不可に
+  scope :by_active_users, -> { joins(:users).where(users: { user_status: 0 }) }
+  scope :upcoming, -> { where("date >= ?", Time.zone.now).order(date: :asc) }
+  scope :visible, -> { by_active_users.upcoming }
 end

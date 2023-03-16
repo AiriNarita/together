@@ -9,6 +9,8 @@
   </p>
 </div>
 <div class="button">
-  <%= link_to "Edit profile", information_edit_users_path(user), class: "btn-sm btn-success" %>
+  <% if @user == current_user %>
+    <%= link_to "Edit profile", information_edit_users_path(user), class: "btn-sm btn-success" %>
+  <% end %>
 </div>
 </div>

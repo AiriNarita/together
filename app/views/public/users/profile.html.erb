@@ -1,1 +1,16 @@
-<%= render partial: 'public/users/shared/profile', locals: { user: @user }  %>
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <%= render partial: 'public/users/shared/profile', locals: { user: @user } %>
+  </div>
+</div>
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <% if @user != current_user %>
+      <% if current_user.reporter.exists?(reported_id: @user.id) %>
+        <%= button_tag "通報済み", class: "btn btn-secondary", disabled: true %>
+      <% else %>
+        <%= link_to "ユーザーを通報", profile_reports_new_users_path(@user), class: "btn btn-danger" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

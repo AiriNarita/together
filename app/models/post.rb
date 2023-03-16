@@ -15,6 +15,11 @@ class Post < ApplicationRecord
     save(validate: false)
   end
 
+  #利用停止のuserの投稿を閲覧不可に。
+  scope :published, -> { where(post_status: :published) }
+  scope :by_active_users, -> { joins(:user).where(users: { user_status: 0 }) }
+  scope :visible, -> { published.by_active_users }
+
   #いいね機能
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)

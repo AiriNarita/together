@@ -2,19 +2,17 @@
     activerecord:
       errors:
         models:
-          admin:
-            attributes:
-              email:
-                taken: 'そのメールアドレスは既に使用されています'
           user:
             attributes:
               email:
-                taken: 'そのメールアドレスは既に使用されています'
               password:
-                blank: 'は内容が入力されていません'
-
+                blank: は内容が入力されていません。
     enums:
       post:
         post_status:
           published: "公開"
           draft: "下書き保存"
+      user: 
+        user_status:
+          available: "利用可能"
+          suspended: "利用停止中"
