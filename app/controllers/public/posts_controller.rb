@@ -36,7 +36,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.published
+    @posts = Post.visible
   end
 
   def edit
