@@ -6,4 +6,15 @@ class Report < ApplicationRecord
   def self.reported_count(user_id)
     where(reported_id: user_id).count
   end
+
+  # report.rb
+
+  after_create :update_user_status
+
+  def update_user_status
+    reported_user = User.find(reported_id)
+    if reported_user.report_count >= 3
+      reported_user.update(user_status: :suspended)
+    end
+  end
 end

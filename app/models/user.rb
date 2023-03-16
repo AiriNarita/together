@@ -36,6 +36,16 @@ class User < ApplicationRecord
   #user_status
   enum user_status: { available: 0, suspended: 1 }, _default: 0
 
+  # 自動利用停止メソッド1  通報回数のカウント
+  def report_count
+    Report.where(reported_id: id).count
+  end
+
+  # 自動利用停止メソッド2  3回以上通報されたかチェック
+  def exceeded_report_limit?
+    report_count >= 3
+  end
+
   #ActiveStorageの設定
   has_one_attached :image
 end
