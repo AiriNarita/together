@@ -3,8 +3,8 @@ class Admin::PostsController < ApplicationController
     @posts = Post.visible
 
     case params[:sort]
-    when "favorites"
-      @posts = @posts.order(favorites_count: :desc)
+    when "attendee"
+      @posts = @posts.order(attendee_count: :desc)
     when "latest"
       @posts = @posts.order(created_at: :desc)
     end
