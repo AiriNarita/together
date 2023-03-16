@@ -11,5 +11,8 @@ class Admin::PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    @post_comment = PostComment.new
+    @post_hashtags = @post.hashtags
   end
 end
