@@ -24,7 +24,7 @@
           </p>
           <p class="mb-3">
             <strong>開催者</strong>
-            <%= @event.creator.full_name %>
+            <%=link_to @event.creator.full_name,profile_users_path(@event.creator)  %>
           </p>
           <% if user_signed_in? %>
             <% if @event.creator.id != current_user.id %>

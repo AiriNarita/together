@@ -1,4 +1,6 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!, except: [:profile]
+
   def show
     @user = current_user
   end
@@ -8,6 +10,9 @@ class Public::UsersController < ApplicationController
     if @user.blank?
       flash[:notice] = "User is not found"
     end
+    @my_posts = @user.posts
+    @my_events = Event.where(creator_id: params[:user_id])
+    @my_likes = @user.favorites.includes(:post).map(&:post)
   end
 
   def edit
