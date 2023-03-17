@@ -4,13 +4,11 @@
       <%= render partial: 'public/users/shared/profile', locals: { user: @user } %>
       <div class="card mb-3">
         <div class="card-body">
-          <% if user_signed_in? %>
-            <% if @user != current_user %>
-              <% if current_user.reporter.exists?(reported_id: @user.id) %>
-                <%= button_tag "通報済み", class: "btn btn-secondary", disabled: true %>
-              <% else %>
-                <%= link_to "ユーザーを通報", profile_reports_new_users_path(@user), class: "btn btn-danger" %>
-              <% end %>
+          <% if user_signed_in? && @user != current_user %>
+            <% if current_user.reporter.exists?(reported_id: @user.id) %>
+              <%= button_tag "通報済み", class: "btn btn-secondary", disabled: true %>
+            <% else %>
+              <%= link_to "ユーザーを通報", profile_reports_new_users_path(@user), class: "btn btn-danger" %>
             <% end %>
           <% end %>
         </div>
@@ -24,19 +22,20 @@
             <li class="nav-item">
               <a class="nav-link" id="events-tab" data-toggle="tab" href="#events" role="tab" aria-controls="events" aria-selected="false">作成イベント</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="likes" aria-selected="false">いいねした投稿</a>
-            </li>
           </ul>
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
-              <% @my_posts.each do |post| %>
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <h5 class="card-title"><%=link_to post.title, post_path(post.id) %></h5>
-                    <p class="card-text"><%= post.body %></p>
+              <% if @my_posts.any? %>
+                <% @my_posts.each do |post| %>
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title"><%=link_to post.title, post_path(post.id) %></h5>
+                      <p class="card-text"><%= post.body %></p>
+                    </div>
                   </div>
-                </div>
+                <% end %>
+              <% else %>
+                <p>投稿がありません</p>
               <% end %>
             </div>
             <div class="tab-pane fade" id="events" role="tabpanel" aria-labelledby="events-tab">
@@ -51,16 +50,6 @@
                 <% end %>
               <% else %>
                 <p>投稿がありません</p>
-              <% end %>
-            </div>
-            <div class="tab-pane fade" id="likes" role="tabpanel" aria-labelledby="likes-tab">
-              <% @my_likes.each do |post| %>
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <h5 class="card-title"><%= post.title %></h5>
-                    <p class="card-text"><%= post.body %></p>
-                  </div>
-                </div>
               <% end %>
             </div>
           </div>

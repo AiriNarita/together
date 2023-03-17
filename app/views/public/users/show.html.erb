@@ -1,1 +1,52 @@
 <%= render partial: 'public/users/shared/profile', locals: { user: @user }  %>
+<div class="row justify-content-center">
+  <div class="col-lg-12">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">投稿一覧</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="events-tab" data-toggle="tab" href="#events" role="tab" aria-controls="events" aria-selected="false">作成イベント</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="likes" aria-selected="false">いいねした投稿</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+        <% @my_posts.each do |post| %>
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title"><%=link_to post.title, post_path(post.id) %></h5>
+              <p class="card-text"><%= post.body %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="tab-pane fade" id="events" role="tabpanel" aria-labelledby="events-tab">
+        <% if @my_events.any? %>
+          <% @my_events.each do |event| %>
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title"><%= event.event_name %></h5>
+                <p class="card-text">開催日：<%= event.date %></p>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <p>投稿がありません</p>
+        <% end %>
+      </div>
+      <div class="tab-pane fade" id="likes" role="tabpanel" aria-labelledby="likes-tab">
+        <% @my_likes.each do |post| %>
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title"><%=link_to post.title, post_path(post.id) %></h5>
+              <p class="card-text"><%=link_to post.user.full_name,profile_users_path(post.user.id) %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

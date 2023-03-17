@@ -3,6 +3,9 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = current_user
+    @my_posts = @user.posts
+    @my_events = Event.where(creator_id: params[:user_id])
+    @my_likes = @user.favorites.includes(:post).map(&:post)
   end
 
   def profile
