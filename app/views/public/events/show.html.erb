@@ -38,9 +38,11 @@
           <% else %>
             <%= link_to 'ログインして参加する', new_user_session_path, class: 'btn btn-primary mr-3' %>
           <% end %>
-          <% if @event.creator_id == current_user.id %>
-            <%= link_to "編集", edit_event_path(@event), class: 'btn btn-sm btn-success mr-3' %>
-            <%= link_to "削除", event_path(@event), class:'btn btn-sm btn-danger', method: :delete, data: { confirm: '本当に削除しますか？' } %>
+          <% if user_signed_in? %>
+            <% if @event.creator_id == current_user.id %>
+              <%= link_to "編集", edit_event_path(@event), class: 'btn btn-sm btn-success mr-3' %>
+              <%= link_to "削除", event_path(@event), class:'btn btn-sm btn-danger', method: :delete, data: { confirm: '本当に削除しますか？' } %>
+            <% end %>
           <% end %>
         </div>
       </div>

@@ -1,4 +1,6 @@
 class SearchesController < ApplicationController
+  before_action :authenticate_user!, except: [:search]
+
   def search
     @user = User.all
 
