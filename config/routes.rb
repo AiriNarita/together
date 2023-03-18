@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       member do
         get :follows, :followers
       end
-      resource :relationships, only: [:create, :destroy]
+      resource :relation, only: [:create, :destroy]
       get "my_page" => "users#show"
       get "profile/:user_id" => "users#profile", as: "profile"
       # added
