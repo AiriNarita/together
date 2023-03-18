@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     end
     resources :hashtags, only: [:create, :index, :show]
     resource :users, only: [] do
+      member do
+        get :follows, :followers
+      end
+      resource :relationships, only: [:create, :destroy]
       get "my_page" => "users#show"
       get "profile/:user_id" => "users#profile", as: "profile"
       # added
