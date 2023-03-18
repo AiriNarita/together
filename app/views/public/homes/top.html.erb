@@ -1,65 +1,100 @@
-<div class="jumbotron text-center">
-  <h1 class="display-5">Together</h1>
-  <p class="lead">If You Want To Go Far, Go Together.</p>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card">
-        <%= image_tag 'image.png', size: "100%", class: "card-img-top" %>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">当サイトは技術ブログ＆オンラインコミュニティです。</h5>
-          <p class="card-text"><strong> "If You Want To Go Far, Go Together" </strong><br />
-            "遠くへ行きたいならみんなで行け"のテーマのもと運営しています。</p>
-          <p class="card-text">一人ではなし得ないことも、みんなで協力すれば成し遂げられる!<br />
-            ともに学ぶ仲間がここにはたくさんいます。初めてみよう！</p>
+<section class="home-top text-center position-relative d-flex flex-column justify-content-center mb-5">
+  <div class="home-top__text container">
+    <h1 class="home-top__logo-text display-1 text-white font-weight-bold">Together</h1>
+    <p class="lead text-white font-italic">If you want to go far, Go together.</p>
+  </div>
+  <img class="home-top__image pulse" src="https://plusjam.jp/assets/images/top_mv01.webp" alt="home-top">
+  <div class="home-top__circle home-top__circle--1 bounce2"></div>
+  <div class="home-top__circle home-top__circle--2 swing"></div>
+  <div class="home-top__circle home-top__circle--3 bounce2"></div>
+  <div class="home-top__circle home-top__circle--4 gelatine"></div>
+</section>
+<section class="home-intro container mb-5">
+  <div class="row d-flex align-items-center justify-content">
+    <div class="home-intro__contents col-md-6">
+      <div class="swiper intro-swiper">
+        <div class="swiper-wrapper">
+          <div class="card border-0 swiper-slide">
+            <img class="home-intro__image" src="https://images.unsplash.com/photo-1598449356475-b9f71db7d847?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aG9yaXpvbnRhbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="slider-image">
+          </div>
+          <div class="card border-0 swiper-slide">
+            <img class="home-intro__image" src="https://images.unsplash.com/photo-1587387119725-9d6bac0f22fb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG9yaXpvbnRhbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="slider-image">
+          </div>
+          <div class="card border-0 swiper-slide">
+            <img class="home-intro__image" src="https://images.unsplash.com/photo-1544083098-76551842b5fc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGhvcml6b250YWx8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="slider-image">
+          </div>
+          <div class="swiper-pagination"></div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row mb-4">
-    <div class="col-md-12 d-flex align-items-center justify-content">
-      <h3 class="mb-4">おすすめ記事</h3>
-      <%= link_to '記事一覧へ', posts_path, class: 'btn btn-primary mb-4' %>
+    <div class="home-intro__contents col-md-6">
+      <div class="border-0">
+        <h3 class="font-weight-bold">技術ブログ＆オンラインコミュニティ</h3>
+        <p class="home-intro__slogan">
+          <strong>"If You Want To Go Far, Go Together"</strong>
+          <br />
+          <span>"遠くへ行きたいならみんなで行け"のテーマのもと運営しています。</span>
+        </p>
+        <p>一人ではなし得ないことも、みんなで協力すれば成し遂げられる!<br />
+          <span> ともに学ぶ仲間がここにはたくさんいます。初めてみよう！</span>
+        </p>
+      </div>
     </div>
+  </div>
+</section>
+<section class="home-topic container mb-5">
+  <div class="d-flex justify-content-between align-items-end mb-2">
+    <h3 class="font-weight-bold">おすすめ記事</h3>
+    <%= link_to 'もっとみる', posts_path %>
+  </div>
+  <div class="card-deck">
     <% @posts.each do |post| %>
-      <div class="col-md-3">
-        <div class="card mb-3">
-          <div class="card-body">
-            <h5 class="card-title"><%= link_to post.title, post_path(post.id) %></h5>
-            <p class="card-text">
-              投稿者：<%= link_to post.user.full_name, my_page_users_path(post.user.id) %>
-            </p>
-            <p>Like:<%= post.favorites.count %>件<br>
-              comments:<%= post.post_comments.count %>件</p>
-          </div>
+      <div class="card">
+        <img class="card-img-top" src="https://images.unsplash.com/photo-1678818546219-d955db483f66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to post.title, post_path(post.id) %></h5>
+          <p class="card-text">投稿者：<%= link_to post.user.full_name, my_page_users_path(post.user.id) %></p>
+          <p class="card-text">Like:<%= post.favorites.count %>件</p>
+          <p class="card-text">Comments:<%= post.post_comments.count %>件</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"><%= post.created_at %></small>
         </div>
       </div>
     <% end %>
   </div>
-  <div class="jumbotron text-center">
-    <h1 class="display-8">会員登録してイベントに参加しませんか？</h1>
-    <p><%= link_to '入会しよう！！あたらしい世界が始まります。',new_user_session_path %></p>
+</section>
+<section class="home-join container mb-5 jumbotron text-center">
+  <h1 class="display-8 text-white font-weight-bold">会員登録してイベントに参加しませんか？</h1>
+  <p><%= link_to '入会しよう！！あたらしい世界が始まります。', new_user_session_path, class: "text-white" %></p>
+</section>
+<section class="home-event container mb-5">
+  <div class="col-md-12 d-flex align-items-center justify-content">
+    <h3>おすすめイベント</h3>
+    <%= link_to 'イベント一覧へ', events_path, class: 'btn btn-primary mb-4' %>
   </div>
-  <div class="row mb-4">
-    <div class="col-md-12 d-flex align-items-center justify-content">
-      <h3 class="mb-4">おすすめイベント</h3>
-      <%= link_to 'イベント一覧へ', events_path, class: 'btn btn-primary mb-4' %>
+  <% @events.each do |event| %>
+    <div class="col-md-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to event.event_name, event_path(event.id) %></h5>
+          <p class="card-text">開催日：<%= event.date %></p>
+          <p class="card-text"><strong>開催者：</strong><%= link_to event.creator.full_name, profile_users_path(event.creator) %></p>
+        </div>
+      </div>
     </div>
-    <% @events.each do |event| %>
-      <div class="col-md-3">
-        <div class="card mb-3">
-          <div class="card-body">
-            <h5 class="card-title"><%= link_to event.event_name, event_path(event.id) %></h5>
-            <p class="card-text">開催日：<%= event.date %></p>
-            <p class="card-text"><strong>開催者：</strong><%= link_to event.creator.full_name, profile_users_path(event.creator) %></p>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+  <% end %>
+</section>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  new Swiper(".intro-swiper", {
+    direction: 'horizontal',
+    loop: true,
+    autoplay: {
+      delay: 1000 * 3
+    },
+    pagination: {
+      el: '.swiper-pagination',
+    },
+  });
+</script>

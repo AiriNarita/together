@@ -1,3 +1,121 @@
 // Place all the styles related to the public/homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.home-top {
+  min-height: 100vh;
+  &__text {
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -140%);
+  }
+  &__logo-text {
+    font-family: 'Carter One';
+  }
+  &__image {
+    position: absolute;
+    z-index: -1;
+    width: 80%;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -30%) scale(1);
+  }
+  &__circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: absolute;
+    background: #9b40a6;
+    transition: 0.6s cubic-bezier(0.36, 0.1, 0.16, 1) 0.6s;
+
+    &--1 {
+      top: 50%;
+      right: -2%;
+      width: 48px;
+      height: 48px;
+      background: #a5399d;
+    }
+
+    &--2 {
+      top: 5%;
+      right: 5%;
+      width: 125px;
+      height: 125px;
+      background: #9b40a6;
+    }
+
+    &--3 {
+      bottom: 55%;
+      left: 10%;
+      width: 56px;
+      height: 56px;
+      background: #654dc4;
+    }
+
+    &--4 {
+      bottom: 32%;
+      left: 0%;
+      width: 120px;
+      height: 120px;
+      background: #593fbf;
+      transition: 0.6s cubic-bezier(0.36, 0.1, 0.16, 1) 0.5s;
+    }
+  }
+}
+
+.home-intro {
+  margin-top: -196px;
+
+  .swiper-slide {
+    height: 300px;
+  }
+
+  h3 {
+    color: #654dc4;
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__contents {
+    text-align: center;
+  }
+
+  &__slogan {
+    background-color: #654dc4;
+    padding: 16px;
+    box-sizing: border-box;
+    border-radius: 32px;
+    color: #ffffff;
+    margin-bottom: 24px;
+  }
+}
+
+.home-topic {
+  h3 {
+    color: #654dc4;
+    font-size: 48px;
+  }
+}
+
+.home-join {
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    rgba(101, 77, 196, 1) 0%,
+    rgba(89, 63, 191, 1) 35%,
+    rgba(155, 64, 166, 1) 100%
+  );
+}
+
+.home-topic {
+  a {
+  }
+}
