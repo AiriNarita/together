@@ -1,7 +1,8 @@
 <section class="home-top text-center position-relative d-flex flex-column justify-content-center mb-5">
   <div class="home-top__text container">
     <h1 class="home-top__logo-text display-1 text-white font-weight-bold">Together</h1>
-    <p class="lead text-white font-italic">If you want to go far, Go together.</p>
+    <p class="lead text-white font-italic">If you want to go far, Go
+      together.</p>
   </div>
   <img class="home-top__image pulse" src="https://plusjam.jp/assets/images/top_mv01.webp" alt="home-top">
   <div class="home-top__circle home-top__circle--1 bounce2"></div>
@@ -32,10 +33,10 @@
         <h3 class="font-weight-bold">技術ブログ＆オンラインコミュニティ</h3>
         <p class="home-intro__slogan">
           <strong>"If You Want To Go Far, Go Together"</strong>
-          <br />
+          <br/>
           <span>"遠くへ行きたいならみんなで行け"のテーマのもと運営しています。</span>
         </p>
-        <p>一人ではなし得ないことも、みんなで協力すれば成し遂げられる!<br />
+        <p>一人ではなし得ないことも、みんなで協力すれば成し遂げられる!<br/>
           <span> ともに学ぶ仲間がここにはたくさんいます。初めてみよう！</span>
         </p>
       </div>
@@ -47,54 +48,31 @@
     <h3 class="font-weight-bold">おすすめ記事</h3>
     <%= link_to 'もっとみる', posts_path %>
   </div>
-  <div class="card-deck">
+  <div class="row hidden-md-up">
     <% @posts.each do |post| %>
-      <div class="card">
-        <img class="card-img-top" src="https://images.unsplash.com/photo-1678818546219-d955db483f66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title"><%= link_to post.title, post_path(post.id) %></h5>
-          <p class="card-text">投稿者：<%= link_to post.user.full_name, my_page_users_path(post.user.id) %></p>
-          <p class="card-text">Like:<%= post.favorites.count %>件</p>
-          <p class="card-text">Comments:<%= post.post_comments.count %>件</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted"><%= post.created_at %></small>
-        </div>
+      <div class="col-md-12 mb-4 pb-4 border-bottom">
+        <%= render partial: 'shared/post_card', locals: { post: post } %>
       </div>
     <% end %>
   </div>
 </section>
-<section class="home-join container mb-5 jumbotron text-center">
-  <h1 class="display-8 text-white font-weight-bold">会員登録してイベントに参加しませんか？</h1>
-  <p><%= link_to '入会しよう！！あたらしい世界が始まります。', new_user_session_path, class: "text-white" %></p>
-</section>
+<% unless user_signed_in? %>
+  <section class="home-join container mb-5 jumbotron text-center">
+    <h1 class="display-8 text-white font-weight-bold">会員登録してイベントに参加しませんか？</h1>
+    <p><%= link_to '入会しよう！！あたらしい世界が始まります。', new_user_session_path, class: "text-white" %></p>
+  </section>
+<% end %>
 <section class="home-event container mb-5">
-  <div class="col-md-12 d-flex align-items-center justify-content">
-    <h3>おすすめイベント</h3>
-    <%= link_to 'イベント一覧へ', events_path, class: 'btn btn-primary mb-4' %>
+  <div class="d-flex justify-content-between align-items-end mb-2">
+    <h3 class="font-weight-bold">おすすめイベント</h3>
+    <%= link_to 'もっとみる', posts_path %>
   </div>
-  <% @events.each do |event| %>
-    <div class="col-md-3">
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title"><%= link_to event.event_name, event_path(event.id) %></h5>
-          <p class="card-text">開催日：<%= event.date %></p>
-          <p class="card-text"><strong>開催者：</strong><%= link_to event.creator.full_name, profile_users_path(event.creator) %></p>
-        </div>
+  <div class="row hidden-md-up">
+    <% @events.each do |event| %>
+      <div class="col-md-3">
+        <%= render partial: 'shared/event_card', locals: { event: event } %>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </section>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script>
-  new Swiper(".intro-swiper", {
-    direction: 'horizontal',
-    loop: true,
-    autoplay: {
-      delay: 1000 * 3
-    },
-    pagination: {
-      el: '.swiper-pagination',
-    },
-  });
-</script>
+<%= javascript_pack_tag 'home/index' %>

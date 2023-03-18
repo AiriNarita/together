@@ -1,0 +1,35 @@
+<!--<div class="card">-->
+<!--  <div class="card-body">-->
+<!--    <h5 class="card-title"><%#= link_to event.event_name, event_path(event.id) %></h5>-->
+<!--    <p class="card-text">開催日：<%#= event.date %></p>-->
+<!--    <p class="card-text"><strong>開催者：</strong><%#= link_to event.creator.full_name, profile_users_path(event.creator) %></p>-->
+<!--  </div>-->
+<!--  <div class="card-footer">-->
+<!--    <div class="d-flex justify-content-around align-items-center">-->
+<!--      <p class="card-text"><%#= event.created_at %></p>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<div class="card event-card">
+  <img src=https://images.unsplash.com/photo-1678818546219-d955db483f66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Card image cap" />
+  <div class="event-card__body">
+    <div class="event-card__info">
+      <p class="event-card__created"><%= event.created_at %></p>
+      <%= link_to event.event_name, event_path(event.id), class: 'event-card__title' %>
+      <%= link_to event.creator.full_name, profile_users_path(event.creator), class: 'event-card__author' %>
+    </div>
+    <div class="event-card__footer">
+      <div class="event-card__participants">
+        <div class="event-card__avatar-group">
+          <div class="event-card__avatar"></div>
+          <div class="event-card__avatar"></div>
+          <div class="event-card__avatar"></div>
+        </div>
+        <div class="event-card__count">5</div>
+      </div>
+      <i class="far fa-calendar-alt"></i>
+    </div>
+  </div>
+</div>
