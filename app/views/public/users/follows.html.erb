@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>follow一覧</h1>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">名前</th>
+        <th scope="col">フォロー</th>
+        <th scope="col">フォロワー</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @following_users.any? %>
+        <% @following_users.each do |user| %>
+          <tr>
+            <td>
+              <%= link_to profile_users_path(user) do %>
+                <% if user.image.attached? %>
+                  <%= image_tag user.image, size: "50x50" %>
+                <% else %>
+                  <%= image_tag 'no_image.png', size: "50x50" %>
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to profile_users_path(user) do %>
+                <%= user.full_name %>
+              <% end %>
+            </td>
+            <td>
+              <%= user.follower.count %>
+            </td>
+            <td>
+              <%= user.followed.count %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <p class="text-center"><strong>follow userがいません。</strong> </p>
+      <% end %>
+    </tbody>
+  </table>
+</div>
