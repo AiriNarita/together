@@ -1,0 +1,81 @@
+.event-card {
+  border: none;
+  img {
+    border-radius: 10px;
+    border: 1px solid #eaeaea;
+  }
+
+  &__body {
+    box-sizing: border-box;
+    padding: 12px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  &__created {
+    font-size: 14px;
+    margin: 0 0 4px 0;
+    color: #000000;
+  }
+
+  &__title {
+    font-size: 18px;
+    margin: 0 0 4px 0;
+    color: #000000;
+    font-weight: 700;
+  }
+
+  &__author {
+    font-size: 14px;
+    margin: 0;
+
+    color: #727272;
+  }
+
+  &__participants {
+    display: flex;
+    align-items: center;
+  }
+
+  &__avatar-group {
+    display: flex;
+    margin-right: 8px;
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    background-color: #eaeaea;
+    border: 1px solid #D9D9D9FF;
+    width: 36px;
+    height: 36px;
+
+    &:not(:first-of-type) {
+      margin-left: -8px;
+    }
+
+    &:nth-of-type(1) {
+      z-index: 3;
+    }
+
+    &:nth-of-type(2) {
+      z-index: 2;
+    }
+
+    &:nth-of-type(2) {
+      z-index: 1;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__count {
+  }
+}

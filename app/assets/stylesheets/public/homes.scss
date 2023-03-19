@@ -1,8 +1,11 @@
 // Place all the styles related to the public/homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
 .home-top {
   min-height: 100vh;
+  overflow: hidden;
+
   &__text {
     position: absolute;
     width: 100%;
@@ -10,9 +13,11 @@
     right: 50%;
     transform: translate(-50%, -140%);
   }
+
   &__logo-text {
     font-family: 'Carter One';
   }
+
   &__image {
     position: absolute;
     z-index: -1;
@@ -21,6 +26,7 @@
     right: 50%;
     transform: translate(-50%, -30%) scale(1);
   }
+
   &__circle {
     width: 48px;
     height: 48px;
@@ -108,14 +114,156 @@
   border-radius: 10px;
   overflow: hidden;
   background: linear-gradient(
-    90deg,
-    rgba(101, 77, 196, 1) 0%,
-    rgba(89, 63, 191, 1) 35%,
-    rgba(155, 64, 166, 1) 100%
+                  90deg,
+                  rgba(101, 77, 196, 1) 0%,
+                  rgba(89, 63, 191, 1) 35%,
+                  rgba(155, 64, 166, 1) 100%
   );
 }
 
-.home-topic {
-  a {
+.home-event {
+  h3 {
+    color: #654dc4;
+    font-size: 48px;
+  }
+}
+
+
+.post-card {
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.2s ease-out;
+
+  &__author {
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    background-color: #eaeaea;
+    border: 1px solid #D9D9D9FF;
+    width: 22px;
+    height: 22px;
+    margin-right: 8px;
+  }
+
+  &__username {
+    font-size: 12px;
+    color: #727272;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  &__header {
+    position: relative;
+    margin: 0;
+
+    margin-bottom: 8px;
+
+  }
+
+  &__contents {
+    flex: 1;
+    margin-right: 48px;
+    margin-bottom: 16px;
+  }
+
+  &__image {
+    display: block;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    order: 1;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 767.98px) {
+    &__image {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  &__title {
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.2;
+    max-height: 56px;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease-out;
+
+      &:hover {
+        color: #593fbf;
+      }
+    }
+  }
+
+
+  &__body {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+
+  &__hashtag-wrapper {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  &__hashtag {
+    margin-right: 4px;
+    background-color: #593fbf;
+    border-radius: 4px;
+    color: #ffffff;
+    box-sizing: border-box;
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  &__stats {
+    font-size: 14px;
+    color: #999;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    & li {
+      display: inline-block;
+      margin-right: 20px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 }

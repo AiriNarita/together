@@ -1,53 +1,37 @@
-<header class="position-fixed fixed-top">
+<header class="position-fixed fixed-top" id="main-header">
   <nav class="navbar navbar-expand-lg navbar-light">
-    <%= link_to image_tag('together.png', :size => '100x50'), root_path, class: 'navbar-brand' %>
+    <%= link_to image_tag('together.png', size: '100x50'), root_path, class: 'navbar-brand' %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <%= link_to posts_path, class: 'nav-link' do %>
-            Topic
-          <% end %>
+          <%= link_to 'Topic', posts_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to events_path, class: 'nav-link' do %>
-            Event
-          <% end %>
+          <%= link_to 'Event', events_path, class: 'nav-link' %>
         </li>
         <% if user_signed_in? %>
           <li>
-            <%= link_to my_page_users_path, class: 'nav-link' do %>
-              Mypage
-            <% end %>
+            <%= link_to 'Mypage', my_page_users_path, class: 'nav-link' %>
           </li>
           <li>
-            <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
-              Logout
-            <% end %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
           </li>
         <% elsif admin_signed_in? %>
           <li>
-            <%= link_to admin_root_path, class: 'nav-link' do %>
-              Users
-            <% end %>
+            <%= link_to 'Users', admin_root_path, class: 'nav-link' %>
           </li>
           <li>
-            <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link' do %>
-              Logout
-            <% end %>
+            <%= link_to 'Logout', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
           </li>
         <% else %>
           <li>
-            <%= link_to new_user_registration_path, class: 'nav-link' do %>
-              Signup
-            <% end %>
+            <%= link_to 'Signup', new_user_registration_path, class: 'nav-link' %>
           </li>
           <li>
-            <%= link_to new_user_session_path, class: 'nav-link' do %>
-              Login
-            <% end %>
+            <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
           </li>
         <% end %>
       </ul>
