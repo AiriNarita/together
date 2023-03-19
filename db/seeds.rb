@@ -12,3 +12,4 @@ User.create!(
   email: "user@gmail.com",
   password: "user1234",
 )
+require_relative "seeds/users"
