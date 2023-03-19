@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
       resources :post_hashtags, only: [:create, :destroy]
     end
-    resources :hashtags, only: [:create, :index, :show]
+    resources :hashtags, only: [:create, :show]
     resource :users do
       # member do
       #   get :follows, :followers
