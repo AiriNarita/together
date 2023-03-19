@@ -1,6 +1,7 @@
 .event-card {
   border: none;
-  img {
+
+  > img {
     border-radius: 10px;
     border: 1px solid #eaeaea;
   }
@@ -16,7 +17,7 @@
     margin-bottom: 20px;
   }
 
-  &__created {
+  &__date {
     font-size: 14px;
     margin: 0 0 4px 0;
     color: #000000;
@@ -47,6 +48,8 @@
   }
 
   &__avatar {
+    display: block;
+    overflow: hidden;
     border-radius: 50%;
     background-color: #eaeaea;
     border: 1px solid #D9D9D9FF;
@@ -77,5 +80,13 @@
   }
 
   &__count {
+    font-size: 12px;
+    margin: 0;
+    color: #424242;
+  }
+
+  &__createdAt {
+    font-size: 10px;
+    margin: 0;
   }
 }

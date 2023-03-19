@@ -40,9 +40,15 @@
     }
   }
 
+  &__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
   &__title {
     display: block;
-    width: 100%;
     color: #593fbf;
     font-weight: 700;
     font-size: 48px;
@@ -52,7 +58,7 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
-    margin-bottom: 48px;
+    margin-bottom: 12px;
   }
 
   &__sort {
