@@ -1,6 +1,5 @@
 import Swiper from 'swiper'
-
-document.addEventListener('DOMContentLoaded', () => {
+$(document).on('turbolinks:load', function () {
     new Swiper(".intro-swiper", {
         direction: 'horizontal',
         loop: true,

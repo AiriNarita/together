@@ -38,7 +38,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.visible
+    @posts = Post.includes(:hashtags).visible
 
     case params[:sort]
     when "favorites"
