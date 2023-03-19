@@ -13,23 +13,39 @@
 
 
 <div class="card event-card">
-  <img src=https://images.unsplash.com/photo-1678818546219-d955db483f66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Card image cap" />
+  <img src=https://images.unsplash.com/photo-1678818546219-d955db483f66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Card image cap"/>
   <div class="event-card__body">
     <div class="event-card__info">
-      <p class="event-card__created"><%= event.created_at %></p>
+      <p class="event-card__date">
+        <%= event.date %>
+      </p>
       <%= link_to event.event_name, event_path(event.id), class: 'event-card__title' %>
       <%= link_to event.creator.full_name, profile_users_path(event.creator), class: 'event-card__author' %>
     </div>
     <div class="event-card__footer">
       <div class="event-card__participants">
         <div class="event-card__avatar-group">
-          <div class="event-card__avatar"></div>
-          <div class="event-card__avatar"></div>
-          <div class="event-card__avatar"></div>
+          <% if event.users.length > 0 %>
+            <% event.users.each do |user| %>
+              <% if user.image.attached? %>
+                <%= image_tag user.image, size: "150x150", class: 'event-card__avatar' %>
+              <% else %>
+                <%= image_tag 'no_image.png', size: "150x150", class: 'event-card__avatar' %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <div style="height:36px"></div>
+          <% end %>
         </div>
-        <div class="event-card__count">5</div>
+        <% unless event.users.count == 0 %>
+          <div class="event-card__count">
+            <%= event.users.count %>
+          </div>
+        <% end %>
       </div>
-      <i class="far fa-calendar-alt"></i>
+      <p class="event-card__createdAt">
+        <%= event.created_at %>
+      </p>
     </div>
   </div>
 </div>

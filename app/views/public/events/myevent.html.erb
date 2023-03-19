@@ -1,42 +1,48 @@
-<div class="container">
-  <div>
-    <%= flash[:notice] %>
-  </div>
-  <h1 class="mb-4">参加イベント一覧</h1>
-  <div class="btn-group mx-2 mb-4">
-    <%= link_to "自分が作成したイベント", myevent_events_path(event_type: "created_events"), class: "btn btn-primary" %>
-    &nbsp;&nbsp;
-    <%= link_to "参加予定イベント", myevent_events_path(event_type: "attended_events"), class: "btn btn-primary" %>
-    &nbsp;&nbsp;
-    <%= link_to "参加完了イベント", myevent_events_path(event_type: "past_attended_events"), class: "btn btn-primary" %>
-  </div>
-  <div class="mb-4">
-    <% unless ["attended_events", "past_attended_events"].include?(params[:event_type]) %>
-      <div class="btn-group mx-2 mb-4">
-        <%= link_to "未完了", myevent_events_path(event_type: "upcoming_events"), class: "btn btn-primary active" %>
-        &nbsp;&nbsp;
-        <%= link_to "完了済み", myevent_events_path(event_type: "past_events"), class: "btn btn-primary" %>
-      </div>
-    <% end %>
-  </div>
-  <% if @myevents.any? %>
-    <% @myevents.each do |event| %>
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title"><%= link_to event.event_name, event_path(event) %></h5>
-          <p class="card-text"><strong>開催日：</strong><%= event.date %></p>
-          <p class="card-text"><strong>参加URL : </strong><%= link_to  event.url %></p>
-          <p class="card-text"><strong>開催者：</strong><%= link_to event.creator.full_name, profile_users_path(event.creator) %></p>
+<div class="events container">
+  <div style="height: 120px"></div>
+  <%= flash[:notice] %>
+  <% if user_signed_in? %>
+    <div class="events__write">
+      <%= link_to new_event_path, class: 'events__new' do %>
+        <i class="far fa-calendar-alt"></i>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="events__wrapper row">
+    <div class="col-md-3 mb-5 mb-sm-5">
+      <% if user_signed_in? %>
+        <div class="events__types">
+          <%= link_to "自分が作成したイベント", myevent_events_path(event_type: "created_events"), class: !params[:event_type] || params[:event_type] == "created_events" || params[:event_type] == "past_events" ? "active" : "" %>
+          <%= link_to "参加予定イベント", myevent_events_path(event_type: "attended_events"), class: params[:event_type] == "attended_events" ? "active" : "" %>
+          <%= link_to "参加完了イベント", myevent_events_path(event_type: "past_attended_events"), class: params[:event_type] == "past_attended_events" ? "active" : "" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-9">
+      <div class="events__header">
+        <h1 class="events__title">イベント一覧</h1>
+        <div class="events__links">
+          <%= link_to 'イベントリスト', events_path, class: "events__draft" %>
         </div>
       </div>
-    <% end %>
-    <%= paginate @myevents %>
-  <% else %>
-    <% unless ["attended_events", "past_attended_events"].include?(params[:event_type]) %>
-      <p>作成したイベントはありません。</p>
-      <%= link_to "イベントを作成してみる", new_event_path %>
-    <% else%>
-      <p>参加のイベントはありません</p>
-    <% end %>
-  <% end %>
+      <% unless %w[attended_events past_attended_events].include?(params[:event_type]) %>
+        <div class="events__filters">
+          <div class="events__sort">
+            <%= link_to "未完了", myevent_events_path(event_type: "upcoming_events"), class: params[:event_type] == "past_events" ? "" : "active" %>
+            <%= link_to "完了済み", myevent_events_path(event_type: "past_events"), class: params[:event_type] == "past_events" ? "active" : "" %>
+          </div>
+        </div>
+      <% end %>
+      <% if @myevents.any? %>
+        <%= render partial: 'public/events/index', locals: { events: @myevents } %>
+      <% else %>
+        <% if %w[attended_events past_attended_events].include?(params[:event_type]) %>
+          <p>参加のイベントはありません</p>
+        <% else %>
+          <p>作成したイベントはありません。</p>
+          <%= link_to "イベントを作成してみる", new_event_path %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
