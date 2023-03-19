@@ -1,0 +1,32 @@
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @following_users.each do |user| %>
+      <tr>
+        <td>
+          <%= link_to user_path(user) do %>
+            <%= image_tag user.get_profile_image, size:'50x50' %>
+          <% end %>
+        </td>
+        <td><%= user.name %></td>
+        <td>
+          <%= link_to follows_user_path(user) do %>
+            <h6>フォロー<%= user.follower.count %></h6>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to followers_user_path(user) do %>
+            <h6>フォロワー<%= user.followed.count %></h6>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

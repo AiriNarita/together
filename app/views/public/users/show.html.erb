@@ -4,7 +4,7 @@
     <tr>
       <th>Follows</th>
       <td>
-        <%= link_to follows_users_path(@users) do %>
+        <%= link_to follows_users_path(@user) do %>
           <h6><%= @user.follower.count %></h6>
         <% end %>
       </td>
@@ -22,9 +22,9 @@
   <div class='row mb-4'>
     <% if current_user != @user %>
       <% if current_user.following?(@user) %>
-        <%= link_to 'フォロー外す', users_relation_post_users_path(@user.id), method: :delete, class: "btn-sm btn-danger" %>
+        <%= link_to 'フォロー外す', relations_post_users_path(@user.id), method: :delete, class: "btn-sm btn-danger" %>
       <% else %>
-        <%= link_to 'フォローする', users_relation_delete_users_path(@user.id), method: :post, class:"btn-sm btn-success" %>
+        <%= link_to 'フォローする', relation_delete_users_path(@user.id), method: :post, class:"btn-sm btn-success" %>
       <% end %>
     <% end %>
   </div>

@@ -18,12 +18,14 @@ Rails.application.routes.draw do
       resources :post_hashtags, only: [:create, :destroy]
     end
     resources :hashtags, only: [:create, :index, :show]
-    resource :users, only: [] do
-      member do
-        get :follows, :followers
-      end
-      post "profile/:user_id/relation" => "relations#create", as: "users_relation_post"
-      delete "profile/:user_id/relation" => "relations#destroy", as: "users_relation_delete"
+    resource :users do
+      # member do
+      #   get :follows, :followers
+      # end
+      get ":user_id/follows" => "users#follows", as: "follows"
+      get ":user_id/followers" => "users#followers", as: "followers"
+      post "profile/:user_id/relation" => "relations#create", as: "relations_post"
+      delete "profile/:user_id/relation" => "relations#destroy", as: "relation_delete"
 
       get "my_page" => "users#show"
       get "profile/:user_id" => "users#profile", as: "profile"
