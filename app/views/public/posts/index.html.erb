@@ -1,18 +1,27 @@
-<div class="container">
-  <div class="row">
+<div class="posts container">
+  <div style="height: 120px"></div>
+  <div class="posts__wrapper row">
     <% if user_signed_in? %>
-      <div class="col-md-3">
-        <%= link_to '下書き一覧', drafts_posts_path, class: 'btn btn-primary btn-block mb-3' %>
-        <%= link_to '新規作成', new_post_path, class: 'btn btn-success btn-block' %>
+      <div class="posts__write">
+        <%= link_to new_post_path, class: 'posts__new' do %>
+          <i class="fas fa-pencil-alt"></i>
+        <% end %>
       </div>
     <% end %>
-    <div class="col-md-9">
-      <h1>投稿一覧</h1>
-      <div class="col-md-12">
-        <%= link_to "いいね順", posts_path(sort: :favorites), class: "btn btn-primary" %>
-        <%= link_to "最新順", posts_path(sort: :latest), class: "btn btn-primary" %>
-        <%= render partial: 'public/posts/index', locals: { posts: @posts }  %>
+    <h1 class="posts__title">投稿一覧</h1>
+    <div class="posts__filters">
+      <div class="posts__sort">
+        <%= link_to "最新順", posts_path(sort: :latest), class: params[:sort] == "favorites" ? "" : "active" %>
+        <%= link_to "いいね順", posts_path(sort: :favorites), class: params[:sort] == "favorites" ? "active" : "" %>
       </div>
+      <div class="posts__links">
+        <% if user_signed_in? %>
+          <%= link_to '下書き一覧', drafts_posts_path, class: 'posts__draft' %>
+        <% end %>
+      </div>
+    </div>
+    <div class="posts__list" class="col-md-12">
+      <%= render partial: 'public/posts/index', locals: { posts: @posts } %>
     </div>
   </div>
 </div>

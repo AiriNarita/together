@@ -1,12 +1,44 @@
-<h1>下書き一覧</h1>
-<div class="col-md-6">
-  <% @draft_posts.each do |draft| %>
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title">
-          <%= link_to draft.title, edit_post_path(draft) %>
-        </h5>
+<!--<h1>下書き一覧</h1>-->
+<!--<div class="col-md-6">-->
+<%# @draft_posts.each do |draft| %>
+<!--    <div class="card mb-3">-->
+<!--      <div class="card-body">-->
+<!--        <h5 class="card-title">-->
+<%#= link_to draft.title, edit_post_path(draft) %>
+<!--        </h5>-->
+<!--      </div>-->
+<!--    </div>-->
+<%# end %>
+<!--</div>-->
+
+
+<div class="posts container">
+  <div style="height: 120px"></div>
+  <div class="posts__wrapper row">
+    <% if user_signed_in? %>
+      <div class="posts__write">
+        <%= link_to new_post_path, class: 'posts__new' do %>
+          <i class="fas fa-pencil-alt"></i>
+        <% end %>
+      </div>
+    <% end %>
+    <h1 class="posts__title">下書き一覧</h1>
+    <div class="posts__filters">
+      <div class="posts__sort">
+        <% unless request.fullpath.include? "drafts" %>
+          <%= link_to "最新順", posts_path(sort: :latest), class: params[:sort] == "favorites" ? "" : "active" %>
+          <%= link_to "いいね順", posts_path(sort: :favorites), class: params[:sort] == "favorites" ? "active" : "" %>
+        <% end %>
+      </div>
+
+      <div class="posts__links">
+        <% if user_signed_in? %>
+          <%= link_to '投稿一覧', posts_path, class: 'posts__draft' %>
+        <% end %>
       </div>
     </div>
-  <% end %>
+    <div class="posts__list" class="col-md-12">
+      <%= render partial: 'public/posts/index', locals: { posts: @draft_posts } %>
+    </div>
+  </div>
 </div>
