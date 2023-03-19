@@ -6,7 +6,7 @@ Faker::Config.locale = :ja
     first_name_kana: Faker::Name.first_name,
     last_name_kana: Faker::Name.last_name,
     email: Faker::Internet.email,
-    password: Faker::Internet.password(min_length: 8),
+    password: "12345678",
   )
   15.times do
     title = Faker::Lorem.sentence(word_count: 3)

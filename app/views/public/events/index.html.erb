@@ -3,7 +3,7 @@
   <% if user_signed_in? %>
     <div class="events__write">
       <%= link_to new_event_path, class: 'events__new' do %>
-        <i class="far fa-calendar-alt"></i>
+        <i class="fas fa-pencil-alt"></i>
       <% end %>
     </div>
   <% end %>
@@ -13,7 +13,7 @@
         <h1 class="events__title">イベント一覧</h1>
         <% if user_signed_in? %>
           <div class="events__links">
-            <%= link_to '参加イベントリスト', myevent_events_path, class: "events__draft" %>
+            <%= link_to 'MYイベントリスト', myevent_events_path, class: "events__draft" %>
           </div>
         <% end %>
       </div>

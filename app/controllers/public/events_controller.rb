@@ -55,18 +55,22 @@ class Public::EventsController < ApplicationController
   end
 
   def myevent
+    #countをviewではなくここで書いたのは、pagenationなどに影響されないため
+    @createdCount = Event.joins(:creator).where(creator: { id: current_user.id }).count
+    @attendedCount = Event.joins(:creator).where(creator: { id: current_user.id }).where.not(creator_id: current_user.id).count
+    @pastAttendedCount = Event.joins(:creator).where(creator: { id: current_user.id }).where("date < ?", Time.now).count
     if params[:event_type] == "created_events"
-      @myevents = current_user.events.where(creator_id: current_user.id).page(params[:page]).per(8)
+      @myevents = Event.joins(:creator).where(creator: { id: current_user.id }).page(params[:page]).per(8)
     elsif params[:event_type] == "upcoming_events"
-      @myevents = current_user.events.where(creator_id: current_user.id).where("date >= ?", Time.now).page(params[:page]).per(8)
+      @myevents = Event.joins(:creator).where(creator: { id: current_user.id }).where("date >= ?", Time.now).page(params[:page]).per(8)
     elsif params[:event_type] == "past_events"
-      @myevents = current_user.events.where("date < ?", Time.now).page(params[:page]).per(8)
+      @myevents = Event.joins(:creator).where(creator: { id: current_user.id }).where("date < ?", Time.now).page(params[:page]).per(8)
     elsif params[:event_type] == "attended_events"
-      @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where.not(creator_id: current_user.id).page(params[:page]).per(8)
+      @myevents = Event.joins(:creator).where(creator: { id: current_user.id }).where.not(creator_id: current_user.id).page(params[:page]).per(8)
     elsif params[:event_type] == "past_attended_events"
-      @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where("date < ?", Time.now).where.not(creator_id: current_user.id).page(params[:page]).per(8)
+      @myevents = Event.joins(:creator).where(creator: { id: current_user.id }).where("date < ?", Time.now).where.not(creator_id: current_user.id).page(params[:page]).per(8)
     else
-      @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).page(params[:page]).per(8)
+      @myevents = Event.joins(:creator).where(creator: { id: current_user.id }).page(params[:page]).per(8)
     end
   end
 
