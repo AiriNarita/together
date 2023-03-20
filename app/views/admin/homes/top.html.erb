@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<div class="table-responsive mt-5 p-4">
   <h3>会員一覧</h3>
   <p class="text-center"><%= link_to "通報一覧へ",admin_reports_path %></p>
   <table class="table table-hover">
@@ -7,6 +7,7 @@
         <th scope="col">会員ID</th>
         <th scope="col">氏名</th>
         <th scope="col">メールアドレス</th>
+        <th scope="col">User status</th>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +16,7 @@
           <td><%= user.id %></td>
           <td><%= link_to user.last_name + user.first_name, admin_user_path(user.id) %></td>
           <td><%= user.email %></td>
+          <td><%= I18n.t("enums.user.user_status.#{user.user_status}") %></td>
         </tr>
       <% end %>
     </tbody>
