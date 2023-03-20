@@ -1,30 +1,14 @@
-<div class="container">
-  <h4 class="text-center">~ An investment in knowledge always pays the best interest. ~</h4>
-  <p class="text-center">知識に対する投資は、いつでも最高の利益を生み出す。</p>
-  <p class="text-center small">ベンジャミン・フランクリン</p>
-  <div class="row">
-    <div class="col-md-2 col-sm-12 mx-6 mx-sm-auto px-auto my-5">
-      <h2>Log in</h2>
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
-        <div class="field">
-          <%= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
-        </div>
-        <% if devise_mapping.rememberable? %>
-          <div class="field">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
-          </div>
-        <% end %>
-        <div class="box-login">
-          <%= f.submit "Log in" %>
-        </div>
-      <% end %>
-      <%= render "public/shared/links" %>
-    </div>
-  </div>
+<div style="height: 120px"></div>
+<!-- https://github.com/heartcombo/simple_form -->
+<div class="auth-form container">
+  <h2 class="auth-form__title">Log in</h2>
+  <%= render "public/shared/links" %>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= f.input :email, autofocus: true, autocomplete: "email" %>
+    <%= f.input :password %>
+    <%= f.check_box :remember_me %>
+    <%= f.label :remember_me %>
+    <%= f.submit "Log in", class: 'auth-form__submit' %>
+  <% end %>
 </div>
+
