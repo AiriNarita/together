@@ -3,6 +3,9 @@ class Event < ApplicationRecord
   has_many :users, through: :attendees
   belongs_to :creator, class_name: "User"
 
+  #ActiveStorageの設定
+  has_one_attached :event_image
+
   #creatorを参加者に含めない
   def attendees_for(user)
     if user.present?
