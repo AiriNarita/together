@@ -1,78 +1,36 @@
-<div class="container-fluid">
-  <div class="row justify-content-center">
-    <div class="col-lg-6 col-md-8 col-sm-10">
-      <div class="card mb-3">
-        <div class="card-header">
-          <h2>投稿詳細</h2>
-        </div>
-        <div class="card-body">
-          <% if @post.post_image.attached? %>
-            <%= image_tag @post.post_image, size: "180x100" %>
-          <% else %>
-            <%= image_tag 'no_image.png', size: "180x100" %>
-          <% end %>
-          <h4 class="card-title mb-3"><%= @post.title %></h4>
-          <p class="card-text mb-3"><%= @post.body %></p>
-          <div class="d-flex flex-wrap mb-3">
-            <% @post.hashtags.each do |hashtag| %>
-              <span ><%= link_to hashtag.hashtag_name, hashtag_path(params[:id]) %></span>
-            <% end %>
-          </div>
-          <p class="card-text">投稿者：<%= link_to @post.user.full_name,  profile_users_path(@post.user.id) %></p>
-          <hr>
-          <div class="d-flex justify-content-between align-items-center">
-            <% if user_signed_in? %>
-              <% if @post.favorited_by?(current_user) %>
-                <%= link_to post_favorite_path(@post), method: :DELETE, remote: true do %>
-                  <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-                  <%= @post.favorites.count %>like
-                <% end %>
-              <% else %>
-                <%= link_to post_favorite_path(@post), method: :POST, remote: true do %>
-                  <i class="fa fa-heart" aria-hidden="true" ></i>
-                  <%= @post.favorites.count %>like
-                <% end %>
-              <% end %>
-              <span>コメント件数：<%= @post.post_comments.count %></span>
-            </div>
-            <hr>
-            <div class="comment-box">
-              <% @post.post_comments.each do |post_comment| %>
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <p class="card-text"><%= post_comment.user.first_name %>:<%= post_comment.comment %></p>
-                    <p class="card-text text-muted"><small><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %></small></p>
-                    <div class="text-right">
-                      <% if post_comment.user == current_user %>
-                        <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: 'btn btn-danger btn-sm' %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-              <%end%>
-            </div>
-          <% else %>
-            <%= @post.favorites.count %>like
-            <p>いいねやコメントをするには、<%= link_to 'ログイン', new_user_session_path %>してください。</p>
-          <% end %>
-        </div>
-        <% if user_signed_in? %>
-          <%= form_with model: @post_comment, url: post_post_comments_path(@post, @post_comment), local: true, class: 'mb-3' do |f| %>
-            <%= f.text_area :comment, rows: '3',required: true, class: 'form-control', placeholder: "コメントをここに" %>
-            <%= f.submit "送信する", class: 'btn btn-primary btn-sm mt-3' %>
-          <% end %>
-          <hr>
-          <% if user_signed_in? %>
-            <% if @post.user_id == current_user.id %>
-              <div class="d-flex justify-content-end">
-                <%= link_to "編集", edit_post_path(@post), class: 'btn btn-success btn-sm mr-2' %>
-                <%= link_to "削除",post_path(@post), class:'btn btn-sm btn-danger', method: :delete, data: { confirm: '本当に削除しますか？' } %>
-              <% end %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+<div style="height: 120px;"></div>
+
+<div class="post-detail row hidden-md-up mx-auto">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <% if user_signed_in? %>
+      <% if @post.user_id == current_user.id %>
+        <%= link_to "削除", post_path(@post), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      <% end %>
+    <% end %>
+
+    <%= render partial: 'shared/post_card', locals: { post: @post, isDetail: true } %>
+
+    <% if user_signed_in? %>
+      <%= form_with model: @post_comment, url: post_post_comments_path(@post, @post_comment), local: true, class: 'post-detail__comment-form' do |f| %>
+        <%= f.text_area :comment, rows: '3', required: true, class: 'form-control', placeholder: "コメントをここに" %>
+        <%= f.submit "送信する", class: 'btn post-detail__comment-submit' %>
+      <% end %>
+      <% if user_signed_in? %>
+        <% if @post.user_id == current_user.id %>
+          <%= link_to "編集", edit_post_path(@post), class: 'btn post-detail__comment-submit' %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <div class="post-detail__comment-wrapper">
+      <% @post.post_comments.each do |comment| %>
+        <%= render partial: 'shared/post_comment_card', locals: { comment: comment } %>
+      <% end %>
     </div>
   </div>
 </div>
+<div class="col-md-2"></div>
 </div>
+
+<div style="height: 120px;"></div>

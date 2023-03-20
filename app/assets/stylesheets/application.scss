@@ -11,14 +11,6 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require main
  *= require_self
  */
-
-
-header {
-  .nav-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
