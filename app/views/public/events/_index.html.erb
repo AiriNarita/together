@@ -1,8 +1,7 @@
 <div class="row hidden-md-up">
   <% events.each do |event| %>
-    <div class="col-md-6 mb-4 pb-4 border-bottom">
+    <div class="col-md-4 mb-4 pb-4 border-bottom">
       <%= render partial: 'shared/event_card', locals: { event: event } %>
     </div>
   <% end %>
 </div>
-<%= paginate events %>
