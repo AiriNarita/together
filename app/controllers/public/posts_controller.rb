@@ -81,7 +81,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :post_status)
+    params.require(:post).permit(:title, :body, :post_status, :post_image)
   end
 
   def save_hashtags

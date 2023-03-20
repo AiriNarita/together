@@ -18,7 +18,7 @@
           <% if @event.event_image.attached? %>
             <%= image_tag @event.event_image, size: "180x100" %>
           <% else %>
-            <%= event__tag 'no_image.png', size: "180x100" %>
+            <%= image_tag 'no_image.png', size: "180x100" %>
           <% end %>
           <h4 class="mb-3">
             title :<%= @event.event_name %>
