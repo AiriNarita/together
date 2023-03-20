@@ -30,7 +30,7 @@ class Public::EventsController < ApplicationController
   end
 
   def index
-    @events = Event.visible.page(params[:page]).per(8)
+    @events = Event.visible.page(params[:page]).per(9)
   end
 
   def edit
@@ -80,6 +80,6 @@ class Public::EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:event_name, :event_introduction, :date, :url)
+    params.require(:event).permit(:event_name, :event_introduction, :date, :url, :event_image)
   end
 end

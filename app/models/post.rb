@@ -6,6 +6,9 @@ class Post < ApplicationRecord
   has_many :post_hashtags, dependent: :destroy
   has_many :hashtags, through: :post_hashtags
 
+  #ActiveStorageの設定
+  has_one_attached :post_image
+
   #下書き、公開のenum設定
   enum post_status: { published: 0, draft: 1 }
 

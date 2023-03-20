@@ -10,12 +10,15 @@
 <!--    </div>-->
 <!--  </div>-->
 <!--</div>-->
-
-
 <div class="card event-card">
-  <img src=https://images.unsplash.com/photo-1678818546219-d955db483f66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Card image cap"/>
+  <!-- <img src=https://images.unsplash.com/photo-1678818546219-d955db483f66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Card image cap"/>-->
   <div class="event-card__body">
     <div class="event-card__info">
+      <% if event.event_image.attached? %>
+        <%= image_tag event.event_image, size: "310x180" %>
+      <% else %>
+        <%= image_tag 'no_image.png', size: "310x180" %>
+      <% end %>
       <p class="event-card__date">
         <%= event.date %>
       </p>

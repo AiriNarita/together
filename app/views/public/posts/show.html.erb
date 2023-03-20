@@ -6,6 +6,11 @@
           <h2>投稿詳細</h2>
         </div>
         <div class="card-body">
+          <% if @post.post_image.attached? %>
+            <%= image_tag @post.post_image, size: "180x100" %>
+          <% else %>
+            <%= image_tag 'no_image.png', size: "180x100" %>
+          <% end %>
           <h4 class="card-title mb-3"><%= @post.title %></h4>
           <p class="card-text mb-3"><%= @post.body %></p>
           <div class="d-flex flex-wrap mb-3">
