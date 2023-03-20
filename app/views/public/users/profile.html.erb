@@ -94,7 +94,7 @@
             <% @my_events.each do |event| %>
               <div class="card mb-3">
                 <div class="card-body">
-                  <h5 class="card-title"><%= event.event_name %></h5>
+                  <h5 class="card-title"><%=link_to event.event_name, event_path(event.id)%></h5>
                   <p class="card-text">開催日：<%= event.date %></p>
                 </div>
               </div>

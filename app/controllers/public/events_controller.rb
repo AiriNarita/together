@@ -59,8 +59,8 @@ class Public::EventsController < ApplicationController
     @createdCount = Event.joins(:creator).where(creator: { id: current_user.id }).count
     @upcoming = Event.joins(:creator).where(creator: { id: current_user.id }).where("date >= ?", Time.now).count
     @past_events = Event.joins(:creator).where(creator: { id: current_user.id }).where("date < ?", Time.now).count
-    @attendedCount = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where.not(creator_id: current_user.id).count
-    @pastAttendedCount = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where("date < ?", Time.now).where.not(creator_id: current_user.id).count
+    @attendedCount = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where("date >= ?", Time.now).where.not(creator_id: current_user.id).distinct.count
+    @pastAttendedCount = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where("date < ?", Time.now).where.not(creator_id: current_user.id).distinct.count
 
     if params[:event_type] == "created_events"
       @myevents = Event.joins(:creator).where(creator: { id: current_user.id }).page(params[:page]).per(8)
@@ -69,9 +69,9 @@ class Public::EventsController < ApplicationController
     elsif params[:event_type] == "past_events"
       @myevents = Event.joins(:creator).where(creator: { id: current_user.id }).where("date < ?", Time.now).page(params[:page]).per(8)
     elsif params[:event_type] == "attended_events"
-      @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where.not(creator_id: current_user.id).page(params[:page]).per(8)
+      @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where("date >= ?", Time.now).where.not(creator_id: current_user.id).distinct.page(params[:page]).per(8)
     elsif params[:event_type] == "past_attended_events"
-      @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where("date < ?", Time.now).where.not(creator_id: current_user.id).page(params[:page]).per(8)
+      @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).where("date < ?", Time.now).where.not(creator_id: current_user.id).distinct.page(params[:page]).per(8)
     else
       @myevents = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).page(params[:page]).per(8)
     end
