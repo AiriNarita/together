@@ -1,35 +1,39 @@
-<%= render partial: 'public/users/shared/profile', locals: { user: @user }  %>
-<div class="card mb-3">
-  <table>
-    <tr>
-      <th>Follows</th>
-      <td>
-        <%= link_to follows_users_path(@user) do %>
-          <h6><%= @user.follower.count %></h6>
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th>Followers</th>
-      <td>
-        <%= link_to followers_users_path(@user) do %>
-          <h6><%= @user.followed.count %></h6>
-        <% end %>
-      </td>
-    </tr>
-  </table>
-  <!--ここからはボタンの記述-->
-  <div class='row mb-4'>
-    <% if current_user != @user %>
-      <% if current_user.following?(@user) %>
-        <%= link_to 'フォロー外す', relations_post_users_path(@user.id), method: :delete, class: "btn-sm btn-danger" %>
-      <% else %>
-        <%= link_to 'フォローする', relation_delete_users_path(@user.id), method: :post, class:"btn-sm btn-success" %>
-      <% end %>
-    <% end %>
-  </div>
-  <div class="row justify-content-center">
-    <div class="col-lg-12">
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <%= render partial: 'public/users/shared/profile', locals: { user: @user }  %>
+      <div class="card mb-3">
+        <table>
+          <tr>
+            <th>Follows</th>
+            <td>
+              <%= link_to follows_users_path(@user) do %>
+                <h6><%= @user.follower.count %></h6>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>Followers</th>
+            <td>
+              <%= link_to followers_users_path(@user) do %>
+                <h6><%= @user.followed.count %></h6>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+        <!--ここからはボタンの記述-->
+        <div class='row mb-4'>
+          <% if current_user != @user %>
+            <% if current_user.following?(@user) %>
+              <%= link_to 'フォロー外す', relations_post_users_path(@user.id), method: :delete, class: "btn-sm btn-danger" %>
+            <% else %>
+              <%= link_to 'フォローする', relation_delete_users_path(@user.id), method: :post, class:"btn-sm btn-success" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8  mt-5">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">投稿一覧</a>
@@ -96,3 +100,4 @@
       </div>
     </div>
   </div>
+</div>
