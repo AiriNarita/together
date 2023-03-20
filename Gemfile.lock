@@ -203,6 +203,9 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
+    simple_form (5.2.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     spring (4.1.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
@@ -262,6 +265,7 @@ DEPENDENCIES
   rails (~> 6.1.7, >= 6.1.7.2)
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
+  simple_form
   spring
   sqlite3 (~> 1.4)
   turbolinks (~> 5)

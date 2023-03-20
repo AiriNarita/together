@@ -1,0 +1,69 @@
+.auth-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 160px;
+
+  label {
+    font-weight: 600;
+  }
+
+  .form-text {
+    font-size: 10px;
+    &:before {
+      content: '*'
+    }
+  }
+
+  &__links {
+    margin: 16px 0 48px 0;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      color: #666666;
+      text-decoration: underline;
+    }
+  }
+
+  &__title {
+    display: block;
+    color: #593fbf;
+    font-weight: 700;
+    font-size: 48px;
+  }
+
+  &__names {
+    display: flex;
+
+    > *:not(:last-of-type) {
+      margin-right: 12px;
+    }
+  }
+
+  &__submit {
+    // reset default css
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    font: inherit;
+    outline: none;
+
+    // custom css
+    border-radius: 0.25rem;
+    background-color: #593fbf;
+    color: #ffffff;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 8px 0;
+  }
+}

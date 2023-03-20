@@ -1,51 +1,20 @@
-<div class="container">
-  <h4 class="text-center">~ Action is the foundational key to all success. ~</h4>
-  <p class="text-center">行動がすべての成功への基本的な鍵である</p>
-  <p class="text-center small">パブロ・ピカソ</p>
-  <div class="col-md-2 col-sm-12 mx-6 mx-sm-auto px-auto">
-    <h2>Sign up</h2>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "public/shared/error_messages", resource: resource %>
-      <div class="d-flex justify-content-center">
-        <div class="field">
-          <%= f.label :"名前(姓)" %>
-          <%= f.text_field :first_name, autofocus: true, autocomplete: "令和" %>
-        </div>
-        <div class="field">
-          <%= f.label :"名前(名)" %>
-          <%= f.text_field :last_name, autofocus: true, autocomplete: "愛里" %>
-        </div>
-      </div>
-      <div class="d-flex justify-content-center">
-        <div class="field">
-          <%= f.label :"カナ(姓)" %>
-          <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "レイワ" %>
-        </div>
-        <div class="field">
-          <%= f.label :"カナ(名)" %>
-          <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "アイリ" %>
-        </div>
-      </div>
-      <div class="field">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-      <div class="field">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </div>
-      <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
-      <div class="actions">
-        <%= f.submit "Sign up" %>
-      </div>
-    <% end %>
-    <%= render "public/shared/links" %>
-  </div>
-</div>
+<div style="height: 120px"></div>
+<!-- https://github.com/heartcombo/simple_form -->
+<div class="auth-form container">
+  <h2 class="auth-form__title">Sign up</h2>
+  <%= render "public/shared/links" %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <div class="auth-form__names">
+      <%= f.input :first_name, label: '名前(姓)', error: 'Username is mandatory, please specify one', autofocus: true, autocomplete: "令和" %>
+      <%= f.input :last_name, label: '名前(名)', error: 'Username is mandatory, please specify one', autofocus: true, autocomplete: "愛里" %>
+    </div>
+    <div class="auth-form__names">
+      <%= f.input :first_name_kana, label: 'カナ(姓)', error: 'Username is mandatory, please specify one', autofocus: true, autocomplete: "レイワ" %>
+      <%= f.input :last_name_kana, label: 'カナ(名)', error: 'Username is mandatory, please specify one', autofocus: true, autocomplete: "アイリ" %>
+    </div>
+    <%= f.input :email %>
+    <%= f.input :password, hint: "#{@minimum_password_length} characters minimum" %>
+    <%= f.input :password_confirmation, hint: "#{@minimum_password_length} characters minimum" %>
+    <%= f.submit "Sign up", class: 'auth-form__submit' %>
+  <% end %>
 </div>
