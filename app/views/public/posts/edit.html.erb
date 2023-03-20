@@ -1,31 +1,12 @@
-<div class="container mt-5">
+<div style="height: 120px"></div>
+<div class="post-form container">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <h2 class="mt-3">Edit</h2>
       <%= form_with model: @post, local: true, url: post_path(@post) do |f| %>
-        <div class="form-group">
-          <%= f.file_field :post_image, accept: "image/*" %>
-        </div>
-        <div class="form-group">
-          <label for="post_title">
-            <h3>Title</h3>
-          </label>
-          <%= f.text_field :title, class:'form-control book_title' %>
-        </div>
-        <div class="form-group">
-          <%= f.text_area :body, rows: 25, cols: 10, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <h5><%= f.label :hashtag_name %></h5>
-          <%= f.text_field :hashtag_name,value: @post.hashtags.pluck(:hashtag_name).join(' '),class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.submit '投稿する', name: 'commit' ,class: "btn btn-success"%>
-          <% if @isDraft %>
-            <%= f.submit '下書き保存', name: 'commit' ,class: "btn btn-primary"%>
-          <% end %>
-        </div>
+        <%= render partial: 'public/posts/form', locals: { f: f } %>
       <% end %>
     </div>
   </div>
 </div>
+
+<div style="height: 120px;"></div>
