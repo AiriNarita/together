@@ -1,9 +1,8 @@
-<div class="open-btn">
-  <i class="fas fa-search"></i>
-  <i class="fas fa-times"></i>
+<div class="serch_form">
+  <%= form_with url: search_path, method: :get do |f| %>
+    <%= f.text_field :content %>
+    <%= f.select :model, options_for_select({"全てから探す" => nil, "User" => "user", "Post" => "post", "Event" => "event", "Hashtag" => "hashtag"}) %>
+    <%= f.select :method,options_for_select({"完全一致"=>"perfect","部分一致"=>"partial"})%>
+    <%= f.submit'検索' %>
+  <% end %>
 </div>
-<div id="search-wrap"></div>
-<form role="search" methot="get" id="searchform" action="">
-  <input type="text" value="" name="" id="search-text" placeholder="search">
-  <input type="submit" id="searchsubmit" value="">
-</form>
