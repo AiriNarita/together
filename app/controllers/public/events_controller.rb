@@ -17,7 +17,8 @@ class Public::EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-
+    @eventattendee = Event.find_by(id: @event.id, creator_id: current_user.id, date: Time.now.all_day)
+    @pastevents = Event.where("date < ?", Time.now)
     if user_signed_in?
       @attendee = Attendee.find_by(user_id: current_user.id, event_id: @event.id)
 
