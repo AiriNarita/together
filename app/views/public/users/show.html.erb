@@ -43,13 +43,20 @@
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
-          <% @my_posts.each do |post| %>
-            <div class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title"><%=link_to post.title, post_path(post.id) %></h5>
-                <p class="card-text"><%= post.body %></p>
+          <% if @my_posts.any? %>
+            <% @my_posts.each do |post| %>
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h5 class="card-title"><%=link_to post.title, post_path(post.id) %></h5>
+                  <p class="card-text"><%= post.body %></p>
+                </div>
               </div>
+            <% end %>
+            <div class="pagination justify-content-center">
+              <%= paginate @my_posts %>
             </div>
+          <% else %>
+            <p>投稿がありません</p>
           <% end %>
         </div>
         <div class="tab-pane fade" id="events" role="tabpanel" aria-labelledby="events-tab">
@@ -62,18 +69,28 @@
                 </div>
               </div>
             <% end %>
+            <div class="pagination justify-content-center">
+              <%= paginate @my_events %>
+            </div>
           <% else %>
             <p>投稿がありません</p>
           <% end %>
         </div>
         <div class="tab-pane fade" id="likes" role="tabpanel" aria-labelledby="likes-tab">
-          <% @my_likes.each do |post| %>
-            <div class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title"><%=link_to post.title, post_path(post.id) %></h5>
-                <p class="card-text"><%=link_to post.user.full_name,profile_users_path(post.user.id) %></p>
+          <% if @my_likes.any? %>
+            <% @my_likes.each do |post| %>
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h5 class="card-title"><%=link_to post.title, post_path(post.id) %></h5>
+                  <p class="card-text"><%=link_to post.user.full_name,profile_users_path(post.user.id) %></p>
+                </div>
               </div>
+            <% end %>
+            <div class="pagination justify-content-center">
+              <%= paginate @my_likes %>
             </div>
+          <% else %>
+            <p>いいねした投稿がありません</p>
           <% end %>
         </div>
       </div>

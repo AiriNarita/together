@@ -3,9 +3,9 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = current_user
-    @my_posts = @user.posts
-    @my_events = Event.where(creator_id: params[:user_id])
-    @my_likes = @user.favorites.includes(:post).map(&:post)
+    @my_posts = @user.posts.page(params[:page]).per(8)
+    @my_events = Event.where(creator_id: params[:user_id]).page(params[:page]).per(8)
+    @my_likes = Post.where(id: @user.favorites.pluck(:post_id)).page(params[:page]).per(8)
 
     @following_users = @user.following_user
     @follower_users = @user.follower_user
@@ -16,10 +16,9 @@ class Public::UsersController < ApplicationController
     if @user.blank?
       flash[:notice] = "User is not found"
     end
-    @my_posts = @user.posts
-    @my_events = Event.where(creator_id: params[:user_id])
-    @my_likes = @user.favorites.includes(:post).map(&:post)
-
+    @my_posts = @user.posts.page(params[:page]).per(8)
+    @my_events = Event.where(creator_id: params[:user_id]).page(params[:page]).per(8)
+    # @my_likes = @user.favorites.includes(:post).map(&:post)
     @following_users = @user.following_user
     @follower_users = @user.follower_user
   end

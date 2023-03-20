@@ -63,6 +63,9 @@
                       </div>
                     </div>
                   <% end %>
+                  <div class="pagination justify-content-center">
+                    <%= paginate @my_posts %>
+                  </div>
                 <% else %>
                   <p>投稿がありません</p>
                 <% end %>
@@ -77,6 +80,9 @@
                       </div>
                     </div>
                   <% end %>
+                  <div class="pagination justify-content-center">
+                    <%= paginate @my_events %>
+                  </div>
                 <% else %>
                   <p>投稿がありません</p>
                 <% end %>
