@@ -45,6 +45,22 @@
           <% end %>
         </div>
       </div>
+      <div class="row mb-2">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <td><strong>投稿数:</strong></td>
+                <td><%= "#{@my_postscount}" %></td>
+              </tr>
+              <tr>
+                <td><strong>イベント作成数:</strong></td>
+                <td><%= "#{@my_eventscount}" %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
     <div class="col-md-8 mt-5">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
