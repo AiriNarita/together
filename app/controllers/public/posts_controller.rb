@@ -28,7 +28,7 @@ class Public::PostsController < ApplicationController
 
   def drafts
     @published_posts = Post.where(user_id: current_user.id).where(post_status: :published).order(created_at: :desc)
-    @draft_posts = Post.where(user_id: current_user.id).where(post_status: :draft).order(created_at: :desc)
+    @draft_posts = Post.where(user_id: current_user.id).where(post_status: :draft).order(created_at: :desc).page(params[:page]).per(8)
   end
 
   def show
