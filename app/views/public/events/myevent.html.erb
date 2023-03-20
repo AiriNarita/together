@@ -34,9 +34,9 @@
       <% unless %w[attended_events past_attended_events].include?(params[:event_type]) %>
         <div class="events__filters">
           <div class="events__sort">
-            <%= link_to "すべて", myevent_events_path(event_type: "created_events"), class: params[:event_type] == "created_events" ? "active" : "" %>
-            <%= link_to "未完了", myevent_events_path(event_type: "upcoming_events"), class: params[:event_type] == "upcoming_events" ? "active" : "" %>
-            <%= link_to "完了済み", myevent_events_path(event_type: "past_events"), class: params[:event_type] == "past_events" ? "active" : "" %>
+            <%= link_to "すべて(#{@createdCount})", myevent_events_path(event_type: "created_events"), class: params[:event_type] == "created_events" ? "active" : "" %>
+            <%= link_to "未完了(#{@upcoming})", myevent_events_path(event_type: "upcoming_events"), class: params[:event_type] == "upcoming_events" ? "active" : "" %>
+            <%= link_to "完了済み(#{@past_events})", myevent_events_path(event_type: "past_events"), class: params[:event_type] == "past_events" ? "active" : "" %>
           </div>
         </div>
       <% end %>

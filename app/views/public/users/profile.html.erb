@@ -1,14 +1,14 @@
-<div class="container mt-4">
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
       <%= render partial: 'public/users/shared/profile', locals: { user: @user } %>
       <div class="card mb-3">
         <div class="card-body">
           <% if user_signed_in? && @user != current_user %>
             <% if current_user.reporter.exists?(reported_id: @user.id) %>
-              <%= button_tag "通報済み", class: "btn btn-secondary", disabled: true %>
+              <%= button_tag "通報済み", class: "btn btn-secondary btn-sm", disabled: true %>
             <% else %>
-              <%= link_to "ユーザーを通報", profile_reports_new_users_path(@user), class: "btn btn-danger" %>
+              <%= link_to "ユーザーを通報", profile_reports_new_users_path(@user), class: "btn btn-danger btn-sm" %>
             <% end %>
           <% end %>
         </div>
@@ -35,56 +35,81 @@
         <!--ここからはボタンの記述-->
         <div class='row mb-4'>
           <% if current_user != @user %>
-            <% if current_user.following?(@user) %>
-              <%= link_to 'フォロー外す', relations_post_users_path(@user.id), method: :delete, class: "btn-sm btn-danger" %>
-            <% else %>
-              <%= link_to 'フォローする', relation_delete_users_path(@user.id), method: :post, class:"btn-sm btn-success" %>
-            <% end %>
+            <div class="card-body text-center">
+              <% if current_user.following?(@user) %>
+                <%= link_to 'フォロー外す', relations_post_users_path(@user.id), method: :delete, class: "btn-sm btn-danger" %>
+              <% else %>
+                <%= link_to 'フォローする', relation_delete_users_path(@user.id), method: :post, class:"btn-sm btn-success" %>
+              <% end %>
+            </div>
           <% end %>
         </div>
-        <div class="row justify-content-center">
-          <div class="col-lg-12">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">投稿一覧</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="events-tab" data-toggle="tab" href="#events" role="tab" aria-controls="events" aria-selected="false">作成イベント</a>
-              </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-              <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
-                <% if @my_posts.any? %>
-                  <% @my_posts.each do |post| %>
-                    <div class="card mb-3">
-                      <div class="card-body">
-                        <h5 class="card-title"><%=link_to post.title, post_path(post.id) %></h5>
-                        <p class="card-text"><%= post.body %></p>
-                      </div>
-                    </div>
-                  <% end %>
-                <% else %>
-                  <p>投稿がありません</p>
-                <% end %>
+      </div>
+      <div class="row mb-2">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <td><strong>投稿数:</strong></td>
+                <td><%= "#{@my_postscount}" %></td>
+              </tr>
+              <tr>
+                <td><strong>イベント作成数:</strong></td>
+                <td><%= "#{@my_eventscount}" %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 mt-5">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">投稿一覧</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="events-tab" data-toggle="tab" href="#events" role="tab" aria-controls="events" aria-selected="false">作成イベント</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+          <% if @my_posts.any? %>
+            <% @my_posts.each do |post| %>
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h5 class="card-title"><%=link_to post.title, post_path(post.id) %></h5>
+                  <p class="card-text"><%= post.body %></p>
+                </div>
               </div>
-              <div class="tab-pane fade" id="events" role="tabpanel" aria-labelledby="events-tab">
-                <% if @my_events.any? %>
-                  <% @my_events.each do |event| %>
-                    <div class="card mb-3">
-                      <div class="card-body">
-                        <h5 class="card-title"><%= event.event_name %></h5>
-                        <p class="card-text">開催日：<%= event.date %></p>
-                      </div>
-                    </div>
-                  <% end %>
-                <% else %>
-                  <p>投稿がありません</p>
-                <% end %>
-              </div>
+            <% end %>
+            <div class="pagination justify-content-center">
+              <%= paginate @my_posts %>
             </div>
-          </div>
+          <% else %>
+            <p>投稿がありません</p>
+          <% end %>
+        </div>
+        <div class="tab-pane fade" id="events" role="tabpanel" aria-labelledby="events-tab">
+          <% if @my_events.any? %>
+            <% @my_events.each do |event| %>
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h5 class="card-title"><%=link_to event.event_name, event_path(event.id)%></h5>
+                  <p class="card-text">開催日：<%= event.date %></p>
+                </div>
+              </div>
+            <% end %>
+            <div class="pagination justify-content-center">
+              <%= paginate @my_events %>
+            </div>
+          <% else %>
+            <p>投稿がありません</p>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
+</div>
+</div>
+</div>
 </div>

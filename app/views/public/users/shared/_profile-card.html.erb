@@ -1,8 +1,8 @@
 <div class='row'>
   <% if user.image.attached? %>
-    <%= image_tag user.image, size: "150x150" %>
+    <%= image_tag user.image, size: "150x150", class: "img-fluid rounded-circle" %>
   <% else %>
-    <%= image_tag 'no_image.png', size: "150x150" %>
+    <%= image_tag 'no_image.png', size: "150x150", class: "img-fluid rounded-circle" %>
   <% end %>
 </div>
 <div class='row'>

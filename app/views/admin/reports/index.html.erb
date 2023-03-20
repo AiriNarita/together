@@ -1,39 +1,44 @@
-<%= link_to "会員一覧へ",admin_root_path,class: "btn btn-success" %>
-<div class="card">
-  <div class="card-body">
-    <h3 class="card-title">通報一覧</h3>
-    ※番号から通報詳細へ飛びます。
-    <div class="table-responsive">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>通報ID</th>
-            <th>通報日</th>
-            <th>会員名</th>
-            <th>通報者</th>
-            <th>通報された回数</th>
-            <th>管理者check</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @reports.each do |report| %>
+<div class="container mt-5">
+  <%= link_to "会員一覧へ",admin_root_path,class: "btn btn-success" %>
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">通報一覧</h3>
+      ※番号から通報詳細へ飛びます。
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
             <tr>
-              <td><%= link_to report.id, admin_report_path(report) %></td>
-              <td><%= report.created_at.in_time_zone('Tokyo').strftime('%Y-%m-%d %H:%M:%S') %></td>
-              <td><%= report.reported.full_name %></td>
-              <td><%= report.reporter.full_name %></td>
-              <td><%= Report.where(reported_id: report.reported_id).count %></td>
-              <td>
-                <% if report.checked %>
-                  <span class="badge badge-success">確認済み</span>
-                <% else %>
-                  <span class="badge badge-danger">未確認</span>
-                <% end %>
-              </td>
+              <th>通報ID</th>
+              <th>通報日</th>
+              <th>会員名</th>
+              <th>通報者</th>
+              <th>通報された回数</th>
+              <th>管理者check</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% @reports.each do |report| %>
+              <tr>
+                <td><%= link_to report.id, admin_report_path(report) %></td>
+                <td><%= report.created_at.in_time_zone('Tokyo').strftime('%Y-%m-%d %H:%M:%S') %></td>
+                <td><%= report.reported.full_name %></td>
+                <td><%= report.reporter.full_name %></td>
+                <td><%= Report.where(reported_id: report.reported_id).count %></td>
+                <td>
+                  <% if report.checked %>
+                    <span class="badge badge-success">確認済み</span>
+                  <% else %>
+                    <span class="badge badge-danger">未確認</span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
+  <div class="pagination justify-content-center">
+    <%= paginate @reports %>
   </div>
 </div>
