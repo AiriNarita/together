@@ -1,16 +1,29 @@
 <header class="position-fixed fixed-top" id="main-header">
   <nav class="navbar navbar-expand-lg navbar-light">
-    <%= link_to image_tag('together.png', size: '100x50'), root_path, class: 'navbar-brand' %>
+    <% if request.fullpath.include? "admin" %>
+      <%= link_to image_tag('together.png', size: '100x50'), admin_root_path, class: 'navbar-brand' %>
+    <% else  %>
+      <%= link_to image_tag('together.png', size: '100x50'), root_path, class: 'navbar-brand' %>
+    <% end  %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
+      <%= render'layouts/search' %>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <%= link_to 'Post', posts_path, class: 'nav-link' %>
+          <% if request.fullpath.include? "admin" %>
+            <%= link_to 'Post', admin_posts_path, class: 'nav-link' %>
+          <% else  %>
+            <%= link_to 'Post', posts_path, class: 'nav-link' %>
+          <% end  %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Event', events_path, class: 'nav-link' %>
+          <% if request.fullpath.include? "admin" %>
+            <%= link_to 'Event', admin_events_path, class: 'nav-link' %>
+          <% else  %>
+            <%= link_to 'Event', events_path, class: 'nav-link' %>
+          <% end  %>
         </li>
         <% if user_signed_in? %>
           <li>

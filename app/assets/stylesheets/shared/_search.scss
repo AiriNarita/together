@@ -1,0 +1,90 @@
+// Place all the styles related to the searches controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+/*検索窓開くための虫眼鏡設定*/
+
+.open-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  /*虫眼鏡アイコンを背景に設定*/
+  // background:url("../img/icon_search.svg") no-repeat 15px center;
+  background-size: 20px 20px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+/*↑ カーソルを指マークにクリックした後、JSでボタンにbtnactiveクラスが付与された後の見た目*/
+
+.open-btn.btnactive {
+  /*閉じるアイコンを背景に表示*/
+  // background:url("../img/icon_close.svg") no-repeat 15px center;
+  background-size: 18px 18px;
+}
+
+/*検索窓背景のエリア*/
+#search-wrap {
+  position: absolute;
+  top: 150px;
+  right: 20px;
+  z-index: -1; /*最背面に設定*/
+  opacity: 0; /*透明度０*/
+  width: 0;
+  transition: all 0.4s; /*スムーズに出現*/
+  border-radius: 5px;
+}
+
+/*ボタンクリック後、JSで＃searchwrapにpanelactiveクラスが付与された後の見た目*/
+#search-wrap.peneractive {
+  opacity: 1;
+  z-index: 3; /*全面に出現*/
+  width: 280px;
+  padding: 20px;
+  top: 60px;
+  background-color: #fff;
+}
+
+/*検索窓*/
+#search-wrap #searchform {
+  display: none;
+}
+
+/*ボタンクリック後*JSで#search-wrapにpanelactiveクラスが付与された時*/
+#search-wrap.panelactive #searchform {
+  display: block;
+}
+
+/*検索フォーム設定*/
+
+#search-wrap input {
+  /*サファリやchromeのデフォルトせてい無効*/
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  color: #666;
+}
+
+/*text入力input設定*/
+#search-wrap input[type="text"] {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  transition: all 0.5s;
+  letter-spacing: 0.05em;
+  height: 46px;
+  padding: 10px;
+}
+
+#search-wrap input[type="text"]:focus {
+  background: #eee;
+}
+
+#search-wrap input[type="submit"]{
+  position: absolute;
+  top:10px;
+  right:30px;
+  width:30px;
+  height:60px;
+}
+
