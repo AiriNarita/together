@@ -1,6 +1,10 @@
 <article class="post-card card border-0">
   <div class="post-card__author">
-    <div class="post-card__avatar"></div>
+    <% if post.user.image.attached? %>
+      <%= image_tag post.user.image,size: "30x30",class: "post-card__avatar" %>
+    <% else %>
+      <%= image_tag 'no_image.png',size: "30x30",class: "post-card__avatar" %>
+    <% end %>
     <%= link_to post.user.full_name, my_page_users_path(post.user.id), class: 'post-card__username' %>
   </div>
   <div class="post-card__wrapper">
