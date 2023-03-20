@@ -135,6 +135,18 @@
       }
     }
   }
+
+  &__likes {
+    font-size: 14px;
+    color: #999;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    &.active {
+      color: red;
+    }
+  }
 }
 
 .post-detail {
