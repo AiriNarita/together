@@ -6,7 +6,7 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-    #下書き保存ボタンを押されたら
+    # 下書き保存ボタンを押されたら
     if params[:commit] == "下書き保存"
       @post = Post.create(post_params.merge(user_id: current_user.id))
       if @post.save_draft
@@ -15,7 +15,8 @@ class Public::PostsController < ApplicationController
       else
         render :new
       end
-    else #投稿ボタンが押されたら
+    else
+      # 投稿ボタンが押されたら
       @post = Post.create(post_params.merge(user_id: current_user.id))
       if @post.save
         save_hashtags
@@ -38,14 +39,19 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.includes(:hashtags).visible.page(params[:page]).per(8)
-
+    params[:sort] = params[:sort].blank? ? 'latest' : params[:sort]
     case params[:sort]
-    when "favorites"
-      # @posts = @posts.order(favorites_count: :desc)
-      @posts = @posts
     when "latest"
-      @posts = @posts.order(created_at: :desc)
+      @posts = Post.includes(:hashtags)
+                   .order(created_at: :desc)
+                   .visible.page(params[:page]).per(8)
+    when "favorites"
+      @posts = Post.includes(:hashtags)
+                   .left_joins(:favorites)
+                   .select("posts.*, COUNT(favorites.id) AS favorites_count")
+                   .group("posts.id")
+                   .order("favorites_count DESC")
+                   .visible.order(favorites_count: :desc).page(params[:page]).per(8)
     end
   end
 
