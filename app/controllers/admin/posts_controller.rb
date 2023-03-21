@@ -4,7 +4,8 @@ class Admin::PostsController < ApplicationController
 
     case params[:sort]
     when "attendee"
-      @posts = @posts.order(attendee_count: :desc)
+      # @posts = @posts.order(attendee_count: :desc)
+      @posts = @posts
     when "latest"
       @posts = @posts.order(created_at: :desc)
     end

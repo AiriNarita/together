@@ -42,7 +42,8 @@ class Public::PostsController < ApplicationController
 
     case params[:sort]
     when "favorites"
-      @posts = @posts.order(favorites_count: :desc)
+      # @posts = @posts.order(favorites_count: :desc)
+      @posts = @posts
     when "latest"
       @posts = @posts.order(created_at: :desc)
     end
