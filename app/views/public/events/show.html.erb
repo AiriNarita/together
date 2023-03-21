@@ -1,93 +1,63 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="mb-4 text-center">イベント詳細</h2>
-          <div class="message text-center">
-            <% if flash.now[:notice] =~ /https?:\/\/[\S]+/ %>
-              <% flash.now[:notice].scan(/https?:\/\/[\S]+/) do |url| %>
-                <p>参加用URL : <br />
-                  <%= link_to url, url %></p>
-              <% end %>
+<div style="height: 120px;"></div>
+<div class="event-detail row hidden-md-up mx-auto">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <%= render partial: 'shared/event_card', locals: { event: @event, isDetail: true } %>
+    <div class="event-detail__button-wrapper">
+      <% if user_signed_in? %>
+        <% unless @is_past_event %>
+          <% unless @event.creator_id == current_user.id %>
+            <% if @attendee %>
+              <%= button_to '参加済み', event_attendee_path(@event, @attendee), disabled: true, class: 'btn event-detail__btn event-detail__btn--participated' %>
+              <%= link_to "参加取り消し", event_attendee_path(@event, @attendee), class: 'btn event-detail__btn event-detail__btn--remove', method: :delete, data: { confirm: '本当に変更しますか？' } %>
             <% else %>
-              <p class="mb-3"><%= flash.now[:notice] %></p>
+              <%= button_to '参加する', event_attendees_path(@event), class: 'btn event-detail__btn event-detail__btn--join' %>
             <% end %>
-          </div>
-          <hr>
-          <% if @event.event_image.attached? %>
-            <%= image_tag @event.event_image, size: "180x100" %>
-          <% else %>
-            <%= image_tag 'no_image.png', size: "180x100" %>
           <% end %>
-          <h4 class="mb-3">
-            title :<%= @event.event_name %>
-          </h4>
-          <p class="mb-3">
-            <strong>開催日</strong><br />
-            <%= @event.date %>
-          </p>
-          <p class="mb-3">
-            <strong>introduction</strong><br />
-            <%= @event.event_introduction %>
-          </p>
-          <p class="mb-3">
-            <strong>開催者</strong>
-            <%=link_to @event.creator.full_name,profile_users_path(@event.creator)  %>
-          </p>
-          <% if user_signed_in? %>
-            <% if @eventattendee %>
-              <% if @attendee %>
-                <%= button_to '参加済み', event_attendee_path(@event, @attendee), disabled: true, class: 'btn btn-secondary mr-3' %>
-                <%= link_to "参加取り消し", event_attendee_path(@event, @attendee), class:'btn btn-sm btn-danger', method: :delete, data: { confirm: '本当に変更しますか？' } %>
-              <% else %>
-                <%= button_to '参加する', event_attendees_path(@event), class: 'btn btn-primary mr-3' %>
+        <% end %>
+      <% else %>
+        <%= link_to 'ログインして参加する', new_user_session_path, class: 'btn btn-primary mr-3' %>
+      <% end %>
+    </div>
+    <% if user_signed_in? %>
+      <% if @event.creator_id == current_user.id %>
+        <%= link_to "編集", edit_event_path(@event), class: 'btn btn-sm btn-success mr-3' %>
+        <%= link_to "削除", event_path(@event), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      <% end %>
+    <% end %>
+
+    <div class="event-attendee-card__user-wrapper">
+      <% if @attendees.any? %>
+        <h4 class="event-attendee-card__attendee-title">参加者一覧
+          (<%= @attendees.count %>)</h4>
+        <% @attendees.each do |attendee| %>
+          <div class="event-attendee-card__user">
+            <% if attendee.user.image.attached? %>
+              <%= image_tag attendee.user.image, size: "150x150", class: 'event-attendee-card__avatar' %>
+            <% else %>
+              <%= image_tag 'no_image.png', size: "150x150", class: 'event-attendee-card__avatar' %>
+            <% end %>
+            <%= link_to profile_users_path(attendee.user), class: 'event-attendee-card__name' do %>
+              <%= attendee.user.full_name %>
+              <% if attendee.user.id == current_user.id %>
+                (本人)
               <% end %>
             <% end %>
-          <% else %>
-            <%= link_to 'ログインして参加する', new_user_session_path, class: 'btn btn-primary mr-3' %>
-          <% end %>
-          <% if user_signed_in? %>
-            <% if @event.creator_id == current_user.id %>
-              <%= link_to "編集", edit_event_path(@event), class: 'btn btn-sm btn-success mr-3' %>
-              <%= link_to "削除", event_path(@event), class:'btn btn-sm btn-danger', method: :delete, data: { confirm: '本当に削除しますか？' } %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-      <div class="card mb-3 my-3">
-        <h4>参加者一覧</h4>
-        <% if @event.attendees_for(current_user).any? %>
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>名前</th>
-                  <th>メールアドレス</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @event.attendees_for(current_user).each do |attendee| %>
-                  <tr>
-                    <td><%= attendee.user.full_name %></td>
-                    <td><%= attendee.user.email %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
+
           </div>
-        <% else %>
-          <%if @pastevents%>
-            <p>終了いたしました。</p>
-          <%else%>
-            <p>まだ参加者はいません</p>
-          <%end%>
         <% end %>
-      </div>
-      <div class="text-center">
-        <%= link_to "イベント一覧に戻る", events_path %> |
-        <%= link_to "My event pageへ", myevent_events_path %>
-      </div>
+      <% else %>
+        <% if @is_past_event %>
+          <p>終了いたしました。</p>
+        <% else %>
+          <p>まだ参加者はいません</p>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="text-center">
+      <%= link_to "イベント一覧に戻る", events_path %> |
+      <%= link_to "My event pageへ", myevent_events_path %>
     </div>
   </div>
+  <div class="col-md-2"></div>
 </div>
