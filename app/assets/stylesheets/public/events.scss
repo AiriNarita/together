@@ -50,6 +50,7 @@
     margin-bottom: 32px;
   }
 
+
   &__title {
     display: block;
     color: #593fbf;
@@ -131,5 +132,15 @@
 
   &__list {
     width: 100%;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .events {
+    &__header {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 }

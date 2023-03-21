@@ -2,7 +2,7 @@
   <%= form_with url: search_path, method: :get, class: "search-form__form" do |f| %>
     <div class="search-form__select-wrapper">
       <%= f.select :model, options_for_select({ "全てから探す" => nil, "User" => "user", "Post" => "post", "Event" => "event", "Hashtag" => "hashtag" }, { :class => 'my_style_class' }) %>
-      <%= f.select :method, options_for_select({ "完全一致" => "perfect", "部分一致" => "partial" }, { :class => 'my_style_class' }) %>
+      <%= f.select :method, options_for_select({ "部分一致" => "partial" , "完全一致" => "perfect"}, { :class => 'my_style_class' }) %>
     </div>
     <%= f.text_field :content, class: "search-form__input" %>
     <%= f.button :submit, class: "search-form__submit" do %>
