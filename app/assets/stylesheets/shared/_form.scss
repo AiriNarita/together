@@ -2,6 +2,7 @@
   label {
     font-size: 16px;
     font-weight: 700;
+    display: flex;
   }
 
   &__title {
@@ -84,6 +85,16 @@
 }
 
 .event-form {
+  &__title {
+    display: block;
+    color: #593fbf;
+    font-weight: 700;
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+}
+
+.profile-form {
   &__title {
     display: block;
     color: #593fbf;

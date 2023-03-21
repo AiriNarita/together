@@ -1,43 +1,12 @@
-<div class="container">
-  <h1>follow一覧</h1>
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">名前</th>
-        <th scope="col">フォロー</th>
-        <th scope="col">フォロワー</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% if @following_users.any? %>
-        <% @following_users.each do |user| %>
-          <tr>
-            <td>
-              <%= link_to profile_users_path(user) do %>
-                <% if user.image.attached? %>
-                  <%= image_tag user.image, size: "50x50" %>
-                <% else %>
-                  <%= image_tag 'no_image.png', size: "50x50" %>
-                <% end %>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to profile_users_path(user) do %>
-                <%= user.full_name %>
-              <% end %>
-            </td>
-            <td>
-              <%= user.follower.count %>
-            </td>
-            <td>
-              <%= user.followed.count %>
-            </td>
-          </tr>
-        <% end %>
-      <% else %>
-        <p class="text-center"><strong>follow userがいません。</strong> </p>
+<div class="relation container">
+  <h1>フォロー一覧</h1>
+  <% if @following_users.any? %>
+    <div class="relation__user-wrapper">
+      <% @following_users.each do |user| %>
+        <%= render partial: 'public/users/shared/profile-simple-card', locals: { user: user } %>
       <% end %>
-    </tbody>
-  </table>
+    </div>
+  <% else %>
+    <p class="text-center"><strong>follow userがいません。</strong></p>
+  <% end %>
 </div>

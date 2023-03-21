@@ -1,0 +1,17 @@
+.relation {
+  h1 {
+    display: block;
+    color: #593fbf;
+    font-weight: 700;
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  &__user-wrapper {
+    > *:not(:last-of-type) {
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #eaeaea;
+    }
+  }
+}

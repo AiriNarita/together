@@ -1,3 +1,75 @@
 // Place all the styles related to the public/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+// app/views/public/users/profile.html.erb
+.profile {
+  // left
+  &__detail {
+  }
+
+  // right
+  .nav-tabs {
+    border-bottom: 1px solid #654dc4;
+
+    & .nav-item {
+      margin-bottom: 0;
+    }
+  }
+
+  .nav-link {
+    color: #000000;
+
+    &.active {
+      color: #ffffff;
+      font-weight: 500;
+      background: linear-gradient(
+                      90deg,
+                      rgba(101, 77, 196, 1) 0%,
+                      rgba(89, 63, 191, 1) 35%,
+                      rgba(155, 64, 166, 1) 100%
+      );
+      border: none;
+    }
+  }
+
+
+  &__cards {
+
+  }
+
+  &__tab-content {
+    box-sizing: border-box;
+    padding: 16px 24px;
+  }
+
+  &__tab-pane {
+    padding: 16px 0;
+  }
+
+  // post
+  &__posts {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__post-wrapper {
+    &:not(:last-of-type) {
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #eaeaea;
+    }
+  }
+
+  // event
+  &__events {
+  }
+
+  &__event-wrapper {
+    &:not(:last-of-type) {
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #eaeaea;
+    }
+  }
+}
