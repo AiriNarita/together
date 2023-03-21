@@ -16,16 +16,17 @@ class Public::EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
-    @eventattendee = Event.find_by(id: @event.id, creator_id: current_user.id, date: Time.now.all_day)
-    @pastevents = Event.where("date < ?", Time.now)
+    @event = Event.includes(attendees: :user).find(params[:id])
+    @attendees = @event.attendees.uniq(&:user_id)
+    @is_past_event = @event.date < Time.now
+
     if user_signed_in?
       @attendee = Attendee.find_by(user_id: current_user.id, event_id: @event.id)
 
       if @attendee
-        flash.now[:notice] = "参加を決定しました。イベントのURL: #{@event.url}"
+        flash.now[:notice] = "Clicked backup URL: #{@event.url}"
       else
-        Attendee.create(user_id: current_user.id, event_id: @event.id)
+        # Attendee.create(user_id: current_user.id, event_id: @event.id)
       end
     end
   end

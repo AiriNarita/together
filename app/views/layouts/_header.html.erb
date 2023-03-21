@@ -12,38 +12,38 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <% if request.fullpath.include? "admin" %>
-            <%= link_to 'Post', admin_posts_path, class: 'nav-link' %>
+            <%= link_to 'POST', admin_posts_path, class: 'nav-link' %>
           <% else  %>
-            <%= link_to 'Post', posts_path, class: 'nav-link' %>
+            <%= link_to 'POST', posts_path, class: 'nav-link' %>
           <% end  %>
         </li>
         <li class="nav-item">
           <% if request.fullpath.include? "admin" %>
-            <%= link_to 'Event', admin_events_path, class: 'nav-link' %>
+            <%= link_to 'EVENT', admin_events_path, class: 'nav-link' %>
           <% else  %>
-            <%= link_to 'Event', events_path, class: 'nav-link' %>
+            <%= link_to 'EVENT', events_path, class: 'nav-link' %>
           <% end  %>
         </li>
         <% if user_signed_in? %>
           <li>
-            <%= link_to 'Mypage', my_page_users_path, class: 'nav-link' %>
+            <%= link_to 'MY PAGE', my_page_users_path, class: 'nav-link' %>
           </li>
           <li>
-            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+            <%= link_to 'LOGOUT', destroy_user_session_path, method: :delete, class: 'nav-link' %>
           </li>
         <% elsif admin_signed_in? %>
           <li class="nav-item">
             <%= link_to 'Users', admin_root_path, class: 'nav-link' %>
           </li>
           <li> class="nav-item"
-            <%= link_to 'Logout', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+            <%= link_to 'LOGOUT', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to 'Signup', new_user_registration_path, class: 'nav-link' %>
+            <%= link_to 'SIGNUP', new_user_registration_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
+            <%= link_to 'LOGIN', new_user_session_path, class: 'nav-link' %>
           </li>
         <% end %>
         <li class="nav-item">

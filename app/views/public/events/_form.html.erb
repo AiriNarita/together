@@ -1,0 +1,37 @@
+<div class="form-group form-group__name">
+  <label for="event_name">
+    イベント名
+  </label>
+  <%= f.text_field :event_name, required: true, rows: 25, cols: 10, class: "form-control" %>
+</div>
+<div class="form-group form-group__introduction">
+  <label for="event_introduction">
+    イベント紹介
+  </label>
+  <%= f.text_area :event_introduction, required: true, rows: 25, cols: 10, class: "form-control" %>
+</div>
+<div class="form-group form-group__url">
+  <label for="url">
+    URL
+  </label>
+  <%= f.text_field :url, required: true, rows: 25, cols: 10, class: "form-control" %>
+</div>
+<div class="form-group form-group_date">
+  <label for="date">
+    開催日時
+  </label>
+  <div>
+    <%= f.datetime_field :date, required: true, class: "form-control" %>
+  </div>
+</div>
+<div class="form-group form-group__thumbnail">
+  <label for="event_thumbnail">
+    Thumbnail
+  </label>
+  <div>
+    <%= f.file_field :event_image, accept: "image/*" %>
+  </div>
+</div>
+<div class="form-group form-group__button-wrapper">
+  <%= f.submit isEdit ? '更新する' : '投稿する', name: 'commit', class: "btn form-group__submit" %>
+</div>

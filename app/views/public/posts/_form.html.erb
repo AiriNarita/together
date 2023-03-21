@@ -1,24 +1,24 @@
-<div class="form-group post-form__title">
+<div class="form-group form-group__title">
   <label for="post_title">
-    Title
+    Event name
   </label>
-  <%= f.text_field :title, required: true, class: 'form-control post_title' %>
+  <%= f.text_field :event_name, required: true, class: 'form-control post_title' %>
 </div>
-<div class="form-group post-form__body">
+<div class="form-group form-group__body">
   <label for="post_body">
     Body
   </label>
   <%= f.text_area :body, required: true, rows: 25, cols: 10, class: "form-control " %>
 </div>
-<div class="form-group post-form__hash">
+<div class="form-group form-group__hash">
   <%= f.label :hashtag_name %>
-  <% if isEdit == true %>
+  <% if defined?(isEdit) && isEdit == true %>
     <%= f.text_field :hashtag_name, value: @post.hashtags.pluck(:hashtag_name).join(' '), class: "form-control" %>
   <% else %>
     <%= f.text_field :hashtag_name, class: "form-control" %>
   <% end %>
 </div>
-<div class="form-group post-form__thumbnail">
+<div class="form-group form-group__thumbnail">
   <label for="post_thumbnail">
     Thumbnail
   </label>
@@ -26,7 +26,7 @@
     <%= f.file_field :post_image, accept: "image/*" %>
   </div>
 </div>
-<div class="form-group post-form__button-wrapper">
-  <%= f.submit '投稿する', name: 'commit', class: "btn post-form__submit" %>
-  <%= f.submit '下書き保存', name: 'commit', class: "btn post-form__draft" %>
+<div class="form-group form-group__button-wrapper">
+  <%= f.submit '投稿する', name: 'commit', class: "btn form-group__submit" %>
+  <%= f.submit '下書き保存', name: 'commit', class: "btn form-group__draft" %>
 </div>
