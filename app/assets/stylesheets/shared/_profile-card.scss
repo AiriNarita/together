@@ -7,6 +7,12 @@
     position: relative;
     align-self: center;
     margin-bottom: 16px;
+    overflow: hidden;
+    > img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+    }
   }
 
   &__edit {
@@ -28,7 +34,6 @@
   }
 
   &__information {
-
   }
 
   &__data {
@@ -116,7 +121,6 @@
   }
 }
 
-
 .profile-simple-card {
   width: 100%;
   display: flex;
@@ -139,8 +143,6 @@
 
     &--name {
     }
-
-
   }
 
   &__relation-wrapper {

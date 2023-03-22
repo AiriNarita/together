@@ -5,10 +5,11 @@ class Public::UsersController < ApplicationController
     @user = current_user
 
     @my_postscount = @user.posts.count
-    @my_eventscount = Event.where(creator_id: params[:user_id]).count
+    @my_eventscount = Event.joins(:creator).where(creator: { id: current_user.id }).count
 
     @my_posts = @user.posts.page(params[:page]).per(8)
-    @my_events = Event.where(creator_id: params[:user_id]).page(params[:page]).per(8)
+    #@my_events = Event.where(creator_id: params[:user_id]).page(params[:page]).per(8)
+    @my_events = Event.joins(:creator).where(creator: { id: current_user.id }).page(params[:page]).per(8)
     @my_likes = Post.where(id: @user.favorites.pluck(:post_id)).page(params[:page]).per(8)
 
     @following_users = @user.following_user
@@ -22,6 +23,7 @@ class Public::UsersController < ApplicationController
     end
     @my_posts = @user.posts.page(params[:page]).per(8)
     @my_events = Event.where(creator_id: params[:user_id]).page(params[:page]).per(8)
+    @my_likes = Post.where(id: @user.favorites.pluck(:post_id)).page(params[:page]).per(8)
 
     @my_postscount = @user.posts.count
     @my_eventscount = Event.where(creator_id: params[:user_id]).count
