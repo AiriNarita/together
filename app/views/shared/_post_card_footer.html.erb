@@ -1,0 +1,22 @@
+<li>
+  <time class="post-card__date" datetime="2023-03-19"><%= post.created_at %></time>
+</li>
+<% unless request.fullpath.include? "drafts" %>
+  <li class="post-card__comments" <%= "data-toggle=tooltip" unless user_signed_in? || admin_signed_in? %>  data-placement="bottom" title="コメントをするには、ログインしてください。">
+    <i class="fas fa-comment"></i> <%= post.post_comments.count %> Comments
+  </li>
+  <% if post.favorited_by?(current_user) %>
+    <%= link_to post_favorite_path(post), method: :DELETE, remote: true do %>
+      <li class="post-card__likes active" <%= "data-toggle=tooltip" unless user_signed_in? || admin_signed_in? %> data-placement="bottom" title="いいねをするには、ログインしてください。">
+        <i class="fa fa-heart"></i> <%= post.favorites.count %>
+        Likes
+      </li>
+    <% end %>
+  <% else %>
+    <%= link_to post_favorite_path(post), method: :POST, remote: true do %>
+      <li class="post-card__likes" <%= "data-toggle=tooltip" unless user_signed_in? || admin_signed_in? %> data-placement="bottom" title="いいねをするには、ログインしてください。">
+        <i class="far fa-heart"></i> <%= post.favorites.count %> Likes
+      </li>
+    <% end %>
+  <% end %>
+<% end %>
