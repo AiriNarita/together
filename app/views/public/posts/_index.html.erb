@@ -1,7 +1,7 @@
 <div class="row hidden-md-up">
   <% posts.each do |post| %>
     <div class="col-md-12 mb-4 pb-4 border-bottom">
-      <%= render partial: 'shared/post_card', locals: { post: post, isDetail: false } %>
+      <%= render partial: 'shared/post_card', locals: { post: post,post_comment: post_comment, isDetail: false } %>
     </div>
   <% end %>
 </div>

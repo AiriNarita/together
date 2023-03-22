@@ -1,4 +1,4 @@
-<div class="comment-card card border-0">
+<div class="comment-card card border-0" >
   <div class="comment-card__author">
     <% if comment.user.image.attached? %>
       <%= image_tag comment.user.image, size: "30x30", class: "comment-card__avatar" %>
@@ -7,9 +7,9 @@
     <% end %>
     <%= link_to comment.user.full_name, my_page_users_path(comment.user.id), class: 'comment-card__username' %>
   </div>
-  <div class="comment-card__wrapper">
+  <div class="comment-card__wrapper" >
     <div class="comment-card__contents">
-      <p class="comment-card__body"><%= comment.comment %></p>
+      <p class="comment-card__body"><%= comment.comment%></p>
     </div>
   </div>
 </div>

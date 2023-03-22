@@ -137,13 +137,16 @@
   }
 
   &__likes {
-    font-size: 14px;
-    color: #999;
     list-style: none;
     margin: 0;
     padding: 0;
+  }
 
-    &.active {
+  &__like {
+    color: #999;
+    font-size: 14px;
+
+    &--active {
       color: red;
     }
   }
@@ -157,6 +160,7 @@
     z-index: 100;
     display: flex;
     flex-direction: column;
+    margin-bottom: 160px;
   }
 
   &__comment-delete {

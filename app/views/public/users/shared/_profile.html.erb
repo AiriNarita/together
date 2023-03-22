@@ -29,7 +29,7 @@
             <div class="profile__posts">
               <% my_posts.each do |post| %>
                 <div class="profile__post-wrapper">
-                  <%= render partial: 'shared/post_card', locals: { post: post, isDetail: false } %>
+                  <%= render partial: 'shared/post_card', locals: { post: post, post_comment: post_comment, isDetail: false } %>
                 </div>
               <% end %>
             </div>
@@ -62,7 +62,7 @@
               <div class="profile__posts">
                 <% my_likes.each do |post| %>
                   <div class="profile__post-wrapper">
-                    <%= render partial: 'shared/post_card', locals: { post: post, isDetail: false } %>
+                    <%= render partial: 'shared/post_card', locals: { post: post,post_comment: post_comment, isDetail: false } %>
                   </div>
                 <% end %>
               </div>

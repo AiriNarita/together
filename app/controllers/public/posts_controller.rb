@@ -35,11 +35,14 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
+
+    @post_comments = PostComment.where(post_id: params[:id]).order(created_at: :desc)
     @post_hashtags = @post.hashtags
   end
 
   def index
-    params[:sort] = params[:sort].blank? ? 'latest' : params[:sort]
+    @post_comment = PostComment.new
+    params[:sort] = params[:sort].blank? ? "latest" : params[:sort]
     case params[:sort]
     when "latest"
       @posts = Post.includes(:hashtags)

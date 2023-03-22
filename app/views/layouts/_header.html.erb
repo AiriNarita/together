@@ -1,9 +1,9 @@
 <header class="position-fixed fixed-top" id="main-header">
   <nav class="navbar navbar-expand-lg navbar-light">
     <% if request.fullpath.include? "admin" %>
-      <%= link_to image_tag('together.png', size: '100x50'), admin_root_path, class: 'navbar-brand' %>
+      <%= link_to image_tag('together.png', size: '125x75'), admin_root_path, class: 'navbar-brand' %>
     <% else  %>
-      <%= link_to image_tag('together.png', size: '100x50'), root_path, class: 'navbar-brand' %>
+      <%= link_to image_tag('together.png', size: '125x75'), root_path, class: 'navbar-brand' %>
     <% end  %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
