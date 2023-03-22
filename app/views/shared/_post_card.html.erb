@@ -36,7 +36,17 @@
       </ul>
     </div>
   </div>
-  <ul id="post_card-<%= post.id %>" class="post-card__stats">
-    <%= render partial: 'shared/post_card_footer', locals: { post: post } %>
+  <ul class="post-card__stats">
+    <li>
+      <time class="post-card__date" datetime="2023-03-19"><%= post.created_at %></time>
+    </li>
+    <% unless request.fullpath.include? "drafts" %>
+      <li class="post-card__comments" <%= "data-toggle=tooltip" unless user_signed_in? || admin_signed_in? %>  data-placement="bottom" title="コメントをするには、ログインしてください。">
+        <i class="fas fa-comment"></i> <%= post.post_comments.count %> Comments
+      </li>
+      <li id="favorites-<%= post.id %>" class="post-card__likes" <%= "data-toggle=tooltip" unless user_signed_in? || admin_signed_in? %> data-placement="bottom" title="いいねをするには、ログインしてください。">
+        <%= render partial: 'public/favorites/favorite', locals: { post: post } %>
+      </li>
+    <% end %>
   </ul>
 </article>

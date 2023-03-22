@@ -137,13 +137,16 @@
   }
 
   &__likes {
-    font-size: 14px;
-    color: #999;
     list-style: none;
     margin: 0;
     padding: 0;
+  }
 
-    &.active {
+  &__like {
+    color: #999;
+    font-size: 14px;
+
+    &--active {
       color: red;
     }
   }

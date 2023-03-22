@@ -5,18 +5,16 @@
   <li class="post-card__comments" <%= "data-toggle=tooltip" unless user_signed_in? || admin_signed_in? %>  data-placement="bottom" title="コメントをするには、ログインしてください。">
     <i class="fas fa-comment"></i> <%= post.post_comments.count %> Comments
   </li>
-  <% if post.favorited_by?(current_user) %>
-    <%= link_to post_favorite_path(post), method: :DELETE, remote: true do %>
-      <li class="post-card__likes active" <%= "data-toggle=tooltip" unless user_signed_in? || admin_signed_in? %> data-placement="bottom" title="いいねをするには、ログインしてください。">
+  <li class="post-card__likes" <%= "data-toggle=tooltip" unless user_signed_in? || admin_signed_in? %> data-placement="bottom" title="いいねをするには、ログインしてください。">
+    <% if post.favorited_by?(current_user) %>
+      <%= link_to post_favorite_path(post), method: :DELETE, remote: true, class: "post-card__like post-card__like--active" do %>
         <i class="fa fa-heart"></i> <%= post.favorites.count %>
         Likes
-      </li>
-    <% end %>
-  <% else %>
-    <%= link_to post_favorite_path(post), method: :POST, remote: true do %>
-      <li class="post-card__likes" <%= "data-toggle=tooltip" unless user_signed_in? || admin_signed_in? %> data-placement="bottom" title="いいねをするには、ログインしてください。">
+      <% end %>
+    <% else %>
+      <%= link_to post_favorite_path(post), method: :POST, remote: true, class: "post-card__like" do %>
         <i class="far fa-heart"></i> <%= post.favorites.count %> Likes
-      </li>
+      <% end %>
     <% end %>
-  <% end %>
+  </li>
 <% end %>

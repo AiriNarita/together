@@ -1,1 +1,1 @@
-$('#post_card-<%= @post.id %>').html("<%= j(render "shared/post_card_footer", post: @post) %>")
+$('#favorites-<%= @post.id %>').html("<%= j(render "public/favorites/favorite", post: @post) %>")
