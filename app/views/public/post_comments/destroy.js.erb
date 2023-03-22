@@ -1,0 +1,2 @@
+$('#comment-card-list').html("<%= j(render "public/post_comments/comment_card_list", post: @post) %>")
+$('#comments_count').html("<%= @post.post_comments.count %>")

@@ -39,7 +39,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    params[:sort] = params[:sort].blank? ? 'latest' : params[:sort]
+    @post_comment = PostComment.new
+    params[:sort] = params[:sort].blank? ? "latest" : params[:sort]
     case params[:sort]
     when "latest"
       @posts = Post.includes(:hashtags)

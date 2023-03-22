@@ -1,5 +1,4 @@
 <div class="posts container">
-
   <div class="posts__wrapper row">
     <div class="col-md-12">
       <% if user_signed_in? %>
@@ -24,7 +23,7 @@
         </div>
       </div>
       <div class="posts__list" class="col-md-12">
-        <%= render partial: 'public/posts/index', locals: { posts: @posts } %>
+        <%= render partial: 'public/posts/index', locals: { posts: @posts,post_comment: @post_comment} %>
       </div>
     </div>
   </div>

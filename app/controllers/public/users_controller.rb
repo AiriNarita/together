@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = current_user
-
+    @post_comment = PostComment.new
     @my_postscount = @user.posts.count
     @my_eventscount = Event.joins(:creator).where(creator: { id: current_user.id }).count
 
