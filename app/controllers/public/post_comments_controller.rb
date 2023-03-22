@@ -4,12 +4,14 @@ class Public::PostCommentsController < ApplicationController
     @comment = current_user.post_comments.new(post_comment_params)
     @comment.post_id = params[:post_id]
     @comment.save
+    @post_comments = PostComment.where(post_id: params[:post_id]).order(created_at: :desc)
     #redirect_to post_path(@post)
   end
 
   def destroy
     @post_comment = PostComment.find(params[:id])
     @post_comment.destroy
+    @post_comments = PostComment.where(post_id: params[:post_id]).order(created_at: :desc)
     #redirect_back(fallback_location: root_path)
   end
 
