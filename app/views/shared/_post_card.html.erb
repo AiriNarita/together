@@ -28,9 +28,9 @@
       </h4>
       <p class="post-card__body"><%= post.body %></p>
       <ul class="post-card__hashtag-wrapper">
-        <% post.hashtags.each do |tag| %>
+        <% post.hashtags.each do |hashtag| %>
           <li class="post-card__hashtag">
-            <%= tag.hashtag_name %>
+            <%= link_to hashtag.hashtag_name, hashtag_path(hashtag.id) %>
           </li>
         <% end %>
       </ul>

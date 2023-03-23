@@ -110,13 +110,19 @@
   }
 
   &__hashtag {
-    margin-right: 4px;
-    background-color: #593fbf;
     border-radius: 4px;
-    color: #ffffff;
     box-sizing: border-box;
-    padding: 4px 8px;
-    font-size: 11px;
+    background-color: #593fbf;
+    margin-right: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > a {
+      padding: 4px 8px;
+      color: #ffffff;
+      font-size: 11px;
+    }
   }
 
   &__stats {

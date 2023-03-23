@@ -1,22 +1,20 @@
-<% if @hashtag.present? %>
-  <h1>Hashtag: <%= @hashtag.hashtag_name %>の一覧</h1>
-<% else %>
-  <h1>Hashtag not found</h1>
-<% end %>
-<ul>
-  <% @posts.each do |post| %>
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title"><%= link_to post.title, post_path(post.id) %></h5>
-        <p class="card-text">
-          投稿者：<%= link_to post.user.full_name, profile_users_path(post.user.id) %>
-        </p>
-        <p>Like:<%= post.favorites.count %>件<br>
-          comments:<%= post.post_comments.count %>件</p>
+<div class="hashtags container">
+  <div class="hashtags__wrapper row">
+    <div class="col-md-12">
+      <div class="hashtags__header">
+        <% if @hashtag.present? %>
+          <h1 class="hashtags__title">Hashtag: <%= @hashtag.hashtag_name %>の一覧</h1>
+        <% else %>
+          <h1 class="hashtags__title">Hashtag not found</h1>
+        <% end %>
+      </div>
+      <%= render partial: 'shared/post_card', locals: { post: @post,  isDetail: false } %>
+      <div class="text-center">
+        <%= link_to "イベント一覧に戻る", events_path %>
       </div>
     </div>
-  <% end %>
-</ul>
-<div class="text-center">
-  <%= link_to "イベント一覧に戻る", events_path %>
+  </div>
+  <div class="pagination justify-content-center">
+    <%= paginate @hashtags %>
+  </div>
 </div>
