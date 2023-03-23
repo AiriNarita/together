@@ -1,50 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="mb-4 text-center">イベント詳細</h2>
-          <hr>
-          <h4 class="mb-3">
-            title :<%= @event.event_name %>
-          </h4>
-          <p class="mb-3">
-            <strong>introduction</strong><br />
-            <%= @event.event_introduction %>
-          </p>
-          <p class="mb-3">
-            <strong>開催者</strong>
-            <%= @event.creator.full_name %>
-          </p>
-        </div>
-        <div class="card mb-3 my-3">
-          <% if current_user == @event.creator %>
-            <h4>参加者一覧</h4>
-            <% if @event.attendees_for(current_user).any? %>
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>名前</th>
-                      <th>メールアドレス</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @event.attendees_for(current_user).each do |attendee| %>
-                      <tr>
-                        <td><%= attendee.user.full_name %></td>
-                        <td><%= attendee.user.email %></td>
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-              </div>
-            <% else %>
-              <p>まだ参加者はいません</p>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+      <%= render partial: 'shared/event_card', locals: { event: @event, isDetail: true } %>
       <div class="text-center">
         <%= link_to "イベント一覧に戻る", admin_events_path %>
       </div>
