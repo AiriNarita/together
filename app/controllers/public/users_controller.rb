@@ -31,6 +31,7 @@ class Public::UsersController < ApplicationController
     # @my_likes = @user.favorites.includes(:post).map(&:post)
     @following_users = @user.following_user
     @follower_users = @user.follower_user
+    @post_comment = PostComment.new
   end
 
   def edit
