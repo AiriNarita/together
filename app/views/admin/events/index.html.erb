@@ -19,7 +19,7 @@
               <p class="card-text"><%= event.date %></p>
             </td>
             <td>
-              <p class="card-text"><%= link_to event.creator.full_name, admin_users_path(event.creator) %></p>
+              <p class="card-text"><%= link_to event.creator.full_name, admin_user_path(event.creator_id) %></p>
             </td>
           </tr>
         <% end %>

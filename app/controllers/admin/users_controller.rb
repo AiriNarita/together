@@ -4,7 +4,6 @@ class Admin::UsersController < ApplicationController
   end
 
   # user_status管理
-
   def edit
     @user = User.find(params[:id])
   end
@@ -12,7 +11,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to admin_reports_path
+      redirect_to admin_root_path
     else
       render "show"
     end
