@@ -1,6 +1,6 @@
 class Admin::PostsController < ApplicationController
   def index
-    @posts = Post.visible
+    @posts = Post.visible.page(params[:page]).per(8)
 
     case params[:sort]
     when "attendee"

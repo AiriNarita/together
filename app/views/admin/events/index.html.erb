@@ -1,33 +1,33 @@
 <div class="container">
   <h3 class="my-3">イベント一覧</h3>
-  <div class="row">
-    <div class="col">
-      <div class="table-responsive">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">タイトル</th>
-              <th scope="col">開催日</th>
-              <th scope="col">投稿者</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @events.each do |event| %>
-              <tr>
-                <td>
-                  <h5 class="card-title"><%= link_to event.event_name, admin_event_path(event.id) %></h5>
-                </td>
-                <td>
-                  <p class="card-text"><%= event.date %></p>
-                </td>
-                <td>
-                  <p class="card-text"><%= link_to event.creator.full_name, admin_users_path(event.creator) %></p>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </div>
-      </div>
-    </div>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">タイトル</th>
+          <th scope="col">開催日</th>
+          <th scope="col">投稿者</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @events.each do |event| %>
+          <tr>
+            <td>
+              <h5 class="card-title"><%= link_to event.event_name, admin_event_path(event.id) %></h5>
+            </td>
+            <td>
+              <p class="card-text"><%= event.date %></p>
+            </td>
+            <td>
+              <p class="card-text"><%= link_to event.creator.full_name, admin_users_path(event.creator) %></p>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
+</div>
+<div class="pagination justify-content-center">
+  <%= paginate @events %>
+</div>
 </div>
