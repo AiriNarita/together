@@ -4,10 +4,10 @@ class Public::UsersController < ApplicationController
   def show
     @user = current_user
     @post_comment = PostComment.new
-    @my_postscount = @user.posts.count
+    @my_postscount = Post.where(user_id: @user.id).visible.count
     @my_eventscount = Event.joins(:creator).where(creator: { id: current_user.id }).count
 
-    @my_posts = @user.posts.page(params[:page]).per(8)
+    @my_posts = Post.where(user_id: @user.id).visible.page(params[:page]).per(8)
     #@my_events = Event.where(creator_id: params[:user_id]).page(params[:page]).per(8)
     @my_events = Event.joins(:creator).where(creator: { id: current_user.id }).page(params[:page]).per(8)
     @my_likes = Post.where(id: @user.favorites.pluck(:post_id)).page(params[:page]).per(8)
