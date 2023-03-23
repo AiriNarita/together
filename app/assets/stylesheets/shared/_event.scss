@@ -46,6 +46,21 @@
     color: #000000;
     font-weight: 700;
   }
+  
+  &__introduction{
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #000000;
+
+    &.list {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
 
   &__author {
     font-size: 14px;

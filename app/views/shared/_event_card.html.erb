@@ -10,6 +10,9 @@
         <%= event.date %>
       </p>
       <%= link_to event.event_name, event_path(event.id), class: 'event-card__title' %>
+      <div class="event-card__introduction <%= "list" if isDetail == false %>">
+        <%= event.event_introduction %>
+      </div>
       <% if isDetail %>
         <% if flash.now[:notice] =~ /https?:\/\/\S+/ %>
           <% flash.now[:notice].scan(/https?:\/\/\S+/) do |url| %>
