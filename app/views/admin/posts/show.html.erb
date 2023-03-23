@@ -13,7 +13,7 @@
               <span ><%= link_to hashtag.hashtag_name, hashtag_path(params[:id]) %></span>
             <% end %>
           </div>
-          <p class="card-text">投稿者：<%= link_to @post.user.full_name, my_page_users_path(@post.user.id) %></p>
+          <p class="card-text">投稿者：<%= link_to @post.user.full_name, admin_user_path(@post.user.id) %></p>
           <hr>
           <div class="d-flex justify-content-between align-items-center">
             <%= @post.favorites.count %>like
