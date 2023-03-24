@@ -83,6 +83,11 @@ GEM
     enum_help (0.0.19)
       activesupport (>= 3.0.0)
     erubi (1.12.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     faker (3.1.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
@@ -255,6 +260,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   enum_help
+  factory_bot_rails
   faker
   jbuilder (~> 2.7)
   kaminari (~> 1.2.1)
