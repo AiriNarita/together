@@ -8,6 +8,9 @@ class Post < ApplicationRecord
 
   #ActiveStorageの設定
   has_one_attached :post_image
+  #validation
+  validates :title, length: { minimum: 2 }
+  validates :body, length: { minimum: 2 }
 
   #下書き、公開のenum設定
   enum post_status: { published: 0, draft: 1 }

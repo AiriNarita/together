@@ -6,6 +6,9 @@ class Event < ApplicationRecord
   # ActiveStorageの設定
   has_one_attached :event_image
 
+  validates :event_name, length: { minimum: 2 }
+  validates :event_introduction, length: { minimum: 2 }
+
   # creatorを参加者に含めない
   def attendees_for(user)
     if user.present?
