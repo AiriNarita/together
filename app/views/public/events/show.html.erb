@@ -1,4 +1,3 @@
-
 <div class="event-detail row hidden-md-up mx-auto">
   <div class="col-md-2"></div>
   <div class="col-md-8">
@@ -25,25 +24,25 @@
         <%= link_to "削除", event_path(@event), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: '本当に削除しますか？' } %>
       <% end %>
     <% end %>
-
     <div class="event-attendee-card__user-wrapper">
       <% if @attendees.any? %>
         <h4 class="event-attendee-card__attendee-title">参加者一覧
           (<%= @attendees.count %>)</h4>
         <% @attendees.each do |attendee| %>
           <div class="event-attendee-card__user">
-            <% if attendee.user.image.attached? %>
-              <%= image_tag attendee.user.image, size: "150x150", class: 'event-attendee-card__avatar' %>
-            <% else %>
-              <%= image_tag 'no_image.png', size: "150x150", class: 'event-attendee-card__avatar' %>
-            <% end %>
-            <%= link_to profile_users_path(attendee.user), class: 'event-attendee-card__name' do %>
-              <%= attendee.user.full_name %>
-              <% if attendee.user.id == current_user.id %>
-                (本人)
+            <% if user_signed_in? %>
+              <% if attendee.user.image.attached? %>
+                <%= image_tag attendee.user.image, size: "150x150", class: 'event-attendee-card__avatar' %>
+              <% else %>
+                <%= image_tag 'no_image.png', size: "150x150", class: 'event-attendee-card__avatar' %>
+              <% end %>
+              <%= link_to profile_users_path(attendee.user), class: 'event-attendee-card__name' do %>
+                <%= attendee.user.full_name %>
+                <% if attendee.user.id == current_user.id %>
+                  (本人)
+                <% end %>
               <% end %>
             <% end %>
-
           </div>
         <% end %>
       <% else %>
