@@ -13,7 +13,7 @@
 <div class="form-group form-group__hash">
   <%= f.label :hashtag_name %>
   <% if defined?(isEdit) && isEdit == true %>
-    <%= f.text_field :hashtag_name, value: @post.hashtags.pluck(:hashtag_name).join(' '), class: "form-control" %>
+    <%= f.text_field :hashtag_name, value: post.hashtags.pluck(:hashtag_name).join(' '), class: "form-control" %>
   <% else %>
     <%= f.text_field :hashtag_name, class: "form-control" %>
   <% end %>
@@ -27,6 +27,12 @@
   </div>
 </div>
 <div class="form-group form-group__button-wrapper">
-  <%= f.submit '投稿する', name: 'commit', class: "btn form-group__submit" %>
-  <%= f.submit '下書き保存', name: 'commit', class: "btn form-group__draft" %>
+  <% if @isDraft || post.new_record? || !post.draft? %>
+    <%= f.submit '投稿する', name: 'commit', class: "btn form-group__submit" %>
+    <% if @isDraft || post.new_record? %>
+      <%= f.submit '下書き保存', name: 'commit', class: "btn form-group__draft" %>
+    <% end %>
+  <% else %>
+    <%= f.submit '投稿する', name: 'commit', class: "btn form-group__submit" %>
+  <% end %>
 </div>
