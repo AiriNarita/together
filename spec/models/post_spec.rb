@@ -1,14 +1,12 @@
 require "rails_helper"
 
-# 自分がテストしたいFileを [Post]みたいに書く
-# 多分これは各ファイルのClass名だと思う
 RSpec.describe Post, type: :model do
   subject { post.valid? }
   # Factoryでデータを作る
   let(:user) { create(:user) }
   let(:post) { build(:post, user_id: user.id) }
 
-  # いろんな方法でテストする。したみたいなBlogを参考する。
+  # 参考
   # https://qiita.com/jnchito/items/42193d066bd61c740612
   # https://qiita.com/jnchito/items/2a5d3e15761fd413657a
   # https://qiita.com/jnchito/items/3ef95ea144ed15df3637
@@ -17,36 +15,20 @@ RSpec.describe Post, type: :model do
     expect(post).to be_valid
   end
 
-  #describe テスト対象(クラス名orメソッド名),type: :model do
-  #  context "テストの対象クラス" do
-  #     it "どんな状況の処理なのか(アウトプットの内容)" do
-  # 　　　     〜処理の記述〜
-  #   end
-  #end
-
-  # validateコードがまだないからできない
-  # context "titleカラム" do
-  #   it "空欄でないこと" do
-  #     post.title = ""
-  #     is_expected.to eq false
-  #   end
-  #   it "2文字以上であること: 1文字は×" do
-  #     post.title = Faker::Lorem.characters(number: 1)
-  #     is_expected.to eq false
-  #   end
-  #   it "2文字以上であること: 2文字は〇" do
-  #     post.title = Faker::Lorem.characters(number: 2)
-  #     is_expected.to eq true
-  #   end
-  #   it "20文字以下であること: 20文字は〇" do
-  #     post.title = Faker::Lorem.characters(number: 20)
-  #     is_expected.to eq true
-  #   end
-  #   it "20文字以下であること: 21文字は×" do
-  #     post.title = Faker::Lorem.characters(number: 21)
-  #     is_expected.to eq false
-  #   end
-  # end
+  context "titleカラム" do
+    it "空欄でないこと" do
+      post.title = ""
+      is_expected.to eq false
+    end
+    it "2文字以上であること: 1文字は×" do
+      post.title = Faker::Lorem.characters(number: 1)
+      is_expected.to eq false
+    end
+    it "2文字以上であること: 2文字は〇" do
+      post.title = Faker::Lorem.characters(number: 2)
+      is_expected.to eq true
+    end
+  end
 
   describe "Accociations" do
     it "PostはUserが一つのみ (belongs_to test)" do
