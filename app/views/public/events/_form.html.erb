@@ -21,7 +21,7 @@
     開催日時
   </label>
   <div>
-    <%= f.datetime_field :date, required: true, class: "form-control" %>
+    <%= f.datetime_field :date, required: true, min: Date.today,class: "form-control" %>
   </div>
 </div>
 <div class="form-group form-group__thumbnail">
