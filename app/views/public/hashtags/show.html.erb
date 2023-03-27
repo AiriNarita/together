@@ -8,10 +8,16 @@
           <h1 class="hashtags__title">Hashtag not found</h1>
         <% end %>
       </div>
-      <%= render partial: 'shared/post_card', locals: { post: @post,  isDetail: false } %>
+      <div class="row hidden-md-up">
+        <% @posts.each do |post| %>
+          <div class="col-md-12 mb-4 pb-4 border-bottom">
+            <%= render partial: 'shared/post_card', locals: { post: post, isDetail: false } %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="pagination justify-content-center">
-    <%= paginate @hashtags %>
+    <%= paginate @posts %>
   </div>
 </div>
