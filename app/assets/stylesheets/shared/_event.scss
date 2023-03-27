@@ -4,7 +4,7 @@
   &__body {
     box-sizing: border-box;
     padding: 12px;
-    white-space: pre-wrap;
+    
   }
 
   &__info {
@@ -52,6 +52,7 @@
     font-size: 14px;
     margin-bottom: 8px;
     color: #000000;
+    white-space: pre-wrap;
 
     &.list {
       overflow: hidden;

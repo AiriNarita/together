@@ -7,7 +7,7 @@
         <%= image_tag 'no_image.png', size: isDetail ? "400x480" : "310x180", class: isDetail ? 'detail' : "" %>
       <% end %>
       <p class="event-card__date">
-        <%= event.date %>
+        開催:<%= event.date %>
       </p>
       <%= link_to event.event_name, event_path(event.id), class: 'event-card__title' %>
       <div class="event-card__introduction <%= "list" if isDetail == false %>">
