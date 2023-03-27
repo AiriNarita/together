@@ -10,6 +10,7 @@ class Public::HomesController < ApplicationController
     @events = Event.left_joins(:attendees)
                    .select("events.*, COUNT(attendees.id) AS attendees_count")
                    .group("events.id")
+                   .where("date >= ?", Time.now)
                    .order("attendees_count DESC")
                    .limit(4)
   end

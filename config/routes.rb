@@ -22,9 +22,6 @@ Rails.application.routes.draw do
     end
     resources :hashtags, only: [:create, :show]
     resource :users do
-      # member do
-      #   get :follows, :followers
-      # end
       get ":user_id/follows" => "users#follows", as: "follows"
       get ":user_id/followers" => "users#followers", as: "followers"
       post "profile/:user_id/relation" => "relations#create", as: "relations_post"
@@ -32,7 +29,7 @@ Rails.application.routes.draw do
 
       get "my_page" => "users#show"
       get "profile/:user_id" => "users#profile", as: "profile"
-      # added
+
       post "profile/:user_id/report" => "reports#create", as: "profile_report"
       get "profile/:user_id/report/new" => "reports#new", as: "profile_reports_new"
       get "information/edit" => "users#edit"
