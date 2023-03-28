@@ -10,6 +10,13 @@
   <div class="comment-card__wrapper" >
     <div class="comment-card__contents">
       <p class="comment-card__body"><%= comment.comment%></p>
+      <% if user_signed_in? %>
+        <% if comment.user == current_user %>
+          <div class="text-right">
+            <%= link_to "削除", post_post_comment_path(post, comment), method: :delete, remote: true %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
