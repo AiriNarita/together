@@ -10,7 +10,7 @@
           <p class="card-text mb-3"><%= @post.body %></p>
           <div class="d-flex flex-wrap mb-3">
             <% @post.hashtags.each do |hashtag| %>
-              <span ><%= link_to hashtag.hashtag_name, hashtag_path(params[:id]) %></span>
+              <%= link_to hashtag.hashtag_name, admin_hashtag_path(hashtag.id) %>
             <% end %>
           </div>
           <p class="card-text">投稿者：<%= link_to @post.user.full_name, admin_user_path(@post.user.id) %></p>
@@ -24,10 +24,10 @@
             <% @post.post_comments.each do |post_comment| %>
               <div class="card mb-3">
                 <div class="card-body">
-                  <p class="card-text"><%= post_comment.user.first_name %>:<%= post_comment.comment %></p>
+                  <p class="card-text"><%= post_comment.user.full_name %>:<%= post_comment.comment %></p>
                   <p class="card-text text-muted"><small><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %></small></p>
                   <div class="text-right">
-                    <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: 'btn btn-danger btn-sm' %>
+                    <%= link_to "削除", admin_post_post_comment_path(@post, post_comment), method: :delete, class: 'btn btn-danger btn-sm' %>
                   </div>
                 </div>
               </div>
