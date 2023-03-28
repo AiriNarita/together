@@ -1,3 +1,4 @@
+<% set_meta_tags title: @post.title , description: @post.body, keywords: @post.hashtags.map { |hash| hash[:text] }.join(", ") %>
 <div class="post-detail row hidden-md-up mx-auto">
   <% if user_signed_in? %>
     <% if @post.user_id == current_user.id %>

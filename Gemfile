@@ -22,6 +22,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'simple_form'
+# https://qiita.com/takuyanin/items/c37b9842926a78531ac2
+gem 'meta-tags', :require => 'meta_tags'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
