@@ -21,7 +21,7 @@
       <% end %>
     <% end %>
     <div class="post-detail__comment-wrapper" id="comment-card-list">
-      <%= render partial: 'public/post_comments/comment_card_list', locals: { post_comments: @post_comments } %>
+      <%= render partial: 'public/post_comments/comment_card_list', locals: { post: @post, post_comments: @post_comments} %>
     </div>
   </div>
 </div>
