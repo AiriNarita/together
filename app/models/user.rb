@@ -18,7 +18,7 @@ class User < ApplicationRecord
 
   #full_nameメソッド
   def full_name
-    "#{self.first_name} #{self.last_name}"
+    "#{self.last_name} #{self.first_name}"
   end
 
   #検索用
