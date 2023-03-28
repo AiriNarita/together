@@ -1,4 +1,3 @@
-
 <div class="event-form container">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -6,13 +5,13 @@
       <%= form_with model: @user, url: information_users_path do |f| %>
         <div class='form-group'>
           <label>名前（漢字）</label>
-          <%= f.text_field :last_name, class: "form-control", style: "display: inline-block; width: 50%" %>
           <%= f.text_field :first_name, class: "form-control", style: "display: inline-block; width: 50%" %>
+          <%= f.text_field :last_name, class: "form-control", style: "display: inline-block; width: 50%" %>
         </div>
         <div class='form-group'>
           <label>名前（カナ）</label>
-          <%= f.text_field :last_name_kana, class: "form-control", style: "display: inline-block; width: 50%" %>
           <%= f.text_field :first_name_kana, class: "form-control", style: "display: inline-block; width: 50%" %>
+          <%= f.text_field :last_name_kana, class: "form-control", style: "display: inline-block; width: 50%" %>
         </div>
         <div class='form-group'>
           <label>紹介</label>
