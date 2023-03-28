@@ -1,0 +1,23 @@
+<div class="hashtags container">
+  <div class="hashtags__wrapper row">
+    <div class="col-md-12">
+      <div class="hashtags__header">
+        <% if @hashtag.present? %>
+          <h1 class="hashtags__title">Hashtag: <%= @hashtag.hashtag_name %>の一覧</h1>
+        <% else %>
+          <h1 class="hashtags__title">Hashtag not found</h1>
+        <% end %>
+      </div>
+      <div class="row hidden-md-up">
+        <% @posts.each do |post| %>
+          <div class="col-md-12 mb-4 pb-4 border-bottom">
+            <%= render partial: 'shared/post_card', locals: { post: post, isDetail: false } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="pagination justify-content-center">
+    <%= paginate @posts %>
+  </div>
+</div>

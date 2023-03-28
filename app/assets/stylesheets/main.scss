@@ -1,0 +1,28 @@
+header {
+  .nav-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+main {
+  margin-top: 120px;
+  margin-bottom: 160px;
+}
+
+footer {
+  background: linear-gradient(
+                  90deg,
+                  rgba(101, 77, 196, 1) 0%,
+                  rgba(89, 63, 191, 1) 35%,
+                  rgba(155, 64, 166, 1) 100%
+  );
+  box-sizing: border-box;
+  padding: 48px;
+  color: white;
+
+  p {
+    margin: 0;
+  }
+}

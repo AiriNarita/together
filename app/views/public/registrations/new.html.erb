@@ -1,0 +1,19 @@
+<!-- https://github.com/heartcombo/simple_form -->
+<div class="auth-form container">
+  <h2 class="auth-form__title">Sign up</h2>
+  <%= render "public/shared/links" %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <div class="auth-form__names">
+      <%= f.input :last_name, label: '名前(姓)', error: 'Username is mandatory, please specify one', autofocus: true, autocomplete: "愛里" %>
+      <%= f.input :first_name, label: '名前(名)', error: 'Username is mandatory, please specify one', autofocus: true, autocomplete: "令和" %>
+    </div>
+    <div class="auth-form__names">
+      <%= f.input :last_name_kana, label: 'カナ(姓)', error: 'Username is mandatory, please specify one', autofocus: true, autocomplete: "アイリ" %>
+      <%= f.input :first_name_kana, label: 'カナ(名)', error: 'Username is mandatory, please specify one', autofocus: true, autocomplete: "レイワ" %>
+    </div>
+    <%= f.input :email, label: 'Email', error: 'emeilが入力されていません' %>
+    <%= f.input :password, hint: "#{@minimum_password_length} characters minimum" %>
+    <%= f.input :password_confirmation, hint: "#{@minimum_password_length} characters minimum" %>
+    <%= f.submit "Sign up", class: 'auth-form__submit' %>
+  <% end %>
+</div>

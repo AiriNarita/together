@@ -1,0 +1,29 @@
+<div class="post-detail row hidden-md-up mx-auto">
+  <% if user_signed_in? %>
+    <% if @post.user_id == current_user.id %>
+      <div class="post-detail__author-buttons">
+        <%= link_to post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn post-detail__comment-delete' do %>
+          <i class="fas fa-trash-alt" data-toggle=tooltip data-placement="bottom" title="Delete"></i>
+        <% end %>
+        <%= link_to edit_post_path(@post), class: 'btn post-detail__comment-edit' do %>
+          <i class="far fa-edit" data-toggle=tooltip data-placement="bottom" title="Edit"></i>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <%= render partial: 'shared/post_card', locals: { post: @post,post_comment: @post_comment, isDetail: true } %>
+    <% if user_signed_in? %>
+      <%= form_with model: @post_comment, url: post_post_comments_path(@post, @post_comment), local: false, class: 'post-detail__comment-form' do |f| %>
+        <%= f.text_area :comment, rows: '3', required: true, class:'form-control', id:"comment-form", placeholder: "コメントをここに" %>
+        <%= f.submit "送信する", class: 'btn post-detail__comment-submit' %>
+      <% end %>
+    <% end %>
+    <div class="post-detail__comment-wrapper" id="comment-card-list">
+      <%= render partial: 'public/post_comments/comment_card_list', locals: { post: @post, post_comments: @post_comments} %>
+    </div>
+  </div>
+</div>
+<div class="col-md-2"></div>
+</div>

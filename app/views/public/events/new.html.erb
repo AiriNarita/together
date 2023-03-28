@@ -1,0 +1,11 @@
+
+<div class="event-form container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="event-form__title">イベント作成ページ</h1>
+      <%= form_with model: Event do |f| %>
+        <%= render partial: 'public/events/form', locals: { f: f, isEdit: false } %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -13,14 +13,15 @@
 
 ### テーマを選んだ理由
 
-自分自身学習をする中で、[zenn](https://zenn.dev/)にアウトプットを行なってきました。<br>
-これを一緒に学習しているエンジニアの方々にチェックしてもらい補足事項などをアドバイスもらうことで<br>**より学習が楽しく**なり、その学習を踏まえてスクールの仲間に共有すると、学習意欲はさらに上がりました。
+このテーマを選んだ理由は、大きく2つです。
 
-**一人でやるよりも、仲間と協力しながら学び、問題を解決していく方が学びは深まる**ことを体験しました。
+1. **一人でやるよりも、仲間と協力しながら学び、問題を解決していく方が学びは深まる**ことを体験し、自分でそう言う場を作成したいと感じたから。
+2. 自分自身学習をする中で、**[zenn](https://zenn.dev/airiswim)にアウトプットを行なってきて、自分でブログ系のサイトを立ち上げてみたい**と感じたため。
 
-この経験から、そのようなサイトやコミュニティを自分が作成し、**同じような学ぶ人たちの力になりたい**という気持ちに変わり作成しました。
+このような経験から、ブログサイトや学習イベントが開催できるコミュニティサイトを自分が作成し、
+**同じような学ぶ人たちの力になりたい**という気持ちに変わり作成にいたりました。
 
-### ターゲットユーザ
+### ターゲットユーザー
 
 - エンジニア(初学者~プロまで)
 - プログラミング学習仲間が欲しい人
@@ -37,14 +38,14 @@
 
 - <a href="https://docs.google.com/spreadsheets/d/1vkAdKpy6GbZzzjjsnF19vyWcAdmiroLLOuXYoJs-Rj8/edit#gid=885378170" target="_blank">実装機能リスト<a>
 - [UI flow](https://drive.google.com/file/d/1LjfFfMSbh0sh-1oTt-0BE_L5U8Nn4Mtk/view?usp=sharing)<br>
-※詳細書等作成し次第掲載予定です。
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1N7G1s3Di0b0VrLpVU6wXEhB8krQ56zkRehrSucyjqvk/edit#gid=0)
+- [ER図](https://drive.google.com/file/d/1VDebBeqTqvX0Lluf8hSEUq-5NYjuP8tw/view?usp=sharing)
 
 ## 開発環境
 
 - OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク：Ruby on Rails
+- 言語：HTML,CSS,SASS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails,RSpec(test)
 - JSライブラリ：jQuery
-- API : Dialogflow
+- API :Swiper.js
 - IDE：Cloud9

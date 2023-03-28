@@ -1,0 +1,33 @@
+<div class="posts container">
+  <div class="posts__wrapper row">
+    <div class="col-md-12">
+      <% if user_signed_in? %>
+        <div class="posts__write">
+          <%= link_to new_post_path, class: 'posts__new' do %>
+            <i class="fas fa-pencil-alt"></i>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="posts__header">
+        <h1 class="posts__title">投稿一覧</h1>
+        <div class="posts__links">
+          <% if user_signed_in? %>
+            <%= link_to '下書き一覧', drafts_posts_path, class: 'posts__draft' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="posts__filters">
+        <div class="posts__sort">
+          <%= link_to "最新順", posts_path(sort: :latest), class: params[:sort] == "favorites" ? "" : "active" %>
+          <%= link_to "いいね順", posts_path(sort: :favorites), class: params[:sort] == "favorites" ? "active" : "" %>
+        </div>
+      </div>
+      <div class="posts__list" class="col-md-12">
+        <%= render partial: 'public/posts/index', locals: { posts: @posts} %>
+      </div>
+    </div>
+  </div>
+  <div class="pagination justify-content-center">
+    <%= paginate @posts %>
+  </div>
+</div>

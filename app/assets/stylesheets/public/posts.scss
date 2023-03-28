@@ -1,0 +1,117 @@
+// Place all the styles related to the public/posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.posts {
+  &__wrapper {
+  }
+
+  &__write {
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    z-index: 20000;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__new {
+    margin-bottom: 16px;
+    border-radius: 50%;
+    background-color: #593fbf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    transition: background-color 800ms ease-in-out;
+
+    &:hover {
+      background-color: #654dc4;
+    }
+
+    svg {
+      font-size: 1.4rem;
+
+    }
+
+    path {
+      fill: white;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  &__title {
+    display: block;
+    color: #593fbf;
+    font-weight: 700;
+    font-size: 48px;
+  }
+
+  &__filters {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  &__sort {
+    display: flex;
+
+    a {
+      font-size: 12px;
+      color: #666666;
+      box-sizing: border-box;
+      position: relative;
+      padding-right: 8px;
+      margin-right: 8px;
+
+      &.active {
+        text-decoration: underline;
+      }
+
+      &:not(:last-of-type) {
+        &::after {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          content: '';
+          width: 1px;
+          height: 50%;
+          transform: translateY(-50%);
+          background-color: #727272;
+        }
+      }
+    }
+  }
+
+  &__links {
+    a {
+      background-color: #593fbf;
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 8px 16px;
+      box-sizing: border-box;
+      text-decoration: none;
+    }
+  }
+
+  &__list {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .posts {
+    &__header {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<header class="position-fixed fixed-top" id="main-header">
+  <nav class="navbar navbar-expand-lg navbar-light m-1">
+    <% if request.fullpath.include? "admin" %>
+      <%= link_to image_tag('together.png', size: '150x40'), admin_root_path, class: 'navbar-brand' %>
+    <% else  %>
+      <%= link_to image_tag('together.png', size: '150x40'), root_path, class: 'navbar-brand' %>
+    <% end  %>
+    <button id="header-navbar-toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <% if request.fullpath.include? "admin" %>
+            <%= link_to 'POST', admin_posts_path, class: 'nav-link' %>
+          <% else  %>
+            <%= link_to 'POST', posts_path, class: 'nav-link' %>
+          <% end  %>
+        </li>
+        <li class="nav-item">
+          <% if request.fullpath.include? "admin" %>
+            <%= link_to 'EVENT', admin_events_path, class: 'nav-link' %>
+          <% else  %>
+            <%= link_to 'EVENT', events_path, class: 'nav-link' %>
+          <% end  %>
+        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'MY PAGE', my_page_users_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'LOGOUT', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+          </li>
+        <% elsif admin_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'USERS', admin_root_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'LOGOUT', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'SIGNUP', new_user_registration_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'LOGIN', new_user_session_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'GUEST', users_guest_sign_in_path, method: :post, class: 'nav-link' %>
+          </li>
+        <% end %>
+        <li class="nav-item">
+          <%= render 'layouts/search' %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

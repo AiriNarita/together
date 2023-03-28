@@ -1,0 +1,60 @@
+<article class="profile-card">
+  <div class="profile-card__image">
+    <% if user.image.attached? %>
+      <%= image_tag user.image, size: "150x150", class: "img-fluid rounded-circle" %>
+    <% else %>
+      <%= image_tag 'no_image.png', size: "150x150", class: "img-fluid rounded-circle" %>
+    <% end %>
+    <% if user == current_user %>
+      <%= link_to information_edit_users_path, class: "profile-card__edit" do %>
+        <i class="fas fa-edit"></i>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="profile-card__information">
+    <div class="profile-card__data profile-card__data--name">
+      <h5>名前</h5>
+      <%= user.full_name %>
+    </div>
+    <div class="profile-card__data profile-card__data--introduction">
+      <h5>紹介</h5>
+      <% if user.introduction.present? %>
+        <%= user.introduction %>
+      <% else %>
+        自己紹介はまだありません。
+      <% end %>
+    </div>
+  </div>
+  <div class="profile-card__relation-wrapper">
+    <div class="profile-card__relation profile-card__relation--follows">
+      <h5>フォロー</h5>
+      <%= link_to follows_users_path(user) do %>
+        <%= user.follower.count %>
+      <% end %>
+    </div>
+    <div class="profile-card__relation profile-card__relation--followers">
+      <h5>フォロアー</h5>
+      <%= link_to followers_users_path(user) do %>
+        <%= user.followed.count %>
+      <% end %>
+    </div>
+  </div>
+  <% if user_signed_in? || admin_signed_in? %>
+    <div class="profile-card__button-wrapper">
+      <% if current_user != user %>
+        <% if current_user.following?(user) %>
+          <%= link_to 'フォロー外す', relations_post_users_path(user.id), method: :delete, class: "profile-card__button  profile-card__button--followed btn" %>
+        <% else %>
+          <%= link_to 'フォローする', relation_delete_users_path(user.id), method: :post, class: "profile-card__button  profile-card__button--follow btn" %>
+        <% end %>
+        <% if user_signed_in? && user != current_user %>
+          <% if current_user.reporter.exists?(reported_id: user.id) %>
+            <%= button_tag "通報済み", disabled: true, class: "profile-card__button profile-card__button--reported btn" %>
+          <% else %>
+            <%= link_to "ユーザーを通報", profile_reports_new_users_path(user), class: "profile-card__button  profile-card__button--report btn" %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</article>

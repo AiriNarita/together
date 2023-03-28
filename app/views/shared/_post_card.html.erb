@@ -1,0 +1,52 @@
+<article class="post-card card border-0">
+  <div class="post-card__author">
+    <% if post.user.image.attached? %>
+      <%= image_tag post.user.image, size: "30x30", class: "post-card__avatar" %>
+    <% else %>
+      <%= image_tag 'no_image.png', size: "30x30", class: "post-card__avatar" %>
+    <% end %>
+    <%= link_to post.user.full_name, profile_users_path(post.user.id), class: 'post-card__username' %>
+  </div>
+  <div class="post-card__wrapper">
+    <!--<img class="post-card__image" src="https://images.unsplash.com/photo-1678818546219-d955db483f66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Post Image">-->
+    <% if isDetail == false %>
+      <div class="post-card__image">
+        <% if post.post_image.attached? %>
+          <%= image_tag post.post_image, size: "120x120" %>
+        <% else %>
+          <%= image_tag 'no_image.png', size: "120x120" %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="post-card__contents">
+      <h4 class="post-card__title">
+        <% if request.fullpath.include? "drafts" %>
+          <%= link_to post.title, edit_post_path(post) %>
+        <% else %>
+          <%= link_to post.title, post_path(post.id) %>
+        <% end %>
+      </h4>
+      <p class="<%= isDetail ? "post-card__body" : "post-card__body item" %>"><%= post.body %></p>
+      <ul class="post-card__hashtag-wrapper">
+        <% post.hashtags.each do |hashtag| %>
+          <li class="post-card__hashtag">
+            <%= link_to hashtag.hashtag_name, hashtag_path(hashtag.id) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <ul class="post-card__stats">
+    <li>
+      <time class="post-card__date" datetime="2023-03-19"><%= post.created_at %></time>
+    </li>
+    <% unless request.fullpath.include? "drafts" %>
+      <li id="comments-count"  class="post-card__comments" <%= "data-toggle=tooltip" unless user_signed_in? || admin_signed_in? %>  data-placement="bottom" title="コメントをするには、ログインしてください。">
+        <%= render partial: 'public/post_comments/post_comments_count', locals: { post: post } %>
+      </li>
+      <li id="favorites-<%= post.id %>" class="post-card__likes" <%= "data-toggle=tooltip" unless user_signed_in? || admin_signed_in? %> data-placement="bottom" title="いいねをするには、ログインしてください。">
+        <%= render partial: 'public/favorites/favorite', locals: { post: post } %>
+      </li>
+    <% end %>
+  </ul>
+</article>

@@ -1,0 +1,78 @@
+<section class="home-top text-center position-relative d-flex flex-column justify-content-center mb-5">
+  <div class="home-top__text container">
+    <h1 class="home-top__logo-text display-1 text-white font-weight-bold">Together</h1>
+    <p class="lead text-white font-italic">If you want to go far, Go
+      together.</p>
+  </div>
+  <img class="home-top__image pulse" src="https://plusjam.jp/assets/images/top_mv01.webp" alt="home-top">
+  <div class="home-top__circle home-top__circle--1 bounce2"></div>
+  <div class="home-top__circle home-top__circle--2 swing"></div>
+  <div class="home-top__circle home-top__circle--3 bounce2"></div>
+  <div class="home-top__circle home-top__circle--4 gelatine"></div>
+</section>
+<section class="home-intro container mb-5">
+  <div class="row d-flex align-items-center justify-content">
+    <div class="home-intro__contents col-md-6">
+      <div class="swiper intro-swiper">
+        <div class="swiper-wrapper">
+          <div class="card border-0 swiper-slide">
+            <img class="home-intro__image" src="https://images.unsplash.com/photo-1598449356475-b9f71db7d847?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aG9yaXpvbnRhbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="slider-image">
+          </div>
+          <div class="card border-0 swiper-slide">
+            <img class="home-intro__image" src="https://images.unsplash.com/photo-1587387119725-9d6bac0f22fb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG9yaXpvbnRhbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="slider-image">
+          </div>
+          <div class="card border-0 swiper-slide">
+            <img class="home-intro__image" src="https://images.unsplash.com/photo-1544083098-76551842b5fc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGhvcml6b250YWx8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="slider-image">
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+    <div class="home-intro__contents col-md-6">
+      <div class="border-0">
+        <h3 class="mt-4 font-weight-bold">技術ブログ＆オンラインコミュニティ</h3>
+        <p class="home-intro__slogan">
+          <strong>"If You Want To Go Far, Go Together"</strong>
+          <br/>
+          <span>"遠くへ行きたいならみんなで行け"のテーマのもと運営しています。</span>
+        </p>
+        <p>一人ではなし得ないことも、みんなで協力すれば成し遂げられる!<br/>
+          <span> ともに学ぶ仲間がここにはたくさんいます。初めてみよう！</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="home-post container mb-5">
+  <div class="d-flex justify-content-between align-items-end mb-2">
+    <h3 class="font-weight-bold">おすすめ記事</h3>
+    <%= link_to 'もっとみる', posts_path %>
+  </div>
+  <div class="row hidden-md-up">
+    <% @posts.each do |post| %>
+      <div class="col-md-12 mb-4 pb-4 border-bottom">
+        <%= render partial: 'shared/post_card', locals: { post: post,post_commment: @post_comment, isDetail: false } %>
+      </div>
+    <% end %>
+  </div>
+</section>
+<% unless user_signed_in? %>
+  <section class="home-join container mb-5 jumbotron text-center">
+    <h1 class="display-8 text-white font-weight-bold">会員登録してイベントに参加しませんか？</h1>
+    <p><%= link_to '入会しよう！！あたらしい世界が始まります。', new_user_session_path, class: "text-white" %></p>
+  </section>
+<% end %>
+<section class="home-event container mb-5">
+  <div class="d-flex justify-content-between align-items-end mb-2">
+    <h3 class="font-weight-bold">おすすめイベント</h3>
+    <%= link_to 'もっとみる', events_path %>
+  </div>
+  <div class="row hidden-md-up">
+    <% @events.each do |event| %>
+      <div class="col-md-3">
+        <%= render partial: 'shared/event_card', locals: { event: event, isDetail: false } %>
+      </div>
+    <% end %>
+  </div>
+</section>
+<%= javascript_pack_tag 'home/index' %>

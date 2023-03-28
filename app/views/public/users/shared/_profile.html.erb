@@ -1,0 +1,84 @@
+<div class="profile container">
+  <div class="row">
+    <div class="profile__detail col-md-4">
+      <%= render partial: 'public/users/shared/profile-card', locals: { user: user } %>
+    </div>
+    <div class="profile__cards col-md-8">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">
+            投稿一覧 (<%= my_postscount %>)
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="events-tab" data-toggle="tab" href="#events" role="tab" aria-controls="events" aria-selected="false">
+            作成イベント (<%= my_eventscount %>)
+          </a>
+        </li>
+        <% if user_signed_in? || admin_signed_in? %>
+          <% if user.id == current_user.id %>
+            <li class="nav-item">
+              <a class="nav-link" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="likes" aria-selected="false">
+                いいねした投稿
+              </a>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+      <div class="profile__tab-content tab-content" id="myTabContent">
+        <div class="profile__tab-pane tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+          <% if my_posts.any? %>
+            <div class="profile__posts">
+              <% my_posts.each do |post| %>
+                <div class="profile__post-wrapper">
+                  <%= render partial: 'shared/post_card', locals: { post: post, isDetail: false } %>
+                </div>
+              <% end %>
+            </div>
+            <div class="pagination justify-content-center">
+              <%= paginate my_posts %>
+            </div>
+          <% else %>
+            <p>投稿がありません</p>
+          <% end %>
+        </div>
+        <div class="profile__tab-pane tab-pane fade" id="events" role="tabpanel" aria-labelledby="events-tab">
+          <% if my_events.any? %>
+            <div class="profile__events">
+              <% my_events.each do |event| %>
+                <div class="profile__event-wrapper">
+                  <%= render partial: 'shared/event_card', locals: { event: event, isDetail: false } %>
+                </div>
+              <% end %>
+              <div class="pagination justify-content-center">
+                <%= paginate my_events %>
+              </div>
+            </div>
+          <% else %>
+            <p>投稿がありません</p>
+          <% end %>
+        </div>
+        <% if user_signed_in? || admin_signed_in? %>
+          <% if user.id == current_user.id %>
+            <div class="profile__tab-pane tab-pane fade" id="likes" role="tabpanel" aria-labelledby="likes-tab">
+              <% if my_likes.any? %>
+                <div class="profile__posts">
+                  <% my_likes.each do |post| %>
+                    <div class="profile__post-wrapper">
+                      <%= render partial: 'shared/post_card', locals: { post: post, isDetail: false } %>
+                    </div>
+                  <% end %>
+                </div>
+                <div class="pagination justify-content-center">
+                  <%= paginate my_likes %>
+                </div>
+              <% else %>
+                <p>いいねした投稿がありません</p>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,202 @@
+.event-card {
+  border: none;
+
+  &__body {
+    box-sizing: border-box;
+    padding: 12px;
+    
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    > img {
+      border-radius: 10px;
+      border: 1px solid #eaeaea;
+      width: 100%;
+      height: auto;
+      min-height: 160px;
+      max-height: 160px;
+      object-fit: cover;
+      margin-bottom: 16px;
+
+      &.detail {
+        min-height: 480px;
+        max-height: 480px;
+      }
+    }
+  }
+
+  &__date {
+    font-size: 14px;
+    margin: 0 0 4px 0;
+    color: #000000;
+  }
+
+  &__url {
+    font-size: 14px;
+    margin: 4px 0;
+    color: #000000;
+  }
+
+  &__title {
+    font-size: 18px;
+    margin: 0 0 4px 0;
+    color: #000000;
+    font-weight: 700;
+  }
+  
+  &__introduction{
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #000000;
+    line-height: 1.5;
+    margin: 0;
+    white-space: pre-wrap;
+
+    &.list {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  &__author {
+    font-size: 14px;
+    margin: 0;
+
+    color: #727272;
+  }
+
+  &__participants {
+    display: flex;
+    align-items: center;
+  }
+
+  &__avatar-group {
+    display: flex;
+    margin-right: 8px;
+  }
+
+  &__avatar {
+    display: block;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #eaeaea;
+    border: 1px solid #d9d9d9ff;
+    width: 36px;
+    height: 36px;
+
+    &:not(:first-of-type) {
+      margin-left: -8px;
+    }
+
+    &:nth-of-type(1) {
+      z-index: 3;
+    }
+
+    &:nth-of-type(2) {
+      z-index: 2;
+    }
+
+    &:nth-of-type(2) {
+      z-index: 1;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__count {
+    font-size: 12px;
+    margin: 0;
+    color: #424242;
+  }
+
+  &__createdAt {
+    font-size: 10px;
+    margin: 0;
+    width: 100%;
+    text-align: right;
+  }
+}
+
+.event-detail {
+  &__button-wrapper {
+    margin: 32px 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__btn {
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+    &:not(:last-of-type) {
+      margin-right: 16px;
+    }
+
+    &:hover {
+      color: #ffffff;
+    }
+
+    &--participated {
+      background-color: #666666;
+      color: #ffffff;
+    }
+
+    &--remove {
+      background-color: #dc3545;
+      color: #ffffff;
+    }
+
+    &--join {
+      background-color: #593fbf;
+      color: #ffffff;
+    }
+  }
+}
+
+.event-attendee-card {
+  &__user-wrapper {
+    margin: 32px 0;
+  }
+
+  &__attendee-title {
+    margin-bottom: 16px;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid #eaeaea;
+
+    }
+  }
+
+  &__avatar {
+    display: block;
+    border-radius: 50%;
+    background-color: #eaeaea;
+    border: 1px solid #d9d9d9ff;
+    width: 36px;
+    height: 36px;
+    margin-right: 8px;
+  }
+
+  &__name {
+  }
+}

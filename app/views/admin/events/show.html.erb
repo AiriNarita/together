@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <%= render partial: 'shared/event_card', locals: { event: @event, isDetail: true } %>
+      <div class="text-center">
+        <%= link_to "イベント一覧に戻る", admin_events_path %>
+      </div>
+    </div>
+  </div>
+</div>

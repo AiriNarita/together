@@ -1,0 +1,62 @@
+<div class="event-detail row hidden-md-up mx-auto">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <%= render partial: 'shared/event_card', locals: { event: @event, isDetail: true } %>
+    <div class="event-detail__button-wrapper">
+      <% if user_signed_in? %>
+        <% unless @is_past_event %>
+          <% unless @event.creator_id == current_user.id %>
+            <% if @attendee %>
+              <%= button_to '参加済み', event_attendee_path(@event, @attendee), disabled: true, class: 'btn event-detail__btn event-detail__btn--participated' %>
+              <%= link_to "参加取り消し", event_attendee_path(@event, @attendee), class: 'btn event-detail__btn event-detail__btn--remove', method: :delete, data: { confirm: '本当に変更しますか？' } %>
+            <% else %>
+              <%= button_to '参加する', event_attendees_path(@event), class: 'btn event-detail__btn event-detail__btn--join' %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= link_to 'ログインして参加する', new_user_session_path, class: 'btn btn-primary mr-3' %>
+      <% end %>
+    </div>
+    <% if user_signed_in? %>
+      <% if @event.creator_id == current_user.id %>
+        <%= link_to "編集", edit_event_path(@event), class: 'btn btn-sm btn-success mr-3' %>
+        <%= link_to "削除", event_path(@event), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      <% end %>
+    <% end %>
+    <div class="event-attendee-card__user-wrapper">
+      <% if @attendees.any? %>
+        <h4 class="event-attendee-card__attendee-title">参加者一覧
+          (<%= @attendees.count %>)</h4>
+        <% @attendees.each do |attendee| %>
+          <div class="event-attendee-card__user">
+            <% if user_signed_in? %>
+              <% if attendee.user.image.attached? %>
+                <%= image_tag attendee.user.image, size: "150x150", class: 'event-attendee-card__avatar' %>
+              <% else %>
+                <%= image_tag 'no_image.png', size: "150x150", class: 'event-attendee-card__avatar' %>
+              <% end %>
+              <%= link_to profile_users_path(attendee.user), class: 'event-attendee-card__name' do %>
+                <%= attendee.user.full_name %>
+                <% if attendee.user.id == current_user.id %>
+                  (本人)
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <% if @is_past_event %>
+          <p>終了いたしました。</p>
+        <% else %>
+          <p>まだ参加者はいません</p>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="text-center">
+      <%= link_to "イベント一覧に戻る", events_path %> |
+      <%= link_to "My event pageへ", myevent_events_path %>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+</div>

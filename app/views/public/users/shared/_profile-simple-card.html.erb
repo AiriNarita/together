@@ -1,0 +1,30 @@
+<article class="profile-simple-card">
+  <div class="profile-simple-card__information">
+    <div class="profile-simple-card__data profile-simple-card__data--image">
+      <% if user.image.attached? %>
+        <%= image_tag user.image, size: "150x150", class: "img-fluid rounded-circle" %>
+      <% else %>
+        <%= image_tag 'no_image.png', size: "150x150", class: "img-fluid rounded-circle" %>
+      <% end %>
+    </div>
+    <div class="profile-simple-card__data profile-simple-card__data--name">
+      <%= link_to profile_users_path(user) do %>
+        <%= user.full_name %>
+      <% end %>
+    </div>
+  </div>
+  <div class="profile-simple-card__relation-wrapper">
+    <div class="profile-simple-card__relation profile-simple-card__relation--follows">
+      <h5>フォロー</h5>
+      <%= link_to follows_users_path(user) do %>
+        <%= user.follower.count %>
+      <% end %>
+    </div>
+    <div class="profile-simple-card__relation profile-simple-card__relation--followers">
+      <h5>フォロアー</h5>
+      <%= link_to followers_users_path(user) do %>
+        <%= user.followed.count %>
+      <% end %>
+    </div>
+  </div>
+</article>

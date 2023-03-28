@@ -1,0 +1,18 @@
+// Place all the styles related to the public/hashtag controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.hashtags {
+&__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+&__title {
+  display: block;
+  color: #593fbf;
+  font-weight: 700;
+  font-size: 48px;
+}
+}

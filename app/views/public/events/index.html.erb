@@ -1,0 +1,26 @@
+<div class="events container">
+
+  <% if user_signed_in? %>
+    <div class="events__write">
+      <%= link_to new_event_path, class: 'events__new' do %>
+        <i class="fas fa-pencil-alt"></i>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="events__wrapper row">
+    <div class="col-md-12">
+      <div class="events__header">
+        <h1 class="events__title">イベント一覧</h1>
+        <% if user_signed_in? %>
+          <div class="events__links">
+            <%= link_to 'MYイベントリスト', myevent_events_path, class: "events__draft" %>
+          </div>
+        <% end %>
+      </div>
+      <%= render partial: 'public/events/index', locals: { events: @events } %>
+    </div>
+  </div>
+  <div class="pagination justify-content-center">
+    <%= paginate @events %>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h2>投稿詳細</h2>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title mb-3"><%= @post.title %></h4>
+          <p class="card-text mb-3"><%= @post.body %></p>
+          <div class="d-flex flex-wrap mb-3">
+            <% @post.hashtags.each do |hashtag| %>
+              <%= link_to hashtag.hashtag_name, admin_hashtag_path(hashtag.id) %>
+            <% end %>
+          </div>
+          <p class="card-text">投稿者：<%= link_to @post.user.full_name, admin_user_path(@post.user.id) %></p>
+          <hr>
+          <div class="d-flex justify-content-between align-items-center">
+            <%= @post.favorites.count %>like
+            <span>コメント件数：<%= @post.post_comments.count %></span>
+          </div>
+          <hr>
+          <div class="comment-box">
+            <% @post.post_comments.each do |post_comment| %>
+              <div class="card mb-3">
+                <div class="card-body">
+                  <p class="card-text"><%= post_comment.user.full_name %>:<%= post_comment.comment %></p>
+                  <p class="card-text text-muted"><small><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %></small></p>
+                  <div class="text-right">
+                    <%= link_to "削除", admin_post_post_comment_path(@post, post_comment), method: :delete, class: 'btn btn-danger btn-sm' %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

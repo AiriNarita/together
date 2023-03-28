@@ -1,0 +1,12 @@
+<div class="relation container">
+  <h1>フォロワー一覧</h1>
+  <% if @follower_users.any? %>
+    <div class="relation__user-wrapper">
+      <% @follower_users.each do |user| %>
+        <%= render partial: 'public/users/shared/profile-simple-card', locals: { user: user } %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-center"><strong>followerがいません。</strong></p>
+  <% end %>
+</div>

@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application' %>
   </head>
-  <body
-        <%= yield %>
-      </body>
-  </html>
+  <body>
+    <%= render 'layouts/splash-logo' %>
+    <%= render 'layouts/header' %>
+    <main role="main flex-grow-1" id="main-content">
+      <%= yield %>
+    </main>
+    <%= render 'layouts/footer' %>
+  </body>
+</html>

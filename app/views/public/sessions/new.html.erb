@@ -1,0 +1,14 @@
+
+<!-- https://github.com/heartcombo/simple_form -->
+<div class="auth-form container">
+  <h2 class="auth-form__title">Log in</h2>
+  <%= render "public/shared/links" %>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= f.input :email, autofocus: true, autocomplete: "email" %>
+    <%= f.input :password %>
+    <%= f.check_box :remember_me %>
+    <%= f.label :remember_me %>
+    <%= f.submit "Log in", class: 'auth-form__submit' %>
+  <% end %>
+</div>
+

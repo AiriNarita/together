@@ -1,0 +1,10 @@
+<div class="auth-form__links">
+  <%- if controller_name != 'sessions' %>
+    <% if request.fullpath.include? "sign_up" %>
+      <p>すでにアカウントがありますか？ <%= link_to "Log in", new_session_path(resource_name) %></p>
+    <% end %>
+  <% end %>
+  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <p>まだ、アカウントがないですか？ <%= link_to "Sign up", new_registration_path(resource_name) %></p>
+  <% end %>
+</div>
