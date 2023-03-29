@@ -41,10 +41,13 @@
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1N7G1s3Di0b0VrLpVU6wXEhB8krQ56zkRehrSucyjqvk/edit#gid=0)
 - [ER図](https://drive.google.com/file/d/1VDebBeqTqvX0Lluf8hSEUq-5NYjuP8tw/view?usp=sharing)
 
+- [※プレゼンテーションスライド](
+<https://docs.google.com/presentation/d/1jPzew-EHdaI_XmQv5S61F8qlvOCDlLGJ/edit#slide=id.p1>)
+
 ## 開発環境
 
 - OS：Linux(CentOS)
-- 言語：HTML,CSS,SASS,JavaScript,Ruby,SQL
+- 言語：　HTML,　CSS,　[SASS](https://zenn.dev/airiswim/articles/6b002445bbac2b),　JavaScript,　Ruby,　SQL
 - フレームワーク：Ruby on Rails,RSpec(test)
 - JSライブラリ：jQuery
 - API :Swiper.js
