@@ -52,4 +52,4 @@
 - JSライブラリ：jQuery
 - API :Swiper.js
 - IDE：Cloud9
-- 分析：Google アナリティクス4
+- 分析：Google analytics4
