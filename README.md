@@ -50,6 +50,6 @@
 - 言語：　HTML,　CSS,　[SASS](https://zenn.dev/airiswim/articles/6b002445bbac2b),　JavaScript,　Ruby,　SQL
 - フレームワーク：Ruby on Rails,RSpec(test)
 - JSライブラリ：jQuery
-- API :Swiper.js
+- API :[Swiper.js](https://swiperjs.com/swiper-api)
 - IDE：Cloud9
 - 分析：Google analytics4
