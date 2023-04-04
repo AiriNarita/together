@@ -97,15 +97,13 @@
     font-size: 16px;
     line-height: 1.5;
     margin: 0;
-    white-space: pre-wrap;
-    &.item {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 4; /* number of lines to show */
-      line-clamp: 4;
-      -webkit-box-orient: vertical;
-    }
+    white-space: pre-line;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
   }
 
   &__hashtag-wrapper {

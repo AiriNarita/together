@@ -26,7 +26,15 @@
           <%= link_to post.title, post_path(post.id) %>
         <% end %>
       </h4>
-      <p class="<%= isDetail ? "post-card__body" : "post-card__body item" %>"><%= post.body %></p>
+      <% if isDetail %>
+          <div class="markdown">
+            <%= markdown(post.body) %>
+          </div>
+        <% else %>
+          <p class="post-card__body">
+            <%= plaintext(post.body) %>
+          </p>
+        <% end %>
       <ul class="post-card__hashtag-wrapper">
         <% post.hashtags.each do |hashtag| %>
           <li class="post-card__hashtag">
