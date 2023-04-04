@@ -1,4 +1,6 @@
 Faker::Config.locale = :ja
+
+#markdown faker: https://github.com/faker-ruby/faker/blob/main/doc/default/markdown.md
 10.times do
   user = User.create(
     first_name: Faker::Name.first_name,
@@ -10,7 +12,22 @@ Faker::Config.locale = :ja
   )
   15.times do
     title = Faker::Lorem.sentence(word_count: 3)
-    body = Faker::Lorem.paragraph(sentence_count: 3)
+
+    # body = Faker::Lorem.paragraph(sentence_count: 3)
+    markdowns = []
+
+    10.times do
+      markdown = Faker::Markdown.random(
+        "headers",
+        "emphasis",
+        "ordered_list",
+        "unordered_list",
+        "block_code"
+      ) + "\n"
+      markdowns << markdown
+    end
+
+    body = markdowns.join("\n")
 
     @post = Post.create(
       title: title,

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :blogs
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :users, skip: [:passwords], controllers: {

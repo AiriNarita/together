@@ -1,0 +1,228 @@
+// Mixins
+@mixin richText_wrap {
+    font-size: 18px;
+    line-height: 1.7em;
+    word-break: break-word;
+
+    // Horizontal scroll bar
+    ::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: 7px;
+    }
+    ::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: #ddd;
+      -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+    }
+  }
+
+  @mixin richText_codeBlock {
+    font-family: 'Fira Code', monospace;
+    background-color: lightgray;
+    padding: 1rem;
+    pre {
+      font-size: 1em;
+      margin: 0;
+      padding: 0;
+    }
+
+    .lineno {
+        >span {
+            color: #ffffff;
+        }
+    }
+  }
+
+  @mixin richText_code {
+    background-color: lightgray;
+    padding: 0.25em;
+  }
+
+  @mixin richText_table {
+    margin: 1em 0;
+    th, td {
+      border: 1px solid #bbb;
+      padding: 0.25em;
+    }
+    th {
+      background-color: dimgray;
+      color: white;
+    }
+    tr:nth-of-type(2n) {
+      background-color: #eee;
+    }
+  }
+
+  @mixin richText_a {
+    color: blue;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @mixin richText_blockquote {
+    background: #ddd;
+    padding: 1em;
+    border-left: 8px solid gray;
+  }
+
+  @mixin richText_hr {
+    margin: 2em 0;
+    border: 1px solid lightgray;
+  }
+
+  @mixin richText_h {
+    display: block;
+    font-weight: bold;
+    line-height: 1.2em;
+  }
+  @mixin richText_h1 {
+    margin: 1.83em 0 0.5em;
+    font-size: 1.7em;
+    background: linear-gradient(90deg, #654dc4 0%, #593fbf 35%, #9b40a6 100%);
+    color: white;
+    border-left: 8px solid #9b40a6;
+    padding: 0.2em 0.4em;
+  }
+  @mixin richText_h2 {
+    margin: 1.67em 0 0.5em;
+    font-size: 1.5em;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 0.25em;
+  }
+  @mixin richText_h3 {
+    margin: 1.33em 0 0.5em;
+    font-size: 1.4em;
+  }
+  @mixin richText_h4 {
+    margin: 1.17em 0 0.5em;
+    font-size: 1.2em;
+  }
+  @mixin richText_h5 {
+    margin: 0.67em 0 0.5em;
+    font-size: 0.85em;
+  }
+  @mixin richText_h6 {
+    margin: 0.67em 0 0.5em;
+    font-size: 0.7em;
+  }
+
+  @mixin richText_l {
+    margin-left: 1em;
+    ul, ol {
+      margin-left: 1.5em;
+    }
+  }
+  @mixin richText_ol {
+    list-style-type: decimal;
+  }
+  @mixin richText_ul {
+    list-style-type: disc;
+  }
+
+  @mixin richText_p {
+    margin-bottom: 1em;
+  }
+
+  // Toc
+  .toc {
+    a {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .toc-current {
+      background-color: #ddd;
+    }
+    .toc-item {
+      padding: 0.1em 0;
+      a {
+        padding: 0.25em 0.5em;
+      }
+    }
+    .toc-h2 { margin-left: 1.25em }
+    .toc-h3 { margin-left: 2.5em }
+    .toc-h4 { margin-left: 3.75em }
+    .toc-h5 { margin-left: 5em }
+    .toc-h6 { margin-left: 6.25em }
+  }
+
+  // Markdown
+  .markdown {
+    @include richText_wrap;
+
+    div.highlight {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .highlight-wrap {
+      margin: 1em 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.4rem;
+      &:hover {
+        button {
+          opacity: 1; // コードブロックをホバーしたらコピーボタンが現れる
+        }
+      }
+
+      // ファイル名
+      .highlight-info {
+        background: dimgray;
+        color: white;
+        padding: 4px 8px;
+        display: flex;
+        align-items: center;
+      }
+
+      // コードブロック
+      .highlight {
+        overflow-x: scroll;
+        padding: 0.75em;
+        .lineno {
+          color: #ccc;
+        }
+        &-info {
+            font-size: 13px;
+        }
+      }
+
+      // コピーボタン
+      button {
+        position: absolute;
+        opacity: 0.3;
+        top: 0;
+        right: 8px;
+        padding: 2px 8px;
+        background-color: #ecfdf5;
+        border-radius: 8px;
+        font-size: 11px;
+        &:hover {
+          background-color: lightgreen;
+        }
+      }
+    }
+
+    table:not(.rouge-table) { @include richText_table }
+    hr { @include richText_hr }
+    h1, h2, h3, h4, h5, h6 { @include richText_h }
+    h1 { @include richText_h1 }
+    h2 { @include richText_h2 }
+    h3 { @include richText_h3 }
+    h4 { @include richText_h4 }
+    h5 { @include richText_h5 }
+    h6 { @include richText_h6 }
+    blockquote { @include richText_blockquote }
+    a { @include richText_a }
+    ol, ul { @include richText_l }
+    ol { @include richText_ol }
+    ul { @include richText_ul }
+    p > code { @include richText_code }
+    & > p { @include richText_p }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+  }
