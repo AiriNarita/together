@@ -82,6 +82,10 @@
     line-clamp: 2;
     -webkit-box-orient: vertical;
 
+    &.detail {
+      font-size: 42px;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
