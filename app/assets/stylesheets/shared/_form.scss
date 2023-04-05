@@ -72,6 +72,34 @@
       color: #ffffff;
     }
   }
+
+  &__type {
+    .radio-container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .radio-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      label {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 400;
+        display: flex;
+      }
+    }
+  }
+}
+
+.form-control {
+  &__gmap {
+    background: none;
+    margin: 16px 0;
+  }
 }
 
 .post-form {
@@ -101,5 +129,31 @@
     font-weight: 700;
     font-size: 48px;
     margin-bottom: 16px;
+  }
+}
+
+
+#gmap {
+  .address-form {
+    display: flex;
+    gap: 16px;
+    input {
+      flex: 1;
+      border-radius: 0.25rem;
+    }
+    button {
+      width: 120px;
+      appearance: none;
+      border: none;
+      font: inherit;
+      outline: none;
+      border-radius: 0.25rem;
+      background-color: #593fbf;
+      color: #ffffff;
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+    }
   }
 }

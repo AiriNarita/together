@@ -17,7 +17,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -43,7 +43,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -186,7 +186,11 @@ ja:
       post_status:
         published: "公開"
         draft: "下書き保存"
-    user: 
+    user:
       user_status:
         available: "利用可能"
         suspended: "利用停止中"
+    event:
+      event_type:
+        online: "オンライン"
+        offline: "オフライン"
