@@ -44,7 +44,7 @@
     > span {
       height: 32px;
       line-height: 32px;
-      font-size: 16px;
+      font-size: 20px;
       color: #000000;
     }
     &.list {
@@ -112,7 +112,7 @@
 
   &__title {
     margin: 0;
-    font-size: 18px;
+    font-size: 40px;
     color: #000000;
     font-weight: 700;
     line-height: 32px;
@@ -121,6 +121,7 @@
 
     &.list {
       overflow: hidden;
+      font-size: 18px;
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 1; /* number of lines to show */
@@ -152,7 +153,7 @@
   }
 
   &__introduction{
-    font-size: 14px;
+    font-size: 20px;
     margin-bottom: 8px;
     color: #000000;
     line-height: 1.5;
@@ -160,6 +161,7 @@
     white-space: pre-wrap;
 
     &.list {
+      font-size: 14px;
       height: 42px;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -185,7 +187,7 @@
   }
 
   &__address {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   &__participants {

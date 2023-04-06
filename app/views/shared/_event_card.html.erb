@@ -30,7 +30,7 @@
         <% if flash.now[:notice] =~ /https?:\/\/\S+/ %>
           <% flash.now[:notice].scan(/https?:\/\/\S+/) do |url| %>
             <p class="event-card__url">
-              <%= link_to url, url %>
+              <strong>URL: </strong> <%= link_to url, url %>
             </p>
           <% end %>
         <% end %>
