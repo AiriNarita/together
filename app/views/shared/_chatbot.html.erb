@@ -24,35 +24,35 @@
   </div>
 </div>
 <script>
-    $(document).ready(function () {
-        $('#chat-form').submit(function (event) {
-            event.preventDefault();
-            var input = $('#chat-input').val();
-            $('#chat-btn').addClass('d-none');
-            $('#chat-loader').removeClass('d-none');
-            $.post('/chatbots', {input: input})
-                .done(function (data) {
-                    const response = data.response;
-                    // Display input and response in chat-messages div
-                    const inputMessage = '<div class="chat__message chat__message--user"><p class="alert alert-info" role="alert">' + input + '</p></div>';
-                    const responseMessage = '<div class="chat__message chat__message--bot"><i class="fas fa-robot chat__bot-icon"></i><p class="alert alert-success" role="alert">' + response + '</p></div>';
-                    $('#chat-messages').append(inputMessage, responseMessage);
-                    // Clear input field
-                    $('#chat-input').val('');
-                    $('#chat-loader').addClass('d-none');
-                    $('#chat-btn').removeClass('d-none');
-                })
-                .fail(function (xhr, status, error) {
-                    console.log("Error:", error)
-                    // Display input and response in chat-messages div
-                    const inputMessage = '<div class="chat__message chat__message--user alert alert-info" role="alert"><p>' + input + '</p></div>';
-                    const responseMessage = '<div class="chat__message chat__message--bot alert alert-danger" role="alert"><i class="fas fa-robot chat__bot-icon"></i><p>' + error + '</p></div>';
+  $(document).ready(function () {
+      $('#chat-form').submit(function (event) {
+          event.preventDefault();
+          var input = $('#chat-input').val();
+          $('#chat-btn').addClass('d-none');
+          $('#chat-loader').removeClass('d-none');
+          $.post('/chatbots', {input: input})
+              .done(function (data) {
+                  const response = data.response;
+                  // Display input and response in chat-messages div
+                  const responseMessage = '<div class="chat__message chat__message--bot"><i class="fas fa-robot chat__bot-icon"></i><p class="alert alert-success" role="alert">' + response + '</p></div>';
+                  const inputMessage = '<div class="chat__message chat__message--user"><p class="alert alert-info" role="alert">' + input + '</p></div>';
+                  $('#chat-messages').prepend(responseMessage, inputMessage);
+                  // Clear input field
+                  $('#chat-input').val('');
+                  $('#chat-loader').addClass('d-none');
+                  $('#chat-btn').removeClass('d-none');
+              })
+              .fail(function (xhr, status, error) {
+                  console.log("Error:", error)
+                  // Display input and response in chat-messages div
+                  const responseMessage = '<div class="chat__message chat__message--bot alert alert-danger" role="alert"><i class="fas fa-robot chat__bot-icon"></i><p>' + error + '</p></div>';
+                  const inputMessage = '<div class="chat__message chat__message--user alert alert-info" role="alert"><p>' + input + '</p></div>';
 
-                    $('#chat-messages').append(inputMessage, responseMessage);
-                    // Clear input field
-                    $('#chat-loader').addClass('d-none');
-                    $('#chat-btn').removeClass('d-none');
-                })
-        });
-    });
+                  $('#chat-messages').prepend(responseMessage, inputMessage);
+                  // Clear input field
+                  $('#chat-loader').addClass('d-none');
+                  $('#chat-btn').removeClass('d-none');
+              })
+      });
+  });
 </script>
