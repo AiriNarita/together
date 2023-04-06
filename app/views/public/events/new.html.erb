@@ -134,7 +134,7 @@
         });
       };
 
-      var script = document.createElement('script');
+      const script = document.createElement('script');
       script.src = "https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap";
       script.async = true;
 
@@ -145,3 +145,6 @@
     </script>
   </div>
 </div>
+<%# // <script></script> 137 line %>
+<%# // <script src="aaaasdsadasdasd"></script> 138 line %>
+<%# // <script src="aaaasdsadasdasd" async ></script> 139 line %>
