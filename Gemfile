@@ -60,7 +60,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'kaminari','~> 1.2.1'
+gem 'kaminari', '~> 1.2.1'
 
 gem 'devise'
 gem 'enum_help'
@@ -76,5 +76,5 @@ gem "net-pop"
 gem "net-imap"
 gem "redcarpet"
 gem 'rouge'
-gem 'gmaps4rails'
-gem 'geocoder'
+gem 'httparty'
+gem "ruby-openai"

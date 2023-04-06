@@ -1,0 +1,110 @@
+// Place all the styles related to the Chatbots controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.chatbot-btn {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+  position: fixed;
+  left: 5%;
+  bottom: 5%;
+  z-index: 100;
+  border-radius: 50%;
+  background-color: #593fbf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  transition: all 400ms ease-in-out;
+  margin-bottom: 16px;
+
+  svg {
+    color: #ffffff;
+    font-size: 1.2rem;
+  }
+
+  &:hover {
+    background-color: #9b40a6;
+  }
+}
+
+.chat {
+  &__body {
+    padding: 32px;
+    box-sizing: border-box;
+  }
+
+
+  &__form {
+    display: flex;
+  }
+
+  &__input {
+    height: 42px;
+    margin-right: 16px;
+  }
+
+  &__submit {
+    width: 58px;
+    height: 42px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-color: #593fbf;
+    color: #ffffff;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    font-size: 14px;
+  }
+
+  &__messages {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 16px 0;
+    height: 400px;
+    max-height: 400px;
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+  }
+
+  &__message {
+    display: flex;
+    max-width: 80%;
+    border-radius: 10px;
+    font-size: 16px;
+    margin-bottom: 16px;
+
+    &--user {
+      justify-content: flex-end;
+      align-self: flex-end;
+      order: 1;
+    }
+
+    &--bot {
+      justify-content: flex-start;
+      align-self: flex-start;
+      color: #444444;
+      order: 0;
+    }
+
+    // text
+    > p {
+      margin: 0;
+    }
+  }
+
+  &__bot-icon {
+    font-size: 1.2rem;
+    margin-right: 12px;
+  }
+}
