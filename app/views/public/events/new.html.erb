@@ -1,11 +1,150 @@
-
-<div class="event-form container">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <h1 class="event-form__title">イベント作成ページ</h1>
-      <%= form_with model: Event do |f| %>
-        <%= render partial: 'public/events/form', locals: { f: f, isEdit: false } %>
-      <% end %>
+<div data-turbolinks="false">
+  <div class="event-form container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <h1 class="event-form__title">イベント作成ページ</h1>
+        <%= form_with model: Event do |f| %>
+          <%= render partial: 'public/events/form', locals: { f: f, isEdit: false } %>
+        <% end %>
+      </div>
     </div>
   </div>
+  <div type="text/javascript">
+    <script>
+      $(document).ready(function() {
+        // Get references to the radio buttons and input fields
+        var onlineRadio = $('#event_online');
+        var offlineRadio = $('#event_offline');
+        var gmapDiv = $('#gmap');
+
+        gmapDiv.hide();
+
+        onlineRadio.change(function() {
+          gmapDiv.hide();
+        });
+
+        offlineRadio.change(function() {
+          gmapDiv.show()
+        });
+      });
+    </script>
+    <script>
+      let map;
+      let geocoder;
+      let address;
+      let latitude;
+      let longitude;
+      let markers = [];
+
+      function addMarker(location) {
+        // Remove any existing markers from the map
+        removeMarkers();
+
+        // Create a new marker at the given location and add it to the markers array
+        let marker = new google.maps.Marker({
+          position: location,
+          map: map,
+        });
+        markers.push(marker);
+
+        // Move the map camera to the new marker location
+        map.setCenter(location);
+
+        // Reverse geocode the marker location and display the current address in an HTML tag
+        geocoder.geocode({ location: location }, function (results, status) {
+          if (status === "OK") {
+            if (results[0]) {
+              let currentAddress = results[0].formatted_address;
+              document.getElementById("address_field").innerHTML = currentAddress;
+            }
+          }
+        });
+      }
+
+      function removeMarkers() {
+        // Remove all markers from the map and clear the markers array
+        for (let i = 0; i < markers.length; i++) {
+          markers[i].setMap(null);
+        }
+        markers = [];
+      }
+
+
+      function codeAddress() {
+        let inputAddress = document.getElementById("address").value;
+
+        geocoder.geocode({ address: inputAddress }, function (results, status) {
+          if (status == "OK") {
+            // Add a marker at the input address and display its address and coordinates
+            let currentAddress = results[0].formatted_address;
+            let location = results[0].geometry.location;
+            addMarker(location);
+
+            address = currentAddress;
+            latitude = location.lat();
+            longitude = location.lng();
+
+            // Display the latitude and longitude in HTML tags
+            document.getElementById("address_field").value = currentAddress;
+            document.getElementById("latitude_field").value = location.lat();
+            document.getElementById("longitude_field").value = location.lng();
+          } else {
+            alert("Geocode was not successful for the following reason: " + status);
+          }
+        });
+      }
+
+       function initMap() {
+        geocoder = new google.maps.Geocoder();
+        navigator.geolocation.getCurrentPosition(function (position) {
+          let latLng = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 15,
+            center: latLng,
+          });
+
+          // Add a marker at the user's location and add it to the markers array
+          let marker = new google.maps.Marker({
+            position: latLng,
+            map: map,
+            title: "Your current location",
+          });
+          markers.push(marker);
+
+          // Reverse geocode the user's location and display the current address in an HTML tag
+          geocoder.geocode({ location: latLng }, function (results, status) {
+            if (status === "OK") {
+              if (results[0]) {
+                let currentAddress = results[0].formatted_address;
+
+                address = currentAddress;
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+
+                // Display the latitude and longitude in HTML tags
+                document.getElementById("address_field").value = currentAddress;
+                document.getElementById("latitude_field").value = position.coords.latitude;
+                document.getElementById("longitude_field").value = position.coords.longitude;
+              }
+            }
+          });
+        });
+      };
+
+      const script = document.createElement('script');
+      script.src = "https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap";
+      script.async = true;
+
+      // Attach your callback function to the `window` object
+      window.initMap = initMap;
+      // Append the 'script' element to 'head'
+      document.head.appendChild(script);
+    </script>
+  </div>
 </div>
+<%# // <script></script> 137 line %>
+<%# // <script src="aaaasdsadasdasd"></script> 138 line %>
+<%# // <script src="aaaasdsadasdasd" async ></script> 139 line %>

@@ -76,3 +76,5 @@ gem "net-pop"
 gem "net-imap"
 gem "redcarpet"
 gem 'rouge'
+gem 'gmaps4rails'
+gem 'geocoder'

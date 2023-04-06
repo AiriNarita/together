@@ -2,13 +2,40 @@
   <label for="event_name">
     イベント名
   </label>
-  <%= f.text_field :event_name, required: true, rows: 25, cols: 10, class: "form-control" %>
+  <%= f.text_field :event_name, required: true, class: "form-control" %>
 </div>
 <div class="form-group form-group__introduction">
   <label for="event_introduction">
     イベント紹介
   </label>
-  <%= f.text_area :event_introduction, required: true, rows: 25, cols: 10, class: "form-control" %>
+  <%= f.text_area :event_introduction, required: true, rows: 15, cols: 10, class: "form-control" %>
+</div>
+<div class="form-group form-group__type">
+  <label for="event_type">
+    イベントタイプ
+  </label>
+  <div class=radio-container>
+    <div class="radio-wrapper">
+      <%= f.radio_button :event_type, :online, checked: "checked", id: "event_online" %>
+      <%= f.label :online, class: "event_type_label" %>
+    </div>
+    <div class="radio-wrapper">
+      <%= f.radio_button :event_type, :offline, id: "event_offline" %>
+      <%= f.label :offline, class: "event_type_label" %>
+    </div>
+  </div>
+  <div id="gmap">
+    <div class="form-group address-form">
+      <!-- 地名入力用のinputを追加 -->
+      <input id="address" class="form-control" type="textbox" value="">
+      <!-- buttonをクリックしたらcodeAddressを実行　-->
+      <button type="button" onclick="codeAddress()">住所検索</button>
+    </div>
+    <%= f.text_field :address, class: "form-control form-control__gmap", hidden: false, id: 'address_field', readonly: true %>
+    <%= f.text_field :latitude, class: "form-control form-control__gmap", hidden: true, id: 'latitude_field', readonly: true %>
+    <%= f.text_field :longitude, class: "form-control form-control__gmap", hidden: true, id: 'longitude_field', readonly: true %>
+    <div id="map" style="width: 100%; height: 500px;"></div>
+  </div>
 </div>
 <div class="form-group form-group__url">
   <label for="url">

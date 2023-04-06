@@ -19,7 +19,6 @@ class Public::EventsController < ApplicationController
     @event = Event.includes(attendees: :user).find(params[:id])
     @attendees = @event.attendees.uniq(&:user_id)
     @is_past_event = @event.date < Time.now
-
     if user_signed_in?
       @attendee = Attendee.find_by(user_id: current_user.id, event_id: @event.id)
 
@@ -82,6 +81,6 @@ class Public::EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:event_name, :event_introduction, :date, :url, :event_image)
+    params.require(:event).permit(:event_name, :event_introduction, :date, :url, :event_image, :event_type, :address, :latitude, :longitude)
   end
 end

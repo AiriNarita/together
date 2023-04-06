@@ -9,6 +9,9 @@ class Event < ApplicationRecord
   validates :event_name, length: { minimum: 2 }
   validates :event_introduction, length: { minimum: 2 }
 
+  #下書き、公開のenum設定
+  enum event_type: { online: 0, offline: 1 }, _default: 0
+
   # creatorを参加者に含めない
   def attendees_for(user)
     if user.present?

@@ -1,4 +1,4 @@
-<div class="card event-card">
+<div class="card event-card" data-turbolinks="false">
   <div class="event-card__body">
     <div class="event-card__info">
       <% if event.event_image.attached? %>
@@ -6,22 +6,42 @@
       <% else %>
         <%= image_tag 'no_image.png', size: isDetail ? "400x480" : "310x180", class: isDetail ? 'detail' : "" %>
       <% end %>
-      <p class="event-card__date">
-        開催: <%= event.date %>
-      </p>
-      <%= link_to event.event_name, event_path(event.id), class: 'event-card__title' %>
+      <div class="event-card__header">
+        <div class="event-card__header-top <%= "list" if isDetail == false %>">
+          <% if event.event_type == "online" %>
+            <span class="event-card__type event-card__type--online"><%= I18n.t("enums.event.event_type.#{event.event_type}") %></span>
+          <% else %>
+            <span class="event-card__type event-card__type--offline"><%= I18n.t("enums.event.event_type.#{event.event_type}") %></span>
+          <% end %>
+          <% if isDetail == true %>
+            <h2 class="event-card__title"><%= event.event_name %></h2>
+          <% else %>
+            <%= link_to event.event_name, event_path(event.id), class: 'event-card__title list' %>
+          <% end %></div>
+        <div class="event-card__header-bottom">
+          <%= link_to event.creator.full_name, profile_users_path(event.creator), class: 'event-card__author' %>
+        </div>
+      </div>
       <p class="event-card__introduction <%= "list" if isDetail == false %>"><%= event.event_introduction %></p>
-      <% if isDetail %>
+      <% if isDetail == true %>
         <% if flash.now[:notice] =~ /https?:\/\/\S+/ %>
           <% flash.now[:notice].scan(/https?:\/\/\S+/) do |url| %>
             <p class="event-card__url">
-              <%= link_to url, url %>
+              <strong>URL: </strong> <%= link_to url, url %>
             </p>
           <% end %>
         <% end %>
       <% end %>
-      <%= link_to event.creator.full_name, profile_users_path(event.creator), class: 'event-card__author' %>
     </div>
+    <div class="event-card__date <%= "list" if isDetail == false %>">
+      <i class="far fa-clock"></i><span data-utc-time="<%= event.date %>"></span>
+    </div>
+    <% if isDetail == true && event.event_type == "offline" %>
+      <div class="event-card__gmap">
+        <h6 class="event-card__address"><%= event.address %></h6>
+        <div id="map" style="width: 100%; height: 500px;"></div>
+      </div>
+    <% end %>
     <div class="event-card__footer">
       <% unless isDetail %>
         <div class="event-card__participants">
@@ -45,9 +65,32 @@
           <% end %>
         </div>
       <% end %>
-      <p class="event-card__createdAt">
-        <%= event.created_at %>
-      </p>
     </div>
   </div>
+  <% if isDetail && event.event_type == "offline" %>
+    <div type="text/javascript">
+      <script>
+        function initMap(){
+          let map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: <%= event.latitude %>, lng: <%= event.longitude %> },
+            zoom: 15
+          });
+          new google.maps.Marker({
+            position: {lat: <%= event.latitude %>, lng: <%= event.longitude %> },
+            map: map,
+            title: "Your current location",
+          });
+        }
+        var script = document.createElement('script');
+        script.src = "https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap";
+        script.async = true;
+
+        // Attach your callback function to the `window` object
+        window.initMap = initMap;
+
+        // Append the 'script' element to 'head'
+        document.head.appendChild(script);
+      </script>
+    </div>
+  <% end %>
 </div>

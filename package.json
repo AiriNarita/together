@@ -8,6 +8,7 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.4",
     "bootstrap": "4.5",
+    "dayjs": "^1.11.7",
     "jquery": "^3.6.3",
     "popper.js": "^1.16.1",
     "swiper": "^9.1.1",

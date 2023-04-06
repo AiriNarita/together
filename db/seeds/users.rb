@@ -67,6 +67,10 @@ Faker::Config.locale = :ja
       date: Faker::Time.between(from: 3.months.ago, to: DateTime.now + 3.months),
       url: Faker::Internet.url,
       creator_id: user.id,
+      event_type: Faker::Number.within(range: 0..1),
+      address: "Tokyo, Shinjuku City, Shinjuku, 3 Chome−38, 新宿駅",
+      latitude: 35.68987680887586,
+      longitude: 139.70061421319159,
     )
   end
 end
