@@ -32,7 +32,7 @@
   &__date {
     margin: 0 0 4px 0;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
 
     > svg {
       height: 32px;
@@ -44,7 +44,7 @@
     > span {
       height: 32px;
       line-height: 32px;
-      font-size: 20px;
+      font-size: 16px;
       color: #000000;
     }
     &.list {
@@ -112,7 +112,7 @@
 
   &__title {
     margin: 0;
-    font-size: 40px;
+    font-size: 32px;
     color: #000000;
     font-weight: 700;
     line-height: 32px;
@@ -153,7 +153,7 @@
   }
 
   &__introduction{
-    font-size: 20px;
+    font-size: 16px;
     margin-bottom: 8px;
     color: #000000;
     line-height: 1.5;

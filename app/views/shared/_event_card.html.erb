@@ -20,9 +20,6 @@
           <% end %></div>
         <div class="event-card__header-bottom">
           <%= link_to event.creator.full_name, profile_users_path(event.creator), class: 'event-card__author' %>
-          <p class="event-card__createdAt" data-utc-time="<%= event.created_at %>">
-            &nbsp;
-          </p>
         </div>
       </div>
       <p class="event-card__introduction <%= "list" if isDetail == false %>"><%= event.event_introduction %></p>
