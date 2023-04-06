@@ -94,7 +94,9 @@ GEM
     geocoder (1.8.1)
     globalid (1.1.0)
       activesupport (>= 5.0)
-    gmaps4rails (2.1.2)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.5)
@@ -130,6 +132,7 @@ GEM
     mini_mime (1.1.2)
     minitest (5.18.0)
     msgpack (1.7.0)
+    multi_xml (0.6.0)
     mysql2 (0.5.5)
     net-imap (0.3.4)
       date
@@ -205,6 +208,8 @@ GEM
       rspec-mocks (~> 3.11)
       rspec-support (~> 3.11)
     rspec-support (3.12.0)
+    ruby-openai (3.7.0)
+      httparty (>= 0.18.1)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -264,8 +269,7 @@ DEPENDENCIES
   enum_help
   factory_bot_rails
   faker
-  geocoder
-  gmaps4rails
+  httparty
   jbuilder (~> 2.7)
   kaminari (~> 1.2.1)
   listen (~> 3.3)
@@ -280,6 +284,7 @@ DEPENDENCIES
   redcarpet
   rouge
   rspec-rails
+  ruby-openai
   sass-rails (>= 6)
   simple_form
   spring

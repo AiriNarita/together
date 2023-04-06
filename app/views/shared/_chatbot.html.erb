@@ -1,0 +1,58 @@
+<!-- Chat Modal -->
+<div class="chat modal fade" id="chat-modal" tabindex="-1" role="dialog" aria-labelledby="chat-modal-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="chat-modal-title">ボットちゃん</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="chat__body modal-body">
+        <div id="chat-messages" class="chat__messages" style="height: 400px; max-height: 400px; overflow-y: scroll;"></div>
+        <form id="chat-form" class="chat__form">
+          <input type="text" class="form-control chat__input" id="chat-input" placeholder="聞きたい内容を入力してください。">
+          <div class="input-group-append">
+            <button type="submit" id="chat-btn" class="chat__submit">送る</button>
+            <div class="spinner-border text-primary d-none" id="chat-loader" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+      $('#chat-form').submit(function (event) {
+          event.preventDefault();
+          var input = $('#chat-input').val();
+          $('#chat-btn').addClass('d-none');
+          $('#chat-loader').removeClass('d-none');
+          $.post('/chatbots', {input: input})
+              .done(function (data) {
+                  const response = data.response;
+                  // Display input and response in chat-messages div
+                  const responseMessage = '<div class="chat__message chat__message--bot"><i class="fas fa-robot chat__bot-icon"></i><p class="alert alert-success" role="alert">' + response + '</p></div>';
+                  const inputMessage = '<div class="chat__message chat__message--user"><p class="alert alert-info" role="alert">' + input + '</p></div>';
+                  $('#chat-messages').prepend(responseMessage, inputMessage);
+                  // Clear input field
+                  $('#chat-input').val('');
+                  $('#chat-loader').addClass('d-none');
+                  $('#chat-btn').removeClass('d-none');
+              })
+              .fail(function (xhr, status, error) {
+                  console.log("Error:", error)
+                  // Display input and response in chat-messages div
+                  const responseMessage = '<div class="chat__message chat__message--bot alert alert-danger" role="alert"><i class="fas fa-robot chat__bot-icon"></i><p>' + error + '</p></div>';
+                  const inputMessage = '<div class="chat__message chat__message--user alert alert-info" role="alert"><p>' + input + '</p></div>';
+
+                  $('#chat-messages').prepend(responseMessage, inputMessage);
+                  // Clear input field
+                  $('#chat-loader').addClass('d-none');
+                  $('#chat-btn').removeClass('d-none');
+              })
+      });
+  });
+</script>

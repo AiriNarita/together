@@ -26,5 +26,9 @@
       <%= yield %>
     </main>
     <%= render 'layouts/footer' %>
+    <%= render 'shared/chatbot' %>
+    <button type="button" class="chatbot-btn" data-toggle="modal" data-target="#chat-modal">
+      <i class="fas fa-robot" data-toggle=tooltip data-placement="bottom" title="ボットと遊ぶ！"></i>
+    </button>
   </body>
 </html>
