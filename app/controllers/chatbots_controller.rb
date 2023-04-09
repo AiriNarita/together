@@ -1,4 +1,5 @@
 class ChatbotsController < ApplicationController
+  #csrf tokenの問題で追記コード
   protect_from_forgery
 
   def create
@@ -9,7 +10,7 @@ class ChatbotsController < ApplicationController
     response = client.chat(
       parameters: {
         model: "gpt-3.5-turbo", # Required.
-        messages: [{ role: "system", content: "You are a helpful assistant. response english to japanese" }, { role: "user", content: input }], # Required.
+        messages: [{ role: "system", content: "You are a helpful assistant. response to japanese" }, { role: "user", content: input }], # Required.
         temperature: 0.7,
         max_tokens: 200,
       },
