@@ -9,7 +9,9 @@
         </button>
       </div>
       <div class="chat__body modal-body">
-        <div id="chat-messages" class="chat__messages" style="height: 400px; max-height: 400px; overflow-y: scroll;"></div>
+        <div id="chat-messages" class="chat__messages" style="height: 400px; max-height: 400px; overflow-y: scroll;">
+          <%# Controllerからくるデータがメッセージで表示される部分。 scriptの`$('#chat-messages').prepend(responseMessage, inputMessage);`部分 %>
+        </div>
         <form id="chat-form" class="chat__form">
           <input type="text" class="form-control chat__input" id="chat-input" placeholder="聞きたい内容を入力してください。">
           <div class="input-group-append">
@@ -26,22 +28,41 @@
 <script>
   $(document).ready(function () {
       $('#chat-form').submit(function (event) {
+        // デフォルトform eventを消す
           event.preventDefault();
-          var input = $('#chat-input').val();
+          //　InputのValue（Chatbotにタイピングしたワード）を取る
+          const input = $('#chat-input').val();
+          // d-none: display: none → bootstrap
+          // chat-btnにd-noneを追加する→ボタンを消す
           $('#chat-btn').addClass('d-none');
+          // chat-loaderに設定されてるd-noneを消す→ローディングを出す
           $('#chat-loader').removeClass('d-none');
+
+          // /chatbots (routes.rbに記述)
+          // inputはcontroller.rbに記述）
           $.post('/chatbots', {input: input})
+              // controllerで成功した時はこちにくる
+              // data.responseにはcontrollerのactionでreturn jsonするところに記述してるデータが入る。
               .done(function (data) {
+                  //     respond_to do |format|
+                  //       format.json { render json: { response: response.dig("choices", 0, "message", "content") } }
+                  //     end
+                  // responseは結局content!
                   const response = data.response;
-                  // Display input and response in chat-messages div
+                  // controllerのactionから来たデータを利用してtagを作る
                   const responseMessage = '<div class="chat__message chat__message--bot"><i class="fas fa-robot chat__bot-icon"></i><p class="alert alert-success" role="alert">' + response + '</p></div>';
+                  // inputは自分が送信したテキスト→メッセージのように自分のもはる
                   const inputMessage = '<div class="chat__message chat__message--user"><p class="alert alert-info" role="alert">' + input + '</p></div>';
+                  // append (入れること)の逆バージョン = prepend -> jQueryのみ
                   $('#chat-messages').prepend(responseMessage, inputMessage);
-                  // Clear input field
+                  // 自分が送信した内容をInput Tagから消す
                   $('#chat-input').val('');
+                  // ローディングを消す
                   $('#chat-loader').addClass('d-none');
+                  // ボタンを表示する
                   $('#chat-btn').removeClass('d-none');
               })
+              // controllerで失敗した時はこちにくる
               .fail(function (xhr, status, error) {
                   console.log("Error:", error)
                   // Display input and response in chat-messages div
