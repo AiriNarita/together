@@ -16,6 +16,13 @@
           </div>
         <% end %>
       </div>
+      <div class="posts__filters">
+        <div class="posts__sort">
+          <%= link_to "すべて", events_path(sort: :All), class: params[:sort] == "All" ? "" : "active" %>
+          <%= link_to "オンライン", events_path(sort: :Online), class: params[:sort] == "online" ? "active" : "" %>
+          <%= link_to "オフライン", events_path(sort: :Offline), class: params[:sort] == "offline" ? "active" : "" %>
+        </div>
+      </div>
       <%= render partial: 'public/events/index', locals: { events: @events } %>
     </div>
   </div>
