@@ -32,6 +32,15 @@ class Public::EventsController < ApplicationController
 
   def index
     @events = Event.visible.page(params[:page]).per(9)
+    params[:sort] = params[:sort].blank? ? "All" : params[:sort]
+    case params[:sort]
+    when "All"
+      @events = Event.visible.page(params[:page]).per(9)
+    when "Online"
+      @events = Event.visible.online.page(params[:page]).per(9)
+    when "Offline"
+      @events = Event.visible.offline.page(params[:page]).per(9)
+    end
   end
 
   def edit

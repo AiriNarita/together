@@ -8,7 +8,6 @@
     <%= link_to post.user.full_name, profile_users_path(post.user.id), class: 'post-card__username' %>
   </div>
   <div class="post-card__wrapper">
-    <!--<img class="post-card__image" src="https://images.unsplash.com/photo-1678818546219-d955db483f66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Post Image">-->
     <% if isDetail == false %>
       <div class="post-card__image">
         <% if post.post_image.attached? %>
@@ -28,6 +27,7 @@
       </h4>
       <% if isDetail %>
         <div class="markdown">
+          <!--<%= toc(post.body) %>-->
           <%= markdown(post.body) %>
         </div>
       <% else %>
