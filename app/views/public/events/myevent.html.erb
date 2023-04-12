@@ -1,5 +1,4 @@
 <div class="events container">
-
   <%= flash[:notice] %>
   <% if user_signed_in? %>
     <div class="events__write">
@@ -46,8 +45,8 @@
         <% if %w[attended_events past_attended_events].include?(params[:event_type]) %>
           <p>参加のイベントはありません</p>
         <% else %>
-          <p>作成したイベントはありません。</p>
-          <%= link_to "イベントを作成してみる", new_event_path %>
+          <p>ありません。</p>
+          <%= link_to "イベント作成へ", new_event_path %>
         <% end %>
       <% end %>
     </div>
