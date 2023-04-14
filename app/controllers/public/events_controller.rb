@@ -32,13 +32,14 @@ class Public::EventsController < ApplicationController
 
   def index
     @events = Event.visible.page(params[:page]).per(9)
-    params[:sort] = params[:sort].blank? ? "All" : params[:sort]
+    params[:sort] = params[:sort].blank? ? "ALL" : params[:sort]
     case params[:sort]
-    when "All"
+    # query paramはControllerやViewとかでたくさん使われるから、Enum化することがベスト、それともHuman Missが出ないように全ての文字を大文字にするか小文字に統一することがベスト
+    when "ALL"
       @events = Event.visible.page(params[:page]).per(9)
-    when "Online"
+    when "ONLINE"
       @events = Event.visible.online.page(params[:page]).per(9)
-    when "Offline"
+    when "OFFLINE"
       @events = Event.visible.offline.page(params[:page]).per(9)
     end
   end

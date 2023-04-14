@@ -6,7 +6,7 @@
       <%= image_tag 'no_image.png', size: "150x150", class: "img-fluid rounded-circle" %>
     <% end %>
     <% if user == current_user %>
-      <% if isGuest %>
+      <% if isGuest(user.email) %>
         <div class="profile-card__edit" data-toggle=tooltip data-placement="bottom" title="ゲストはプロフィール修正できません。">
           <i class="fas fa-edit"></i>
         </div>
@@ -24,7 +24,7 @@
     </div>
     <div class="profile-card__data profile-card__data--introduction">
       <h5>紹介</h5>
-      <%= isGuest ? "私はゲストです!" : ""%>
+      <%= isGuest(user.email) ? "私はゲストです!" : ""%>
       <% if user.introduction.present? %>
         <%= user.introduction %>
       <% else %>

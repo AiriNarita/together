@@ -1,5 +1,8 @@
 module Public::UsersHelper
-  def isGuest
-    current_user.email == "guest@email.com"
+  def isGuest(email)
+    if email.present?
+      return email == "guest@email.com"
+    end
+    return false
   end
 end
