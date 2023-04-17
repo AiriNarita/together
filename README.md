@@ -40,7 +40,7 @@
 - [UI flow](https://drive.google.com/file/d/1LjfFfMSbh0sh-1oTt-0BE_L5U8Nn4Mtk/view?usp=sharing)<br>
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1N7G1s3Di0b0VrLpVU6wXEhB8krQ56zkRehrSucyjqvk/edit#gid=0)
 - [ER図](https://drive.google.com/file/d/1VDebBeqTqvX0Lluf8hSEUq-5NYjuP8tw/view?usp=sharing)
-
+- [インフラ構築](https://docs.google.com/spreadsheets/d/1mY8CvHD7FGYb4l0zCvznUH0aogoKagcIcw272v_1xzM/edit#gid=0)
 - [※プレゼンテーションスライド](
 <https://docs.google.com/presentation/d/1jPzew-EHdaI_XmQv5S61F8qlvOCDlLGJ/edit#slide=id.p1>)
 
