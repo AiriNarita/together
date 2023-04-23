@@ -1,5 +1,6 @@
 class Public::EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :author_user, only: [:edit]
 
   def new
     @event = Event.new
@@ -92,5 +93,12 @@ class Public::EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:event_name, :event_introduction, :date, :url, :event_image, :event_type, :address, :latitude, :longitude)
+  end
+
+  #user　編集制限validation (投稿のidに関連するuseridとログイン中のidが同じな時以外で)
+  def author_user
+    unless Event.find(params[:id]).creator.id.to_i == current_user.id
+      redirect_to events_path
+    end
   end
 end
