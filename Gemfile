@@ -76,3 +76,5 @@ gem "redcarpet"
 gem 'rouge'
 gem 'httparty'
 gem "ruby-openai"
+#確認用
+gem 'data-confirm-modal'

@@ -18,6 +18,7 @@ import "bootstrap";
 import "../stylesheets/application";
 import "@fortawesome/fontawesome-free/js/all";
 import "dayjs"
+import "data-confirm-modal" // yarn add data-confirm-modal (https://github.com/ifad/data-confirm-modal)
 
 import "./shared/tooltip";
 import "./shared/loader";
