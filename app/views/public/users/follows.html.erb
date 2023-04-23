@@ -1,4 +1,8 @@
 <div class="relation container">
+  <h3>
+    <%= @user.full_name %>
+    さんの
+  </h3>
   <h1>フォロー一覧</h1>
   <% if @following_users.any? %>
     <div class="relation__user-wrapper">
