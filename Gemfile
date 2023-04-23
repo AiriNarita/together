@@ -67,9 +67,7 @@ gem 'enum_help'
 gem 'faker'
 
 gem 'dotenv-rails'
-group :production do
-  gem 'mysql2'
-end
+gem 'mysql2'
 
 gem "net-smtp"
 gem "net-pop"
