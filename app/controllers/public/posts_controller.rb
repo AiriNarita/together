@@ -1,7 +1,7 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :author_user, except: [:index, :show]
-  # 2行目のexcept: [:index, :show]はauthor_user変数でidが必要なのでindexは除外しないとerror,showは一致しk￥なくても閲覧かなのでexcept
+  before_action :author_user, only: [:edit]
+  # editには入れなくしたいのでonlyで限定
   # before_actionも上から順に読み込まれるよ。上の項目を通過するものなら下の条件。
 
   def new
