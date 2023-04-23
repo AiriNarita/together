@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'rouge/plugins/redcarpet'
-require 'redcarpet'
-require 'redcarpet/render_strip'
+require "rouge/plugins/redcarpet"
+require "redcarpet"
+require "redcarpet/render_strip"
 
 class CustomRenderHTML < Redcarpet::Render::HTML
   include Rouge::Plugins::Redcarpet
@@ -10,14 +10,14 @@ class CustomRenderHTML < Redcarpet::Render::HTML
   # Rouge::Plugins::Redcarpetのメソッドを上書きする
   def block_code(code, language)
     # もしコードブロックに言語とファイル名が定義されたら取得する。例： ```ruby:test.rb
-    filename = ''
+    filename = ""
     if language.present?
-      filename = language.split(':')[1]
-      language = language.split(':')[0]
+      filename = language.split(":")[1]
+      language = language.split(":")[0]
     end
 
     lexer = Rouge::Lexer.find_fancy(language, code) || Rouge::Lexers::PlainText
-    code.gsub!(/^    /, "\t") if lexer.tag == 'make'
+    code.gsub!(/^    /, "\t") if lexer.tag == "make"
     formatter = rouge_formatter(lexer)
     result = formatter.format(lexer.lex(code))
     return "<div class=#{wrap_class}>#{copy_button}#{result}</div" if filename.blank? && language.blank?
@@ -27,9 +27,9 @@ class CustomRenderHTML < Redcarpet::Render::HTML
 
   def rouge_formatter(_options = {})
     options = {
-      css_class: 'highlight',
+      css_class: "highlight",
       line_numbers: true,
-      line_format: '<span>%i</span>'
+      line_format: "<span>%i</span>",
     }
     Rouge::Formatters::HTMLLegacy.new(options)
   end
@@ -38,7 +38,7 @@ class CustomRenderHTML < Redcarpet::Render::HTML
 
   # wrap CSSクラス名の定義
   def wrap_class
-    'highlight-wrap'
+    "highlight-wrap"
   end
 
   # コピーボタンの定義。クリックするとJavaScriptファンクションが実行される
@@ -66,10 +66,11 @@ module MarkdownHelper
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::StripDown)
     markdown.render(text)
   end
+
   def markdown(text)
     options = {
       with_toc_data: true,
-      hard_wrap: true
+      hard_wrap: true,
     }
     extensions = {
       no_intra_emphasis: true,
@@ -83,7 +84,7 @@ module MarkdownHelper
       strikethrough: true,
       underline: true,
       highlight: true,
-      quote: true
+      quote: true,
     }
 
     renderer = CustomRenderHTML.new(options)
