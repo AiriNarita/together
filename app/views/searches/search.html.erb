@@ -22,6 +22,15 @@
     <% else %>
       <p>検索結果がありません</p>
     <% end %>
+  <% elsif @model == 'hashtag' %>
+    <h3>Hashtags search for "<%= @content %>"</h3>
+    <% if @results.present? %>
+      <% @results.each do |hashtag| %>
+        <%= render partial: 'public/posts/index', locals: { posts: @posts }  %>
+      <% end %>
+    <% else %>
+      <p>検索結果がありません</p>
+    <% end %>
   <% else @model == 'nil' %>
     <h3>Search for "<%= @content %>"</h3>
     <% if @results.present? %>

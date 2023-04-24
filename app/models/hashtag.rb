@@ -6,11 +6,11 @@ class Hashtag < ApplicationRecord
   #検索用
   def self.search_content(content, method)
     if method == "perfect"
-      where(hashtag_name: content)
+      where(hashtag_name: content).includes(:posts)
     elsif method == "partial"
-      where("hashtag_name LIKE ?", "%#{content}%")
+      where("hashtag_name LIKE ?", "%#{content}%").includes(:posts)
     else
-      all
+      all.includes(:posts)
     end
   end
 end
