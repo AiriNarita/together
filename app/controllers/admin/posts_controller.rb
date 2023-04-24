@@ -3,11 +3,16 @@ class Admin::PostsController < ApplicationController
     @posts = Post.visible.page(params[:page]).per(8)
 
     case params[:sort]
-    when "attendee"
+    when "favorites"
       # @posts = @posts.order(attendee_count: :desc)
-      @posts = @posts
+      @posts = @posts.includes(:hashtags)
+        .left_joins(:favorites)
+        .select("posts.*, COUNT(favorites.id) AS favorites_count")
+        .group("posts.id")
+        .order("favorites_count DESC")
+        .visible.order(favorites_count: :desc).page(params[:page]).per(8)
     when "latest"
-      @posts = @posts.order(created_at: :desc)
+      @posts = @posts.order(created_at: :desc).page(params[:page]).per(8)
     end
   end
 
