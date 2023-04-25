@@ -1,5 +1,11 @@
 Faker::Config.locale = :ja
 
+#admin情報
+Admin.create!(
+  email: "admin@gmail.com",
+  password: "admin123",
+)
+
 #markdown faker: https://github.com/faker-ruby/faker/blob/main/doc/default/markdown.md
 10.times do
   user = User.create(
