@@ -30,10 +30,6 @@
           <!--<%= toc(post.body) %>-->
           <%= markdown(post.body) %>
         </div>
-      <% else %>
-        <p class="post-card__body">
-          <%= plaintext(post.body) %>
-        </p>
       <% end %>
       <ul class="post-card__hashtag-wrapper">
         <% post.hashtags.each do |hashtag| %>
