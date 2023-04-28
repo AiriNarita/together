@@ -6,7 +6,7 @@
       <% else %>
         <%= image_tag 'no_image.png', size: "30x30", class: "comment-card__avatar" %>
       <% end %>
-      <%= link_to comment.user.full_name, my_page_users_path(comment.user.id), class: 'comment-card__username' %>
+      <%= link_to comment.user.full_name, profile_users_path(comment.user.id), class: 'comment-card__username' %>
     </div>
     <div class="comment-card__createdAt">
       <%= comment.created_at %>
