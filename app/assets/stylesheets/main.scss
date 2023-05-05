@@ -23,6 +23,30 @@ footer {
   color: white;
 
   p {
-    margin: 0;
+    margin: 12px;
   }
+  a{
+  color: white;
+  display: block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	width: 400px;
+	margin: auto;
+	padding: 1rem;
+	font-weight: bold;
+	border: 2px solid #c7b1c6;
+	background: linear-gradient(
+    90deg,
+    rgba(101, 77, 196, 1) 0%,
+    rgba(89, 63, 191, 1) 35%,
+    rgba(155, 64, 166, 1) 100%
+  );
+	border-radius: 100vh;
+	transition: 0.5s;
+  &:hover {
+    color: white;
+  }
+  }
+
 }
