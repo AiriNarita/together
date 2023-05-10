@@ -22,7 +22,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'simple_form'
-# https://qiita.com/takuyanin/items/c37b9842926a78531ac2
+# meta-tag gem : https://qiita.com/takuyanin/items/c37b9842926a78531ac2
 gem 'meta-tags', :require => 'meta_tags'
 
 # Use Active Storage variant
@@ -72,9 +72,12 @@ gem 'mysql2'
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+#markdown gem
 gem "redcarpet"
 gem 'rouge'
+# HTTP gem
 gem 'httparty'
+#chatbot gem
 gem "ruby-openai"
 #確認用
 gem 'data-confirm-modal'
