@@ -52,3 +52,7 @@
 - API :[Swiper.js](https://swiperjs.com/swiper-api),[Google Maps API](https://developers.google.com/maps/documentation/javascript?hl=ja),[OpenAI API](https://openai.com/)
 - IDE：Cloud9
 - 分析：Google analytics4
+
+## 　そのほか
+
+- [こちらのポートフォリオに関してのまとめページもご覧ください！](https://zenn.dev/airiswim/articles/f4a2b23c74846e)
